@@ -1,241 +1,337 @@
-/* Minimal, functional styles. Replace with Tailwind/your design later. */
+/* ===== Mission Possible Homepage Styles ===== */
 
-* {
-  box-sizing: border-box;
+.hero-mp {
+  background: #1B2845;
+  color: #FAF7F0;
+  padding: 5rem 1rem;
+  text-align: center;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #f7f7f8;
-  color: #222;
-  line-height: 1.5;
-}
-
-a {
-  color: #2563eb;
-  text-decoration: none;
-}
-a:hover { text-decoration: underline; }
-
-.container {
+.hero-mp-inner {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem 1rem;
 }
 
-h1 { font-size: 2rem; margin: 0 0 0.5rem; }
-h2 { font-size: 1.25rem; margin: 1.5rem 0 0.75rem; }
-
-/* Hero / landing */
-.hero {
-  text-align: center;
-  padding: 3rem 1rem;
-  background: #fff;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-}
-.tagline { font-size: 1.1rem; color: #555; margin-bottom: 1.5rem; }
-.cta { display: inline-block; margin-top: 0.5rem; }
-
-.info {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1rem;
+.brand-title {
+  font-size: 3rem;
+  letter-spacing: 0.15em;
+  margin: 0 0 1rem;
+  font-weight: 700;
 }
 
-/* Cards */
-.card {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-.card.narrow { max-width: 400px; margin-left: auto; margin-right: auto; }
-.card.center { text-align: center; }
-
-/* Forms */
-label {
-  display: block;
-  font-size: 0.9rem;
-  color: #444;
-  margin-bottom: 1rem;
-}
-label > input,
-label > select {
-  display: block;
-  width: 100%;
-  padding: 0.6rem 0.75rem;
-  margin-top: 0.25rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 1rem;
-  background: #fff;
-}
-input:focus { outline: 2px solid #2563eb; outline-offset: 1px; }
-
-.field-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0 1rem;
+.brand-tagline {
+  font-size: 1.4rem;
+  color: #B8985A;
+  font-style: italic;
+  margin: 0 0 2rem;
 }
 
-/* Participant rows */
-.participant-row {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: #fafafa;
-}
-.participant-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+.brand-subtagline {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0 0 2.5rem;
+  color: #FAF7F0;
 }
 
-/* Buttons */
-.btn-primary,
-.btn-secondary {
-  display: inline-block;
-  padding: 0.65rem 1.25rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-.btn-primary {
-  background: #2563eb;
-  color: #fff;
-}
-.btn-primary:hover:not(:disabled) { background: #1d4ed8; }
-.btn-primary:disabled { background: #9ca3af; cursor: not-allowed; }
-
-.btn-secondary {
-  background: #fff;
-  color: #2563eb;
-  border-color: #2563eb;
-}
-.btn-secondary:hover { background: #eff6ff; }
-
-.btn-link {
-  background: none;
-  border: none;
-  color: #2563eb;
-  cursor: pointer;
-  font-size: 0.9rem;
-  padding: 0;
-  text-decoration: underline;
-}
-
-/* Summary */
-.summary { border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 1rem; }
-.phase-label {
-  display: inline-block;
-  background: #eff6ff;
-  color: #1d4ed8;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  margin-bottom: 0.75rem;
-}
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.4rem 0;
-}
-.summary-row.total {
-  border-top: 1px solid #e5e7eb;
-  margin-top: 0.5rem;
-  padding-top: 0.75rem;
+.hero-mp .btn-primary {
+  background: #8B1E2D;
+  border-color: #8B1E2D;
+  padding: 1rem 2rem;
   font-size: 1.1rem;
 }
 
-/* Errors / muted */
-.error {
-  background: #fef2f2;
-  color: #b91c1c;
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  margin: 1rem 0;
+.hero-mp .btn-primary:hover {
+  background: #6e1623;
 }
-.muted { color: #6b7280; font-size: 0.9rem; }
-.back-link { display: inline-block; margin-bottom: 1rem; font-size: 0.9rem; }
 
-/* Admin */
-.admin-header {
+/* Joint mission section */
+.joint-mission {
+  background: #FAF7F0;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.joint-mission h2 {
+  font-size: 2rem;
+  color: #1B2845;
+  margin-bottom: 1.5rem;
+}
+
+.joint-mission p {
+  max-width: 700px;
+  margin: 0 auto 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #1F1F1F;
+}
+
+.joint-mission .emphasis {
+  font-style: italic;
+  color: #B8985A;
+  font-size: 1.15rem;
+  margin-top: 2rem;
+}
+
+/* Nonprofit side-by-side cards */
+.nonprofits {
+  background: #fff;
+  padding: 4rem 1rem;
+}
+
+.nonprofit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nonprofit-card {
+  background: #FAF7F0;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.nonprofit-logo-placeholder,
+.nonprofit-photo-placeholder {
+  background: #e5e7eb;
+  color: #6b7280;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.nonprofit-photo-placeholder {
+  min-height: 200px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+}
+
+.nonprofit-card h3 {
+  color: #1B2845;
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.nonprofit-tagline {
+  color: #B8985A;
+  font-style: italic;
   margin-bottom: 1rem;
 }
-.admin-nav {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 0.75rem;
-}
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1rem;
-}
-.stat-card {
-  background: #fff;
-  padding: 1.25rem;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-.stat-label { color: #6b7280; font-size: 0.85rem; }
-.stat-value { font-size: 1.75rem; font-weight: 600; margin-top: 0.25rem; }
-
-/* Tables */
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-.data-table th,
-.data-table td {
-  padding: 0.75rem 1rem;
+.nonprofit-card p {
   text-align: left;
-  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
-.data-table th {
-  background: #f9fafb;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: #6b7280;
-}
-.data-table tr:last-child td { border-bottom: none; }
 
-.badge {
+.nonprofit-card .quote {
+  font-style: italic;
+  color: #555;
+  border-left: 3px solid #B8985A;
+  padding-left: 1rem;
+  margin: 1rem 0;
+}
+
+.learn-more {
   display: inline-block;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: capitalize;
+  margin-top: 1rem;
+  color: #1B2845;
+  font-weight: 600;
 }
-.badge-pending { background: #fef3c7; color: #92400e; }
-.badge-paid { background: #d1fae5; color: #065f46; }
 
-/* Definition list */
-.info-list {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 0.5rem 1rem;
+/* Stack on mobile */
+@media (max-width: 720px) {
+  .nonprofit-grid {
+    grid-template-columns: 1fr;
+  }
+  .brand-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* CTA section */
+.cta-section {
+  background: #1B2845;
+  color: #FAF7F0;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-section .btn-primary {
+  background: #8B1E2D;
+  border-color: #8B1E2D;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+.cta-section .btn-primary:hover {
+  background: #6e1623;
+}
+
+/* Footer */
+.site-footer {
+  background: #1F1F1F;
+  color: #FAF7F0;
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.footer-brand {
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.5rem;
+}
+
+.footer-orgs {
+  color: #B8985A;
   margin: 0;
 }
-.info-list dt { color: #6b7280; font-size: 0.9rem; }
-.info-list dd { margin: 0; }
+
+/* ===== Events Page Styles ===== */
+
+.page-header {
+  background: #1B2845;
+  color: #FAF7F0;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  margin: 1rem 0 0;
+}
+
+.page-header .back-link {
+  color: #B8985A;
+  font-size: 0.9rem;
+}
+
+.featured-event {
+  background: #FAF7F0;
+  padding: 3rem 1rem;
+}
+
+.event-card {
+  background: #fff;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.event-card h2 {
+  color: #1B2845;
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.event-subtitle {
+  color: #B8985A;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.event-meta {
+  margin: 1.5rem 0;
+}
+
+.event-meta p {
+  margin: 0.4rem 0;
+  font-size: 1.05rem;
+}
+
+.event-card .btn-primary {
+  background: #8B1E2D;
+  border-color: #8B1E2D;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+.event-card .btn-primary:hover {
+  background: #6e1623;
+}
+
+.event-details,
+.pricing-section,
+.full-schedule {
+  padding: 3rem 1rem;
+}
+
+.event-details {
+  background: #fff;
+}
+
+.event-details h2,
+.pricing-section h2,
+.full-schedule h2 {
+  color: #1B2845;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.schedule-block {
+  background: #FAF7F0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 1.5rem auto;
+}
+
+.schedule-block p {
+  margin: 0.4rem 0;
+}
+
+.pricing-section {
+  background: #FAF7F0;
+}
+
+.price-tier {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.price-tier h3 {
+  color: #B8985A;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.price-tier p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.full-schedule {
+  background: #fff;
+}
+
+.schedule-list {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.schedule-list li {
+  padding: 0.6rem 0;
+  font-size: 1.05rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.schedule-list li:last-child {
+  border-bottom: none;
+}
