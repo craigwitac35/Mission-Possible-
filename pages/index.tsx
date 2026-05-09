@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import { HorseshoePawDivider, CompassRose } from '@/components/svg/Ornaments';
 
 export default function Home() {
   return (
@@ -27,10 +28,8 @@ export default function Home() {
               <span className="mp-title-line mp-title-italic">Possible</span>
             </h1>
 
-            <div className="mp-divider">
-              <span className="mp-divider-line" />
-              <span className="mp-divider-mark">&#10086;</span>
-              <span className="mp-divider-line" />
+            <div className="mp-hero-divider">
+              <HorseshoePawDivider className="mp-svg-divider" />
             </div>
 
             <p className="mp-tagline">
@@ -50,6 +49,10 @@ export default function Home() {
 
         <section className="mp-section mp-section-cream">
           <div className="mp-container">
+            <div className="mp-compass-mark">
+              <CompassRose className="mp-svg-compass" />
+            </div>
+
             <p className="mp-section-label">No. 01 &mdash; A Note From Us</p>
             <h2 className="mp-section-title">
               Two Missions.<br />
@@ -76,13 +79,21 @@ export default function Home() {
           </div>
         </section>
 
+        <div className="mp-section-bridge">
+          <HorseshoePawDivider className="mp-svg-divider mp-svg-divider-bridge" />
+        </div>
+
         <section className="mp-section mp-section-dark">
           <div className="mp-container">
+            <div className="mp-compass-mark mp-compass-light">
+              <CompassRose className="mp-svg-compass" />
+            </div>
+
             <p className="mp-section-label mp-label-light">
               No. 02 &mdash; Our Partners
             </p>
             <h2 className="mp-section-title mp-title-light">
-              The Hooves &amp; The Paws
+              The <em>Hooves</em> &amp; The <em>Paws</em>
             </h2>
           </div>
 
@@ -184,8 +195,16 @@ export default function Home() {
           </div>
         </section>
 
+        <div className="mp-section-bridge mp-section-bridge-dark">
+          <HorseshoePawDivider className="mp-svg-divider mp-svg-divider-bridge" />
+        </div>
+
         <section className="mp-section mp-section-cream">
           <div className="mp-container mp-container-narrow">
+            <div className="mp-compass-mark">
+              <CompassRose className="mp-svg-compass" />
+            </div>
+
             <p className="mp-section-label">No. 03 &mdash; Find Us At</p>
             <h2 className="mp-section-title">
               Join Us at <em>Our Next Event</em>
