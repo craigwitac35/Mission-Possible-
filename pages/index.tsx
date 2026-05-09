@@ -12,121 +12,240 @@ export default function Home() {
         />
       </Head>
 
-      <main>
-        <section className="hero-mp">
-          <div className="hero-mp-inner">
-            <h1 className="brand-title">MISSION POSSIBLE</h1>
-            <p className="brand-tagline">
+      <main className="mp-site">
+        <section className="mp-hero">
+          <div className="mp-hero-frame">
+            <p className="mp-eyebrow">Est. 2025 &middot; Minnesota</p>
+
+            <div className="mp-logo-slot">
+              {/* IMAGE PLACEHOLDER: Joint logo goes here */}
+              <span className="mp-logo-placeholder">[ Joint Logo ]</span>
+            </div>
+
+            <h1 className="mp-title">
+              <span className="mp-title-line">Mission</span>
+              <span className="mp-title-line mp-title-italic">Possible</span>
+            </h1>
+
+            <div className="mp-divider">
+              <span className="mp-divider-line" />
+              <span className="mp-divider-mark">&#10086;</span>
+              <span className="mp-divider-line" />
+            </div>
+
+            <p className="mp-tagline">
               Where Hooves, Paws, and Combat Boots Meet.
             </p>
-            <p className="brand-subtagline">
+
+            <p className="mp-subtagline">
               Serving Those Who Serve.<br />
               Together, We Heal. Together, We Thrive.
             </p>
-            <Link href="/events" className="btn-primary cta">
+
+            <Link href="/events" className="mp-btn mp-btn-primary">
               See Upcoming Events
             </Link>
           </div>
         </section>
 
-        <section className="joint-mission">
-          <div className="container">
-            <h2>Two Missions. One Purpose.</h2>
-            <p>
-              Mission Possible is a partnership between Guardian 4 Heroes and
-              Heroes K9 Odyssey Academy — two nonprofits dedicated to helping
-              veterans and first responders heal, grow, and thrive alongside
-              the animals who walk beside them.
-            </p>
-            <p>
-              Through equine therapy, K9 training, and community events, we
-              honor those who served and the rescue animals who serve right back.
-            </p>
-            <p className="emphasis">
-              Together, We Heal. Together, We Thrive.
-            </p>
+        <section className="mp-section mp-section-cream">
+          <div className="mp-container">
+            <p className="mp-section-label">No. 01 &mdash; A Note From Us</p>
+            <h2 className="mp-section-title">
+              Two Missions.<br />
+              <em>One Purpose.</em>
+            </h2>
+
+            <div className="mp-prose">
+              <p>
+                Mission Possible is a partnership between Guardian 4 Heroes and
+                Heroes K9 Odyssey Academy &mdash; two nonprofits dedicated to
+                helping veterans and first responders heal, grow, and thrive
+                alongside the animals who walk beside them.
+              </p>
+              <p>
+                Through equine therapy, K9 training, and community events, we
+                honor those who served and the rescue animals who serve right
+                back.
+              </p>
+            </div>
+
+            <blockquote className="mp-pullquote">
+              &ldquo;Together, We Heal. Together, We Thrive.&rdquo;
+            </blockquote>
           </div>
         </section>
 
-        <section className="nonprofits">
-          <div className="container">
-            <div className="nonprofit-grid">
-              <article className="nonprofit-card">
-                <div className="nonprofit-logo-placeholder">G4H Logo</div>
-                <div className="nonprofit-photo-placeholder">
-                  [Horse Photo]
+        <section className="mp-section mp-section-dark">
+          <div className="mp-container">
+            <p className="mp-section-label mp-label-light">
+              No. 02 &mdash; Our Partners
+            </p>
+            <h2 className="mp-section-title mp-title-light">
+              The Hooves &amp; The Paws
+            </h2>
+          </div>
+
+          <div className="mp-partners">
+            <article className="mp-partner-card">
+              <div className="mp-partner-image-slot">
+                {/* IMAGE PLACEHOLDER: Photo of horses (G4H) */}
+                <span className="mp-image-placeholder">[ Horse Photo ]</span>
+              </div>
+
+              <div className="mp-partner-body">
+                <p className="mp-partner-tag">Hooves</p>
+
+                <div className="mp-partner-logo-slot">
+                  {/* IMAGE PLACEHOLDER: G4H logo */}
+                  <span className="mp-logo-placeholder-sm">[ G4H Logo ]</span>
                 </div>
-                <h3>Guardian 4 Heroes</h3>
-                <p className="nonprofit-tagline">
+
+                <h3 className="mp-partner-name">Guardian 4 Heroes</h3>
+                <p className="mp-partner-tagline">
                   The Power of the Connection with a Horse
                 </p>
-                <p>
-                  Guardian 4 Heroes provides equine-facilitated therapy and
-                  assisted training for veterans and first responders. Through
-                  the quiet strength of horses, those who served find a path
-                  toward healing — physically, mentally, and emotionally.
+
+                <p className="mp-partner-text">
+                  Guardian 4 Heroes provides equine-facilitated psychotherapy
+                  for veterans and first responders. Through the quiet strength
+                  of horses, those who served find a path toward healing &mdash;
+                  physically, mentally, and emotionally.
                 </p>
-                <p className="quote">
-                  "When the noise of war fades, the silence can be loud. But
-                  here, with every hoofbeat and shared breath, healing begins."
+
+                <p className="mp-partner-quote">
+                  &ldquo;When the noise of war fades, the silence can be loud.
+                  But here, with every hoofbeat and shared breath, healing
+                  begins.&rdquo;
                 </p>
+
+                <p className="mp-partner-founder">
+                  Founded by <strong>Sara Peterson</strong>
+                </p>
+
                 <a
                   href="https://www.guardian4heroes.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="learn-more"
+                  className="mp-partner-link"
                 >
-                  Learn More →
+                  Visit Guardian 4 Heroes &rarr;
                 </a>
-              </article>
+              </div>
+            </article>
 
-              <article className="nonprofit-card">
-                <div className="nonprofit-logo-placeholder">HK9OA Logo</div>
-                <div className="nonprofit-photo-placeholder">
-                  [Dog Photo]
+            <article className="mp-partner-card">
+              <div className="mp-partner-image-slot">
+                {/* IMAGE PLACEHOLDER: Photo of dogs (HK9OA) */}
+                <span className="mp-image-placeholder">[ Dog Photo ]</span>
+              </div>
+
+              <div className="mp-partner-body">
+                <p className="mp-partner-tag">Paws</p>
+
+                <div className="mp-partner-logo-slot">
+                  {/* IMAGE PLACEHOLDER: HK9OA logo */}
+                  <span className="mp-logo-placeholder-sm">[ HK9OA Logo ]</span>
                 </div>
-                <h3>Heroes K9 Odyssey Academy</h3>
-                <p className="nonprofit-tagline">
-                  Training Heroes. Saving Dogs. Changing Lives.
+
+                <h3 className="mp-partner-name">
+                  Heroes K9 Odyssey Academy
+                </h3>
+                <p className="mp-partner-tagline">
+                  Where Purpose Meets Paws
                 </p>
-                <p>
+
+                <p className="mp-partner-text">
                   Heroes K9 Odyssey Academy equips veterans and first responders
                   with skills in canine training and care, while rehabilitating
-                  rescue dogs to serve as service animals or companions.
+                  rescue dogs to serve as service animals or companions &mdash;
+                  creating a ripple effect of healing.
                 </p>
-                <p>
-                  The result is a ripple effect — humans healing alongside the
-                  animals they help, creating stronger communities and second
-                  chances for both.
+
+                <p className="mp-partner-quote">
+                  &ldquo;Second chances for those who served, and the rescue
+                  dogs who serve right back.&rdquo;
                 </p>
+
+                <p className="mp-partner-founder">
+                  Founded by <strong>Amie Schwinghammer</strong>
+                </p>
+
                 <a
                   href="https://heroesk9odysseyacademy.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="learn-more"
+                  className="mp-partner-link"
                 >
-                  Learn More →
+                  Visit Heroes K9 Odyssey Academy &rarr;
                 </a>
-              </article>
-            </div>
+              </div>
+            </article>
           </div>
         </section>
 
-        <section className="cta-section">
-          <div className="container">
-            <h2>Join Us at Our Next Event</h2>
-            <Link href="/events" className="btn-primary cta">
+        <section className="mp-section mp-section-cream">
+          <div className="mp-container mp-container-narrow">
+            <p className="mp-section-label">No. 03 &mdash; Find Us At</p>
+            <h2 className="mp-section-title">
+              Join Us at <em>Our Next Event</em>
+            </h2>
+
+            <p className="mp-prose-center">
+              Mud, music, food trucks, and the kind of community that only
+              shows up when there&rsquo;s something worth showing up for.
+            </p>
+
+            <Link href="/events" className="mp-btn mp-btn-primary">
               See Upcoming Events
             </Link>
           </div>
         </section>
 
-        <footer className="site-footer">
-          <div className="container">
-            <p className="footer-brand">Mission Possible | Hooves and Paws</p>
-            <p className="footer-orgs">
-              Guardian 4 Heroes &nbsp;|&nbsp; Heroes K9 Odyssey Academy
-            </p>
+        <footer className="mp-footer">
+          <div className="mp-container">
+            <div className="mp-footer-grid">
+              <div className="mp-footer-col">
+                <p className="mp-footer-brand">Mission Possible</p>
+                <p className="mp-footer-tagline">Hooves &amp; Paws</p>
+                <p className="mp-footer-text">
+                  Where Hooves, Paws, and Combat Boots Meet.
+                </p>
+              </div>
+
+              <div className="mp-footer-col">
+                <p className="mp-footer-heading">Guardian 4 Heroes</p>
+                <a
+                  href="https://www.guardian4heroes.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mp-footer-link"
+                >
+                  guardian4heroes.org &rarr;
+                </a>
+              </div>
+
+              <div className="mp-footer-col">
+                <p className="mp-footer-heading">Heroes K9 Odyssey Academy</p>
+                <a
+                  href="https://heroesk9odysseyacademy.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mp-footer-link"
+                >
+                  heroesk9odysseyacademy.org &rarr;
+                </a>
+              </div>
+            </div>
+
+            <div className="mp-footer-bottom">
+              <p>
+                &copy; 2025 Mission Possible. All rights reserved.
+              </p>
+              <p className="mp-footer-credit">
+                Built by <a href="https://web-ops-studio.com" target="_blank" rel="noopener noreferrer">WebOps Studio</a>
+              </p>
+            </div>
           </div>
         </footer>
       </main>
