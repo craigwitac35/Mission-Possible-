@@ -97,7 +97,6 @@ export default function RegistrationForm() {
     setSubmitting(true);
 
     try {
-      // 1. Insert registration
       const { data: registration, error: regErr } = await supabase
         .from('registrations')
         .insert({
@@ -115,7 +114,6 @@ export default function RegistrationForm() {
         throw new Error(regErr?.message || 'Failed to create registration.');
       }
 
-      // 2. Insert participants linked to that registration
       const participantRows = participants.map((p) => ({
         registration_id: registration.id,
         name: p.name.trim(),
@@ -130,7 +128,6 @@ export default function RegistrationForm() {
         throw new Error(partErr.message);
       }
 
-      // 3. Redirect to confirmation
       router.push('/confirmation');
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
@@ -140,8 +137,8 @@ export default function RegistrationForm() {
 
   if (!pricing.isOpen) {
     return (
-      <div className="card">
-        <h2>Registration Closed</h2>
+      <div className="mp-form-card mp-form-closed">
+        <h2 className="mp-form-step-title">Registration Closed</h2>
         <p>
           Online registration is closed. Please contact the event organizers
           for assistance.
@@ -151,44 +148,52 @@ export default function RegistrationForm() {
   }
 
   return (
-    <form className="card" onSubmit={handleSubmit}>
-      <section>
-        <h2>Your Info</h2>
-        <div className="field-grid">
-          <label>
-            Full Name
+    <form className="mp-form-card" onSubmit={handleSubmit}>
+      <section className="mp-form-step">
+        <p className="mp-form-step-label">Step 01</p>
+        <h2 className="mp-form-step-title">Your Information</h2>
+
+        <div className="mp-form-fields">
+          <label className="mp-form-label">
+            <span className="mp-label-text">Full Name</span>
             <input
               type="text"
               required
+              className="mp-form-input"
               value={buyer.buyer_name}
               onChange={(e) => handleBuyerChange('buyer_name', e.target.value)}
             />
           </label>
 
-          <label>
-            Email
+          <label className="mp-form-label">
+            <span className="mp-label-text">Email</span>
             <input
               type="email"
               required
+              className="mp-form-input"
               value={buyer.buyer_email}
               onChange={(e) => handleBuyerChange('buyer_email', e.target.value)}
             />
           </label>
 
-          <label>
-            Phone
+          <label className="mp-form-label">
+            <span className="mp-label-text">Phone</span>
             <input
               type="tel"
               required
+              className="mp-form-input"
               value={buyer.buyer_phone}
               onChange={(e) => handleBuyerChange('buyer_phone', e.target.value)}
             />
           </label>
 
-          <label>
-            Group Name (optional)
+          <label className="mp-form-label">
+            <span className="mp-label-text">
+              Group Name <span className="mp-label-optional">(optional)</span>
+            </span>
             <input
               type="text"
+              className="mp-form-input"
               value={buyer.group_name}
               onChange={(e) => handleBuyerChange('group_name', e.target.value)}
             />
@@ -196,47 +201,75 @@ export default function RegistrationForm() {
         </div>
       </section>
 
-      <section>
-        <h2>Participants</h2>
-        {participants.map((p, i) => (
-          <ParticipantFields
-            key={i}
-            index={i}
-            participant={p}
-            canRemove={participants.length > 1}
-            onChange={handleParticipantChange}
-            onRemove={removeParticipant}
-          />
-        ))}
-        <button type="button" className="btn-secondary" onClick={addParticipant}>
+      <section className="mp-form-step">
+        <p className="mp-form-step-label">Step 02</p>
+        <h2 className="mp-form-step-title">Participants</h2>
+
+        <div className="mp-participants-list">
+          {participants.map((p, i) => (
+            <ParticipantFields
+              key={i}
+              index={i}
+              participant={p}
+              canRemove={participants.length > 1}
+              onChange={handleParticipantChange}
+              onRemove={removeParticipant}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          className="mp-btn mp-btn-secondary"
+          onClick={addParticipant}
+        >
           + Add Participant
         </button>
       </section>
 
-      <section className="summary">
-        <h2>Summary</h2>
-        <p className="phase-label">{phaseLabel(pricing.phase)}</p>
-        <div className="summary-row">
-          <span>
-            Adults ({pricing.adultCount}) &times; ${pricing.adultPrice}
-          </span>
-          <span>${pricing.adultCount * pricing.adultPrice}</span>
-        </div>
-        <div className="summary-row">
-          <span>
-            Children ({pricing.childCount}) &times; ${pricing.childPrice}
-          </span>
-          <span>${pricing.childCount * pricing.childPrice}</span>
-        </div>
-        <div className="summary-row total">
-          <strong>Total</strong>
-          <strong>${pricing.total}</strong>
+      <section className="mp-form-step">
+        <p className="mp-form-step-label">Step 03</p>
+        <h2 className="mp-form-step-title">Review &amp; Submit</h2>
+
+        <div className="mp-summary-ticket">
+          <div className="mp-ticket-header">
+            <span className="mp-ticket-event">Mission Possible</span>
+            <span className="mp-ticket-phase">{phaseLabel(pricing.phase)}</span>
+          </div>
+
+          <div className="mp-ticket-body">
+            <div className="mp-ticket-row">
+              <span>
+                Adults &times; {pricing.adultCount}
+                <span className="mp-ticket-rate"> @ ${pricing.adultPrice}</span>
+              </span>
+              <span>${pricing.adultCount * pricing.adultPrice}</span>
+            </div>
+            <div className="mp-ticket-row">
+              <span>
+                Children &times; {pricing.childCount}
+                <span className="mp-ticket-rate"> @ ${pricing.childPrice}</span>
+              </span>
+              <span>${pricing.childCount * pricing.childPrice}</span>
+            </div>
+          </div>
+
+          <div className="mp-ticket-perforation" />
+
+          <div className="mp-ticket-total">
+            <span>Total Due</span>
+            <span className="mp-ticket-total-amount">${pricing.total}</span>
+          </div>
         </div>
       </section>
 
-      {error && <p className="error">{error}</p>}
+      {error && <p className="mp-form-error">{error}</p>}
 
-      <button type="submit" className="btn-primary" disabled={submitting}>
+      <button
+        type="submit"
+        className="mp-btn mp-btn-primary mp-btn-submit"
+        disabled={submitting}
+      >
         {submitting ? 'Submitting…' : 'Complete Registration'}
       </button>
     </form>
