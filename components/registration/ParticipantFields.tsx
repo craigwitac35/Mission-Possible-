@@ -16,13 +16,13 @@ export default function ParticipantFields({
   onRemove,
 }: Props) {
   return (
-    <div className="participant-row">
-      <div className="participant-header">
-        <strong>Participant {index + 1}</strong>
+    <div className="mp-participant-card">
+      <div className="mp-participant-header">
+        <span className="mp-participant-number">No. {String(index + 1).padStart(2, '0')}</span>
         {canRemove && (
           <button
             type="button"
-            className="btn-link"
+            className="mp-participant-remove"
             onClick={() => onRemove(index)}
           >
             Remove
@@ -30,24 +30,26 @@ export default function ParticipantFields({
         )}
       </div>
 
-      <div className="field-grid">
-        <label>
-          Name
+      <div className="mp-participant-fields">
+        <label className="mp-form-label">
+          <span className="mp-label-text">Name</span>
           <input
             type="text"
             required
+            className="mp-form-input"
             value={participant.name}
             onChange={(e) => onChange(index, 'name', e.target.value)}
           />
         </label>
 
-        <label>
-          Age
+        <label className="mp-form-label mp-form-label-narrow">
+          <span className="mp-label-text">Age</span>
           <input
             type="number"
             min={0}
             max={120}
             required
+            className="mp-form-input"
             value={participant.age}
             onChange={(e) => onChange(index, 'age', e.target.value)}
           />
