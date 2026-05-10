@@ -15,7 +15,7 @@ type BuyerInfo = {
   group_name: string;
 };
 
-const emptyParticipant = (): Participant => ({ name: '', age: '' });
+const emptyParticipant = (): Participant => ({ name: '', age: '', shirt_size: '' });
 
 export default function RegistrationForm() {
   const router = useRouter();
@@ -80,6 +80,9 @@ export default function RegistrationForm() {
       if (ageNum < 0 || ageNum > 120) {
         return `Participant ${i + 1}: age must be between 0 and 120.`;
       }
+      if (!p.shirt_size) {
+        return `Participant ${i + 1}: t-shirt size is required.`;
+      }
     }
     return null;
   };
@@ -118,6 +121,7 @@ export default function RegistrationForm() {
         registration_id: registration.id,
         name: p.name.trim(),
         age: Number(p.age),
+        shirt_size: p.shirt_size,
       }));
 
       const { error: partErr } = await supabase
