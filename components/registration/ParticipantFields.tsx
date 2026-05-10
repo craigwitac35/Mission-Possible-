@@ -55,6 +55,35 @@ export default function ParticipantFields({
           />
         </label>
       </div>
+
+      <label className="mp-form-label mp-form-label-shirt">
+        <span className="mp-label-text">T-Shirt Size</span>
+        <select
+          required
+          className="mp-form-input"
+          value={participant.shirt_size}
+          onChange={(e) => onChange(index, 'shirt_size', e.target.value)}
+        >
+          <option value="" disabled>
+            Select a size…
+          </option>
+          <optgroup label="Youth">
+            <option value="YS">Youth S</option>
+            <option value="YM">Youth M</option>
+            <option value="YL">Youth L</option>
+            <option value="YXL">Youth XL</option>
+          </optgroup>
+          <optgroup label="Adult">
+            <option value="XS">Adult XS</option>
+            <option value="S">Adult S</option>
+            <option value="M">Adult M</option>
+            <option value="L">Adult L</option>
+            <option value="XL">Adult XL</option>
+            <option value="XXL">Adult XXL</option>
+            <option value="XXXL">Adult XXXL</option>
+          </optgroup>
+        </select>
+      </label>
     </div>
   );
 }
