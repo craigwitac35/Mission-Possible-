@@ -587,3 +587,759 @@
     padding: 2rem 2.5rem;
   }
    }
+/* ============================================
+   MP — PAGE HERO (smaller hero for sub-pages)
+   ============================================ */
+
+.mp-page-hero {
+  background: #1A2238;
+  color: #F4ECD8;
+  padding: 4rem 1.5rem 5rem;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.mp-page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 1.5rem;
+  border: 1px solid rgba(184, 152, 90, 0.25);
+  pointer-events: none;
+}
+
+.mp-back-link {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B8985A;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.25rem;
+  transition: border-color 0.2s ease;
+}
+
+.mp-back-link:hover {
+  border-color: #B8985A;
+}
+
+.mp-page-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  line-height: 1;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.mp-page-title em {
+  color: #B8985A;
+  font-style: italic;
+}
+
+/* ============================================
+   MP — EVENT CARD (featured event on /events)
+   ============================================ */
+
+.mp-event-card {
+  background: #fff;
+  max-width: 900px;
+  margin: 3rem auto 0;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  position: relative;
+}
+
+.mp-event-card::before,
+.mp-event-card::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #B8985A;
+  border-style: solid;
+}
+
+.mp-event-card::before {
+  top: 12px;
+  left: 12px;
+  border-width: 1px 0 0 1px;
+}
+
+.mp-event-card::after {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 1px 1px 0;
+}
+
+.mp-event-stamp {
+  background: #1A2238;
+  color: #F4ECD8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  border-right: 1px solid rgba(184, 152, 90, 0.4);
+}
+
+.mp-stamp-month {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: #B8985A;
+  margin-bottom: 0.25rem;
+}
+
+.mp-stamp-day {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 4.5rem;
+  line-height: 1;
+  font-weight: 500;
+  margin: 0.25rem 0;
+}
+
+.mp-stamp-year {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: rgba(244, 236, 216, 0.6);
+  margin-top: 0.5rem;
+}
+
+.mp-event-body {
+  padding: 2.5rem 2rem;
+}
+
+.mp-event-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  background: rgba(184, 152, 90, 0.2);
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  padding: 0.4rem 0.85rem;
+  margin: 0 0 1.25rem;
+}
+
+.mp-event-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+  color: #1A2238;
+  letter-spacing: -0.01em;
+}
+
+.mp-event-name em {
+  color: #B8985A;
+  font-style: italic;
+}
+
+.mp-event-subtitle {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #5C3A2E;
+  margin: 0 0 1.75rem;
+  line-height: 1.5;
+}
+
+.mp-event-meta {
+  margin: 0 0 2rem;
+  border-top: 1px solid rgba(184, 152, 90, 0.3);
+  border-bottom: 1px solid rgba(184, 152, 90, 0.3);
+  padding: 1rem 0;
+}
+
+.mp-event-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+.mp-meta-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  font-weight: 600;
+}
+
+.mp-meta-value {
+  font-family: 'Fraunces', Georgia, serif;
+  color: #1A2238;
+  font-weight: 500;
+}
+
+/* ============================================
+   MP — RATE CARD (pricing)
+   ============================================ */
+
+.mp-rate-card {
+  background: #fff;
+  max-width: 700px;
+  margin: 2rem auto 0;
+  padding: 2.5rem;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  position: relative;
+}
+
+.mp-rate-card::before,
+.mp-rate-card::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #B8985A;
+  border-style: solid;
+}
+
+.mp-rate-card::before {
+  top: 12px;
+  left: 12px;
+  border-width: 1px 0 0 1px;
+}
+
+.mp-rate-card::after {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 1px 1px 0;
+}
+
+.mp-rate-tier {
+  text-align: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(184, 152, 90, 0.3);
+}
+
+.mp-rate-tier:last-of-type {
+  border-bottom: none;
+}
+
+.mp-rate-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #B8985A;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.mp-rate-window {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  color: #5C3A2E;
+  margin: 0 0 1.5rem;
+  font-size: 1.05rem;
+}
+
+.mp-rate-amounts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.mp-rate-amounts > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mp-rate-price {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 2.75rem;
+  font-weight: 500;
+  color: #1A2238;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.mp-rate-type {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+}
+
+.mp-rate-divider {
+  width: 1px;
+  height: 50px;
+  background: rgba(184, 152, 90, 0.4);
+}
+
+.mp-rate-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #5C3A2E;
+  text-align: center;
+  margin: 1.5rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(184, 152, 90, 0.3);
+}
+
+/* ============================================
+   MP — SCHEDULE LIST
+   ============================================ */
+
+.mp-schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto 0;
+  max-width: 600px;
+}
+
+.mp-schedule-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(184, 152, 90, 0.2);
+}
+
+.mp-schedule-item:last-child {
+  border-bottom: none;
+}
+
+.mp-schedule-time {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B8985A;
+  font-weight: 600;
+}
+
+.mp-schedule-event {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.15rem;
+  color: #F4ECD8;
+}
+
+/* ============================================
+   MP — REGISTRATION FORM
+   ============================================ */
+
+.mp-register-section {
+  padding-top: 0;
+}
+
+.mp-register-intro {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #5C3A2E;
+  text-align: center;
+  margin: 4rem auto 2.5rem;
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+.mp-form-card {
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  padding: 0;
+  position: relative;
+}
+
+.mp-form-card::before,
+.mp-form-card::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #B8985A;
+  border-style: solid;
+}
+
+.mp-form-card::before {
+  top: 12px;
+  left: 12px;
+  border-width: 1px 0 0 1px;
+}
+
+.mp-form-card::after {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 1px 1px 0;
+}
+
+.mp-form-step {
+  padding: 2.5rem 2.5rem 2rem;
+  border-bottom: 1px solid rgba(184, 152, 90, 0.3);
+}
+
+.mp-form-step:last-of-type {
+  border-bottom: none;
+}
+
+.mp-form-step-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #B8985A;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.mp-form-step-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin: 0 0 1.75rem;
+  color: #1A2238;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #B8985A;
+  display: inline-block;
+}
+
+.mp-form-fields {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.mp-form-label {
+  display: block;
+  margin: 0;
+}
+
+.mp-label-text {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.mp-label-optional {
+  color: #9b8068;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  font-size: 0.85em;
+}
+
+.mp-form-input {
+  display: block;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(92, 58, 46, 0.3);
+  border-radius: 0;
+  background: #FAF7F0;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #1A2238;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.mp-form-input:focus {
+  outline: none;
+  border-color: #B8985A;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(184, 152, 90, 0.15);
+}
+
+.mp-form-label-narrow {
+  max-width: 140px;
+}
+
+.mp-participants-list {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mp-participant-card {
+  background: #FAF7F0;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  border-left: 4px solid #B8985A;
+  padding: 1.5rem;
+}
+
+.mp-participant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.mp-participant-number {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  color: #1A2238;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+}
+
+.mp-participant-remove {
+  background: none;
+  border: none;
+  color: #8B1E2D;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.mp-participant-remove:hover {
+  border-color: #8B1E2D;
+}
+
+.mp-participant-fields {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  gap: 1rem;
+}
+
+.mp-btn-secondary {
+  background: transparent;
+  color: #1A2238;
+  border-color: #1A2238;
+  width: 100%;
+}
+
+.mp-btn-secondary:hover {
+  background: #1A2238;
+  color: #F4ECD8;
+}
+
+.mp-summary-ticket {
+  background: #1A2238;
+  color: #F4ECD8;
+  padding: 0;
+  position: relative;
+}
+
+.mp-ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px dashed rgba(184, 152, 90, 0.4);
+}
+
+.mp-ticket-event {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.mp-ticket-phase {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B8985A;
+  font-weight: 600;
+}
+
+.mp-ticket-body {
+  padding: 1.5rem 1.75rem;
+}
+
+.mp-ticket-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.4rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+}
+
+.mp-ticket-rate {
+  color: rgba(244, 236, 216, 0.6);
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+}
+
+.mp-ticket-perforation {
+  height: 1px;
+  margin: 0 1.75rem;
+  border-top: 1px dashed rgba(184, 152, 90, 0.4);
+}
+
+.mp-ticket-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.mp-ticket-total > span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: #B8985A;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.mp-ticket-total-amount {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.mp-btn-submit {
+  display: block;
+  width: calc(100% - 5rem);
+  margin: 2rem 2.5rem 2.5rem;
+  padding: 1.25rem 2rem;
+  font-size: 0.9rem;
+}
+
+.mp-btn-submit:disabled {
+  background: #9ca3af;
+  border-color: #9ca3af;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.mp-form-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #8B1E2D;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 2.5rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.mp-form-closed {
+  padding: 3rem 2.5rem;
+  text-align: center;
+}
+
+/* ============================================
+   MP — DARK SECTION SUPPORT
+   ============================================ */
+
+.mp-prose-light {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  text-align: center;
+  color: rgba(244, 236, 216, 0.85);
+}
+
+.mp-pullquote-light {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #B8985A;
+  margin: 3rem auto 0;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid rgba(184, 152, 90, 0.4);
+  max-width: 640px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* ============================================
+   MP — RESPONSIVE (sub-pages)
+   ============================================ */
+
+@media (max-width: 768px) {
+  .mp-page-hero {
+    padding: 3rem 1rem 4rem;
+  }
+
+  .mp-page-hero::before {
+    inset: 0.75rem;
+  }
+
+  .mp-event-card {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-event-stamp {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(184, 152, 90, 0.4);
+  }
+
+  .mp-stamp-day {
+    font-size: 3rem;
+  }
+
+  .mp-event-body {
+    padding: 2rem 1.5rem;
+  }
+
+  .mp-rate-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .mp-rate-amounts {
+    gap: 1.5rem;
+  }
+
+  .mp-rate-price {
+    font-size: 2.25rem;
+  }
+
+  .mp-schedule-item {
+    grid-template-columns: 90px 1fr;
+    gap: 1rem;
+  }
+
+  .mp-form-step {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .mp-participant-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-form-label-narrow {
+    max-width: 100%;
+  }
+
+  .mp-btn-submit {
+    width: calc(100% - 3rem);
+    margin: 1.5rem 1.5rem 2rem;
+  }
+
+  .mp-form-error {
+    margin: 1.5rem 1.5rem 0;
+  }
+
+  .mp-ticket-header,
+  .mp-ticket-body,
+  .mp-ticket-total {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .mp-ticket-perforation {
+    margin: 0 1.25rem;
+  }
+}
