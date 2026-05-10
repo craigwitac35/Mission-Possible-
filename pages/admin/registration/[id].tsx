@@ -20,6 +20,7 @@ type Participant = {
   id: string;
   name: string;
   age: number;
+  shirt_size: string | null;
 };
 
 export default function AdminRegistrationDetail() {
@@ -41,7 +42,7 @@ export default function AdminRegistrationDetail() {
           supabase.from('registrations').select('*').eq('id', id).single(),
           supabase
             .from('participants')
-            .select('id, name, age')
+            .select('id, name, age, shirt_size')
             .eq('registration_id', id)
             .order('created_at', { ascending: true }),
         ]);
@@ -182,6 +183,7 @@ export default function AdminRegistrationDetail() {
                       <th>Name</th>
                       <th>Age</th>
                       <th>Type</th>
+                      <th>Shirt Size</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -190,6 +192,7 @@ export default function AdminRegistrationDetail() {
                         <td>{p.name}</td>
                         <td>{p.age}</td>
                         <td>{p.age > 13 ? 'Adult' : 'Child'}</td>
+                        <td>{p.shirt_size || '—'}</td>
                       </tr>
                     ))}
                   </tbody>
