@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import { HorseshoePawDivider, CompassRose } from '@/components/svg/Ornaments';
 
 export default function Events() {
   return (
@@ -12,107 +13,285 @@ export default function Events() {
         />
       </Head>
 
-      <main>
-        <header className="page-header">
-          <div className="container">
-            <Link href="/" className="back-link">
-              ← Mission Possible Home
+      <main className="mp-site">
+        <section className="mp-page-hero">
+          <div className="mp-hero-frame">
+            <Link href="/" className="mp-back-link">
+              &larr; Mission Possible Home
             </Link>
-            <h1>Upcoming Events</h1>
+
+            <p className="mp-eyebrow">Aug. 29 &middot; The Eagles Healing Nest</p>
+
+            <h1 className="mp-page-title">
+              Upcoming <em>Events</em>
+            </h1>
+
+            <div className="mp-hero-divider">
+              <HorseshoePawDivider className="mp-svg-divider" />
+            </div>
+
+            <p className="mp-tagline">
+              Mud, music, and meaning &mdash; one day a year.
+            </p>
           </div>
-        </header>
+        </section>
 
-        <section className="featured-event">
-          <div className="container">
-            <div className="event-card">
-              <h2>Mission Possible: Hooves and Paws Mud Run</h2>
-              <p className="event-subtitle">
-                A Mud Run for Veterans, First Responders,
-                and the Animals Who Heal Them
-              </p>
+        <section className="mp-section mp-section-cream">
+          <div className="mp-container">
+            <div className="mp-compass-mark">
+              <CompassRose className="mp-svg-compass" />
+            </div>
 
-              <div className="event-meta">
-                <p>📅 Saturday, August 29th</p>
-                <p>📍 The Eagles Healing Nest, Minnesota</p>
+            <p className="mp-section-label">No. 01 &mdash; The Featured Event</p>
+
+            <div className="mp-event-card">
+              <div className="mp-event-stamp">
+                <span className="mp-stamp-month">AUG</span>
+                <span className="mp-stamp-day">29</span>
+                <span className="mp-stamp-year">2025</span>
               </div>
 
-              <Link href="/register" className="btn-primary cta">
-                Register Now
-              </Link>
+              <div className="mp-event-body">
+                <p className="mp-event-tag">Inaugural Year</p>
+
+                <h2 className="mp-event-name">
+                  Mission Possible:<br />
+                  <em>Hooves &amp; Paws Mud Run</em>
+                </h2>
+
+                <p className="mp-event-subtitle">
+                  A Mud Run for Veterans, First Responders,
+                  and the Animals Who Heal Them
+                </p>
+
+                <div className="mp-event-meta">
+                  <div className="mp-event-meta-row">
+                    <span className="mp-meta-label">When</span>
+                    <span className="mp-meta-value">Saturday, August 29th</span>
+                  </div>
+                  <div className="mp-event-meta-row">
+                    <span className="mp-meta-label">Where</span>
+                    <span className="mp-meta-value">The Eagles Healing Nest, MN</span>
+                  </div>
+                  <div className="mp-event-meta-row">
+                    <span className="mp-meta-label">Check-in</span>
+                    <span className="mp-meta-value">7:00 AM</span>
+                  </div>
+                  <div className="mp-event-meta-row">
+                    <span className="mp-meta-label">Start</span>
+                    <span className="mp-meta-value">8:00 AM</span>
+                  </div>
+                </div>
+
+                <Link href="/register" className="mp-btn mp-btn-primary">
+                  Register Now
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="event-details">
-          <div className="container">
-            <h2>About the Day</h2>
-            <p>
+        <div className="mp-section-bridge">
+          <HorseshoePawDivider className="mp-svg-divider mp-svg-divider-bridge" />
+        </div>
+
+        <section className="mp-section mp-section-dark">
+          <div className="mp-container mp-container-narrow">
+            <div className="mp-compass-mark mp-compass-light">
+              <CompassRose className="mp-svg-compass" />
+            </div>
+
+            <p className="mp-section-label mp-label-light">No. 02 &mdash; About the Day</p>
+
+            <h2 className="mp-section-title mp-title-light">
+              Get Muddy.<br />
+              <em>Make it Matter.</em>
+            </h2>
+
+            <p className="mp-prose-light">
               Get muddy alongside veterans, first responders, rescue dogs, and
               the community that supports them. Every step you take, every
               obstacle you cross, helps fund equine therapy and K9 training
               programs that change lives.
             </p>
 
-            <div className="schedule-block">
-              <p>🕖 7:00 AM — Registration & Check-in</p>
-              <p>🏁 8:00 AM — Mud Run Begins</p>
-              <p>🎉 All Day — Activities, Music, Food</p>
+            <blockquote className="mp-pullquote-light">
+              &ldquo;Together, We Heal. Together, We Thrive.&rdquo;
+            </blockquote>
+          </div>
+        </section>
+
+        <div className="mp-section-bridge mp-section-bridge-dark">
+          <HorseshoePawDivider className="mp-svg-divider mp-svg-divider-bridge" />
+        </div>
+
+        <section className="mp-section mp-section-cream">
+          <div className="mp-container">
+            <div className="mp-compass-mark">
+              <CompassRose className="mp-svg-compass" />
+            </div>
+
+            <p className="mp-section-label">No. 03 &mdash; Rates</p>
+
+            <h2 className="mp-section-title">
+              Pricing &amp; <em>Registration</em>
+            </h2>
+
+            <div className="mp-rate-card">
+              <div className="mp-rate-tier">
+                <p className="mp-rate-label">Early Bird</p>
+                <p className="mp-rate-window">Until July 30</p>
+                <div className="mp-rate-amounts">
+                  <div>
+                    <span className="mp-rate-price">$25</span>
+                    <span className="mp-rate-type">Adults</span>
+                  </div>
+                  <div className="mp-rate-divider" />
+                  <div>
+                    <span className="mp-rate-price">$10</span>
+                    <span className="mp-rate-type">Children</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mp-rate-tier">
+                <p className="mp-rate-label">Regular</p>
+                <p className="mp-rate-window">July 31 &ndash; August 10</p>
+                <div className="mp-rate-amounts">
+                  <div>
+                    <span className="mp-rate-price">$35</span>
+                    <span className="mp-rate-type">Adults</span>
+                  </div>
+                  <div className="mp-rate-divider" />
+                  <div>
+                    <span className="mp-rate-price">$15</span>
+                    <span className="mp-rate-type">Children</span>
+                  </div>
+                </div>
+              </div>
+
+              <p className="mp-rate-note">
+                Children = age 13 and under &middot; Registration closes August 10
+              </p>
             </div>
           </div>
         </section>
 
-        <section className="pricing-section">
-          <div className="container">
-            <h2>Pricing</h2>
+        <div className="mp-section-bridge">
+          <HorseshoePawDivider className="mp-svg-divider mp-svg-divider-bridge" />
+        </div>
 
-            <div className="price-tier">
-              <h3>Early Bird (until July 30)</h3>
-              <p>Adults: $25 &nbsp;•&nbsp; Children: $10</p>
+        <section className="mp-section mp-section-dark">
+          <div className="mp-container">
+            <div className="mp-compass-mark mp-compass-light">
+              <CompassRose className="mp-svg-compass" />
             </div>
 
-            <div className="price-tier">
-              <h3>Regular (July 31 – August 10)</h3>
-              <p>Adults: $35 &nbsp;•&nbsp; Children: $15</p>
-            </div>
+            <p className="mp-section-label mp-label-light">No. 04 &mdash; Schedule</p>
 
-            <p className="muted">
-              Children = age 13 and under. Registration closes August 10.
-            </p>
-          </div>
-        </section>
+            <h2 className="mp-section-title mp-title-light">
+              A Full Day of <em>Community</em>
+            </h2>
 
-        <section className="full-schedule">
-          <div className="container">
-            <h2>A Full Day of Community</h2>
-            <ul className="schedule-list">
-              <li>🏃 Mud Run — 8:00 AM</li>
-              <li>🌽 Bean Bag Tournament</li>
-              <li>🪓 Axe Throwing Contest</li>
-              <li>🤠 Roping Contest</li>
-              <li>🐕 Dog Talks & Q&amp;A</li>
-              <li>🎵 Live Music</li>
-              <li>🚚 Food Trucks</li>
-              <li>🎨 Face Painting & Coloring Contest</li>
-              <li>🏷️ Silent Auction</li>
+            <ul className="mp-schedule-list">
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">8:00 AM</span>
+                <span className="mp-schedule-event">Mud Run Begins</span>
+              </li>
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">All Day</span>
+                <span className="mp-schedule-event">Bean Bag Tournament</span>
+              </li>
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">All Day</span>
+                <span className="mp-schedule-event">Axe Throwing Contest</span>
+              </li>
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">All Day</span>
+                <span className="mp-schedule-event">Roping Contest</span>
+              </li>
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">All Day</span>
+                <span className="mp-schedule-event">Dog Talks &amp; Q&amp;A</span>
+              </li>
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">All Day</span>
+                <span className="mp-schedule-event">Live Music</span>
+              </li>
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">All Day</span>
+                <span className="mp-schedule-event">Food Trucks</span>
+              </li>
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">All Day</span>
+                <span className="mp-schedule-event">Silent Auction</span>
+              </li>
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">All Day</span>
+                <span className="mp-schedule-event">Face Painting &amp; Coloring Contest</span>
+              </li>
             </ul>
           </div>
         </section>
 
-        <section className="cta-section">
-          <div className="container">
-            <h2>Ready to take the leap?</h2>
-            <Link href="/register" className="btn-primary cta">
+        <section className="mp-section mp-section-cream">
+          <div className="mp-container mp-container-narrow">
+            <h2 className="mp-section-title">
+              Ready to <em>Take the Leap?</em>
+            </h2>
+
+            <p className="mp-prose-center">
+              Spots are limited. Lock yours in.
+            </p>
+
+            <Link href="/register" className="mp-btn mp-btn-primary">
               Register Now
             </Link>
           </div>
         </section>
 
-        <footer className="site-footer">
-          <div className="container">
-            <p className="footer-brand">Mission Possible | Hooves and Paws</p>
-            <p className="footer-orgs">
-              Guardian 4 Heroes &nbsp;|&nbsp; Heroes K9 Odyssey Academy
-            </p>
+        <footer className="mp-footer">
+          <div className="mp-container">
+            <div className="mp-footer-grid">
+              <div className="mp-footer-col">
+                <p className="mp-footer-brand">Mission Possible</p>
+                <p className="mp-footer-tagline">Hooves &amp; Paws</p>
+                <p className="mp-footer-text">
+                  Where Hooves, Paws, and Combat Boots Meet.
+                </p>
+              </div>
+
+              <div className="mp-footer-col">
+                <p className="mp-footer-heading">Guardian 4 Heroes</p>
+                <a
+                  href="https://www.guardian4heroes.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mp-footer-link"
+                >
+                  guardian4heroes.org &rarr;
+                </a>
+              </div>
+
+              <div className="mp-footer-col">
+                <p className="mp-footer-heading">Heroes K9 Odyssey Academy</p>
+                <a
+                  href="https://heroesk9odysseyacademy.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mp-footer-link"
+                >
+                  heroesk9odysseyacademy.org &rarr;
+                </a>
+              </div>
+            </div>
+
+            <div className="mp-footer-bottom">
+              <p>&copy; 2025 Mission Possible. All rights reserved.</p>
+              <p className="mp-footer-credit">
+                Built by <a href="https://web-ops-studio.com" target="_blank" rel="noopener noreferrer">WebOps Studio</a>
+              </p>
+            </div>
           </div>
         </footer>
       </main>
