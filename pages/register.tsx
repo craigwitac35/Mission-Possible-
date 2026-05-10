@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { HorseshoePawDivider } from '@/components/svg/Ornaments';
 import RegistrationForm from '@/components/registration/RegistrationForm';
 
 export default function RegisterPage() {
@@ -13,36 +14,81 @@ export default function RegisterPage() {
         />
       </Head>
 
-      <main>
-        <header className="page-header">
-          <div className="container">
-            <Link href="/events" className="back-link">
-              ← Back to Events
+      <main className="mp-site">
+        <section className="mp-page-hero">
+          <div className="mp-hero-frame">
+            <Link href="/events" className="mp-back-link">
+              &larr; Back to Events
             </Link>
-            <h1>Register</h1>
-            <p className="page-header-tagline">
-              Mission Possible: Hooves and Paws Mud Run
+
+            <p className="mp-eyebrow">Mission Possible &middot; Aug. 29</p>
+
+            <h1 className="mp-page-title">
+              Event <em>Registration</em>
+            </h1>
+
+            <div className="mp-hero-divider">
+              <HorseshoePawDivider className="mp-svg-divider" />
+            </div>
+
+            <p className="mp-tagline">
+              Hooves, Paws &amp; Combat Boots
             </p>
           </div>
-        </header>
+        </section>
 
-        <section className="register-section">
-          <div className="container">
-            <p className="register-intro">
-              Register yourself or your group below. Your registration directly
-              supports equine therapy and K9 training programs for veterans
-              and first responders.
+        <section className="mp-section mp-section-cream mp-register-section">
+          <div className="mp-container mp-container-narrow">
+            <p className="mp-register-intro">
+              Your registration directly supports equine therapy and K9 training
+              programs for veterans and first responders.
             </p>
             <RegistrationForm />
           </div>
         </section>
 
-        <footer className="site-footer">
-          <div className="container">
-            <p className="footer-brand">Mission Possible | Hooves and Paws</p>
-            <p className="footer-orgs">
-              Guardian 4 Heroes &nbsp;|&nbsp; Heroes K9 Odyssey Academy
-            </p>
+        <footer className="mp-footer">
+          <div className="mp-container">
+            <div className="mp-footer-grid">
+              <div className="mp-footer-col">
+                <p className="mp-footer-brand">Mission Possible</p>
+                <p className="mp-footer-tagline">Hooves &amp; Paws</p>
+                <p className="mp-footer-text">
+                  Where Hooves, Paws, and Combat Boots Meet.
+                </p>
+              </div>
+
+              <div className="mp-footer-col">
+                <p className="mp-footer-heading">Guardian 4 Heroes</p>
+                <a
+                  href="https://www.guardian4heroes.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mp-footer-link"
+                >
+                  guardian4heroes.org &rarr;
+                </a>
+              </div>
+
+              <div className="mp-footer-col">
+                <p className="mp-footer-heading">Heroes K9 Odyssey Academy</p>
+                <a
+                  href="https://heroesk9odysseyacademy.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mp-footer-link"
+                >
+                  heroesk9odysseyacademy.org &rarr;
+                </a>
+              </div>
+            </div>
+
+            <div className="mp-footer-bottom">
+              <p>&copy; 2025 Mission Possible. All rights reserved.</p>
+              <p className="mp-footer-credit">
+                Built by <a href="https://web-ops-studio.com" target="_blank" rel="noopener noreferrer">WebOps Studio</a>
+              </p>
+            </div>
           </div>
         </footer>
       </main>
