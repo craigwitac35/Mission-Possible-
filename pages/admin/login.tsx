@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { supabase } from '@/lib/supabaseClient';
+import { HorseshoePawDivider } from '@/components/svg/Ornaments';
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -10,7 +11,6 @@ export default function AdminLogin() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // If already logged in, bounce to dashboard.
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
@@ -42,38 +42,61 @@ export default function AdminLogin() {
   return (
     <>
       <Head>
-        <title>Admin Login</title>
+        <title>Admin Login | Mission Possible</title>
       </Head>
-      <main className="container">
-        <form className="card narrow" onSubmit={handleLogin}>
-          <h1>Admin Login</h1>
 
-          <label>
-            Email
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
+      <main className="mp-site mp-admin-login-page">
+        <section className="mp-admin-login-section">
+          <div className="mp-admin-login-frame">
+            <p className="mp-eyebrow">Mission Possible &middot; Admin</p>
 
-          <label>
-            Password
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
+            <h1 className="mp-page-title mp-title-light">
+              Field <em>Office</em>
+            </h1>
 
-          {error && <p className="error">{error}</p>}
+            <div className="mp-hero-divider">
+              <HorseshoePawDivider className="mp-svg-divider" />
+            </div>
 
-          <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? 'Signing in…' : 'Sign In'}
-          </button>
-        </form>
+            <p className="mp-admin-login-tagline">
+              Sign in to manage registrations.
+            </p>
+
+            <form className="mp-admin-login-form" onSubmit={handleLogin}>
+              <label className="mp-form-label">
+                <span className="mp-label-text mp-label-text-light">Email</span>
+                <input
+                  type="email"
+                  required
+                  className="mp-form-input mp-form-input-dark"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </label>
+
+              <label className="mp-form-label">
+                <span className="mp-label-text mp-label-text-light">Password</span>
+                <input
+                  type="password"
+                  required
+                  className="mp-form-input mp-form-input-dark"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </label>
+
+              {error && <p className="mp-form-error">{error}</p>}
+
+              <button
+                type="submit"
+                className="mp-btn mp-btn-primary mp-btn-login"
+                disabled={loading}
+              >
+                {loading ? 'Signing in…' : 'Sign In'}
+              </button>
+            </form>
+          </div>
+        </section>
       </main>
     </>
   );
