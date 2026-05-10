@@ -7,7 +7,25 @@
 // Year is taken from the date passed in (defaults to "now") so this stays
 // correct year-over-year without code changes.
 
-export type Participant = { name: string; age: number | '' };
+export type ShirtSize =
+  | ''
+  | 'YS'
+  | 'YM'
+  | 'YL'
+  | 'YXL'
+  | 'XS'
+  | 'S'
+  | 'M'
+  | 'L'
+  | 'XL'
+  | 'XXL'
+  | 'XXXL';
+
+export type Participant = {
+  name: string;
+  age: number | '';
+  shirt_size: ShirtSize;
+};
 
 export type PricingPhase = 'early_bird' | 'regular' | 'closed';
 
