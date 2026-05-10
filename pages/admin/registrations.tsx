@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
@@ -14,16 +14,19 @@ type RegistrationRow = {
   participants: { count: number }[];
 };
 
+type FilterMode = 'all' | 'pending' | 'paid';
+
 export default function AdminRegistrationsList() {
-  const { ready, signOut } = useAdminAuth();
+  const { ready, userEmail, signOut } = useAdminAuth();
   const [rows, setRows] = useState<RegistrationRow[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState<FilterMode>('all');
 
   useEffect(() => {
     if (!ready) return;
 
     const load = async () => {
-      // Use Supabase relational select to get participant counts in one query.
       const { data, error: err } = await supabase
         .from('registrations')
         .select(
@@ -41,67 +44,163 @@ export default function AdminRegistrationsList() {
     load();
   }, [ready]);
 
+  const filteredRows = useMemo(() => {
+    if (!rows) return [];
+    let result = rows;
+
+    if (filter !== 'all') {
+      result = result.filter((r) => r.payment_status === filter);
+    }
+
+    if (search.trim()) {
+      const q = search.toLowerCase().trim();
+      result = result.filter(
+        (r) =>
+          r.buyer_name.toLowerCase().includes(q) ||
+          r.buyer_email.toLowerCase().includes(q)
+      );
+    }
+
+    return result;
+  }, [rows, filter, search]);
+
+  const counts = useMemo(() => {
+    if (!rows) return { all: 0, pending: 0, paid: 0 };
+    return {
+      all: rows.length,
+      pending: rows.filter((r) => r.payment_status === 'pending').length,
+      paid: rows.filter((r) => r.payment_status === 'paid').length,
+    };
+  }, [rows]);
+
   if (!ready) return null;
 
   return (
     <>
       <Head>
-        <title>Registrations | Admin</title>
+        <title>Registrations | Mission Possible Admin</title>
       </Head>
-      <main className="container">
-        <header className="admin-header">
-          <h1>Registrations</h1>
-          <button type="button" className="btn-link" onClick={signOut}>
-            Sign out
-          </button>
+
+      <main className="mp-site mp-admin">
+        <header className="mp-admin-header">
+          <div className="mp-container">
+            <div className="mp-admin-header-row">
+              <div>
+                <p className="mp-eyebrow mp-admin-eyebrow">Mission Possible &middot; Admin</p>
+                <h1 className="mp-admin-title">Registrations</h1>
+              </div>
+              <div className="mp-admin-user">
+                <span className="mp-admin-email">{userEmail}</span>
+                <button type="button" className="mp-admin-signout" onClick={signOut}>
+                  Sign out
+                </button>
+              </div>
+            </div>
+
+            <nav className="mp-admin-nav">
+              <Link href="/admin/dashboard" className="mp-admin-nav-link">
+                Dashboard
+              </Link>
+              <Link href="/admin/registrations" className="mp-admin-nav-link mp-admin-nav-active">
+                Registrations
+              </Link>
+            </nav>
+          </div>
         </header>
 
-        <nav className="admin-nav">
-          <Link href="/admin/dashboard">Dashboard</Link>
-          <Link href="/admin/registrations">Registrations</Link>
-        </nav>
+        <div className="mp-admin-body">
+          <div className="mp-container">
+            {error && <p className="mp-form-error mp-admin-error">{error}</p>}
 
-        {error && <p className="error">{error}</p>}
+            <div className="mp-admin-toolbar">
+              <input
+                type="search"
+                className="mp-admin-search"
+                placeholder="Search by name or email…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
 
-        {!rows ? (
-          <p>Loading…</p>
-        ) : rows.length === 0 ? (
-          <p>No registrations yet.</p>
-        ) : (
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Buyer</th>
-                <th>Email</th>
-                <th>Participants</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r) => {
-                const participantCount = r.participants?.[0]?.count ?? 0;
-                return (
-                  <tr key={r.id}>
-                    <td>{r.buyer_name}</td>
-                    <td>{r.buyer_email}</td>
-                    <td>{participantCount}</td>
-                    <td>${r.total_amount}</td>
-                    <td>
-                      <span className={`badge badge-${r.payment_status}`}>
-                        {r.payment_status}
-                      </span>
-                    </td>
-                    <td>
-                      <Link href={`/admin/registration/${r.id}`}>View</Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        )}
+              <div className="mp-admin-filters">
+                <button
+                  type="button"
+                  className={`mp-admin-filter ${filter === 'all' ? 'mp-admin-filter-active' : ''}`}
+                  onClick={() => setFilter('all')}
+                >
+                  All <span className="mp-admin-filter-count">{counts.all}</span>
+                </button>
+                <button
+                  type="button"
+                  className={`mp-admin-filter ${filter === 'pending' ? 'mp-admin-filter-active' : ''}`}
+                  onClick={() => setFilter('pending')}
+                >
+                  Pending <span className="mp-admin-filter-count">{counts.pending}</span>
+                </button>
+                <button
+                  type="button"
+                  className={`mp-admin-filter ${filter === 'paid' ? 'mp-admin-filter-active' : ''}`}
+                  onClick={() => setFilter('paid')}
+                >
+                  Paid <span className="mp-admin-filter-count">{counts.paid}</span>
+                </button>
+              </div>
+            </div>
+
+            {!rows ? (
+              <p className="mp-admin-loading">Loading…</p>
+            ) : filteredRows.length === 0 ? (
+              <p className="mp-admin-empty">
+                {rows.length === 0
+                  ? 'No registrations yet.'
+                  : 'No registrations match your search.'}
+              </p>
+            ) : (
+              <div className="mp-admin-table-wrap">
+                <table className="mp-admin-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>People</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredRows.map((r) => {
+                      const participantCount = r.participants?.[0]?.count ?? 0;
+                      return (
+                        <tr key={r.id}>
+                          <td className="mp-admin-td-name">{r.buyer_name}</td>
+                          <td className="mp-admin-td-email">
+                            <a href={`mailto:${r.buyer_email}`}>{r.buyer_email}</a>
+                          </td>
+                          <td>{participantCount}</td>
+                          <td className="mp-admin-td-amount">${r.total_amount}</td>
+                          <td>
+                            <span className={`mp-recent-badge mp-recent-badge-${r.payment_status}`}>
+                              {r.payment_status}
+                            </span>
+                          </td>
+                          <td className="mp-admin-td-date">
+                            {new Date(r.created_at).toLocaleDateString()}
+                          </td>
+                          <td>
+                            <Link href={`/admin/registration/${r.id}`} className="mp-admin-link">
+                              View &rarr;
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
       </main>
     </>
   );
