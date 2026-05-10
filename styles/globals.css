@@ -1343,3 +1343,1049 @@
     margin: 0 1.25rem;
   }
 }
+/* ============================================
+   MP — CONFIRMATION PAGE EXTRAS
+   ============================================ */
+
+.mp-next-steps {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto 3rem;
+  max-width: 600px;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.mp-next-step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem;
+  background: rgba(184, 152, 90, 0.08);
+  border: 1px solid rgba(184, 152, 90, 0.25);
+}
+
+.mp-step-number {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #B8985A;
+  line-height: 1;
+}
+
+.mp-step-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.mp-step-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+  color: #F4ECD8;
+}
+
+.mp-step-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(244, 236, 216, 0.8);
+  margin: 0;
+}
+
+.mp-payment-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.mp-payment-note {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(244, 236, 216, 0.65);
+  margin: 1rem 0 0;
+}
+
+.mp-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mp-btn-primary:disabled:hover {
+  background: #8B1E2D;
+  color: #F4ECD8;
+  border-color: #8B1E2D;
+}
+
+/* ============================================
+   MP — ADMIN GLOBAL
+   ============================================ */
+
+.mp-admin {
+  background: #F4ECD8;
+  min-height: 100vh;
+  color: #1F1F1F;
+}
+
+.mp-admin-header {
+  background: #1A2238;
+  color: #F4ECD8;
+  padding: 1.5rem 0 0;
+  border-bottom: 3px solid #B8985A;
+}
+
+.mp-admin-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.mp-admin-eyebrow {
+  margin: 0 0 0.4rem !important;
+  color: #B8985A;
+}
+
+.mp-admin-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1;
+  margin: 0;
+  color: #F4ECD8;
+  letter-spacing: -0.01em;
+}
+
+.mp-admin-user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.mp-admin-email {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(244, 236, 216, 0.7);
+}
+
+.mp-admin-signout {
+  background: none;
+  border: none;
+  color: #B8985A;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.mp-admin-signout:hover {
+  border-color: #B8985A;
+}
+
+.mp-admin-nav {
+  display: flex;
+  gap: 2rem;
+  border-top: 1px solid rgba(184, 152, 90, 0.25);
+  padding-top: 1rem;
+}
+
+.mp-admin-nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(244, 236, 216, 0.6);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.mp-admin-nav-link:hover {
+  color: #F4ECD8;
+}
+
+.mp-admin-nav-active {
+  color: #F4ECD8;
+  border-bottom-color: #B8985A;
+}
+
+.mp-admin-body {
+  padding: 3rem 0 5rem;
+}
+
+.mp-admin-loading,
+.mp-admin-empty {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  color: #5C3A2E;
+  text-align: center;
+  padding: 3rem 1rem;
+  font-size: 1.1rem;
+}
+
+.mp-admin-error {
+  margin: 0 0 2rem;
+}
+
+.mp-admin-section {
+  margin-bottom: 3.5rem;
+}
+
+.mp-admin-section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #B8985A;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.mp-admin-section-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem;
+  color: #1A2238;
+  letter-spacing: -0.01em;
+}
+
+.mp-admin-section-title em {
+  color: #B8985A;
+  font-style: italic;
+}
+
+.mp-admin-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1A2238;
+  text-decoration: none;
+  border-bottom: 1px solid #B8985A;
+  padding-bottom: 0.2rem;
+}
+
+.mp-admin-link:hover {
+  color: #B8985A;
+}
+
+.mp-admin-back {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.mp-admin-back:hover {
+  color: #B8985A;
+}
+
+/* ============================================
+   MP — DASHBOARD STAT CARDS
+   ============================================ */
+
+.mp-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.mp-stat-card {
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  padding: 2rem 1.75rem;
+  position: relative;
+}
+
+.mp-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #B8985A;
+  border-right: none;
+  border-bottom: none;
+}
+
+.mp-stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #B8985A;
+  border-left: none;
+  border-top: none;
+}
+
+.mp-stat-revenue {
+  background: #1A2238;
+  color: #F4ECD8;
+}
+
+.mp-stat-revenue .mp-stat-label {
+  color: #B8985A;
+}
+
+.mp-stat-revenue .mp-stat-value {
+  color: #F4ECD8;
+}
+
+.mp-stat-revenue .mp-stat-meta {
+  color: rgba(244, 236, 216, 0.7);
+}
+
+.mp-stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.mp-stat-value {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #1A2238;
+  margin: 0 0 0.5rem;
+}
+
+.mp-stat-meta {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #5C3A2E;
+  margin: 0;
+}
+
+/* ============================================
+   MP — SHIRT BREAKDOWN
+   ============================================ */
+
+.mp-shirt-totals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.mp-shirt-total-card {
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.mp-shirt-total-grand {
+  background: #1A2238;
+  color: #F4ECD8;
+  border-color: #1A2238;
+}
+
+.mp-shirt-total-grand .mp-shirt-total-label {
+  color: #B8985A;
+}
+
+.mp-shirt-total-grand .mp-shirt-total-value {
+  color: #F4ECD8;
+}
+
+.mp-shirt-total-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.mp-shirt-total-value {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 2.25rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #1A2238;
+  margin: 0;
+}
+
+.mp-shirt-breakdown {
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  padding: 1.5rem 2rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.mp-shirt-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 50px;
+  gap: 1rem;
+  align-items: center;
+}
+
+.mp-shirt-row-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #1A2238;
+  font-weight: 500;
+}
+
+.mp-shirt-row-bar {
+  height: 12px;
+  background: rgba(184, 152, 90, 0.15);
+  border: 1px solid rgba(184, 152, 90, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.mp-shirt-row-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #B8985A 0%, #5C3A2E 100%);
+  transition: width 0.3s ease;
+}
+
+.mp-shirt-row-count {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #1A2238;
+  text-align: right;
+}
+
+/* ============================================
+   MP — PAYMENT STATUS GRID
+   ============================================ */
+
+.mp-payment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.mp-payment-card {
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  padding: 1.75rem;
+  position: relative;
+}
+
+.mp-payment-pending {
+  border-left: 4px solid #8B1E2D;
+}
+
+.mp-payment-paid {
+  border-left: 4px solid #2d6e4e;
+}
+
+.mp-payment-card-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.mp-payment-card-value {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #1A2238;
+  margin: 0 0 0.25rem;
+}
+
+.mp-payment-card-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #5C3A2E;
+  margin: 0 0 1rem;
+}
+
+.mp-payment-card-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B8985A;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.2rem;
+}
+
+.mp-payment-card-link:hover {
+  border-color: #B8985A;
+}
+
+/* ============================================
+   MP — RECENT ACTIVITY
+   ============================================ */
+
+.mp-recent-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.mp-recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.3);
+  border-left: 3px solid #B8985A;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.mp-recent-item:hover {
+  background: #FAF7F0;
+  border-left-color: #1A2238;
+}
+
+.mp-recent-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mp-recent-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1A2238;
+}
+
+.mp-recent-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #5C3A2E;
+}
+
+.mp-recent-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mp-recent-total {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1A2238;
+}
+
+.mp-recent-badge {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid;
+}
+
+.mp-recent-badge-pending {
+  color: #8B1E2D;
+  border-color: #8B1E2D;
+  background: rgba(139, 30, 45, 0.06);
+}
+
+.mp-recent-badge-paid {
+  color: #2d6e4e;
+  border-color: #2d6e4e;
+  background: rgba(45, 110, 78, 0.06);
+}
+
+.mp-recent-footer {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+/* ============================================
+   MP — REGISTRATIONS LIST (toolbar + table)
+   ============================================ */
+
+.mp-admin-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.3);
+}
+
+.mp-admin-search {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(92, 58, 46, 0.3);
+  border-radius: 0;
+  background: #FAF7F0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #1A2238;
+}
+
+.mp-admin-search:focus {
+  outline: none;
+  border-color: #B8985A;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(184, 152, 90, 0.15);
+}
+
+.mp-admin-filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mp-admin-filter {
+  background: transparent;
+  border: 1px solid rgba(92, 58, 46, 0.3);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #5C3A2E;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.mp-admin-filter:hover {
+  border-color: #B8985A;
+  color: #1A2238;
+}
+
+.mp-admin-filter-active {
+  background: #1A2238;
+  color: #F4ECD8;
+  border-color: #1A2238;
+}
+
+.mp-admin-filter-count {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 0.85rem;
+  background: rgba(184, 152, 90, 0.2);
+  padding: 0.1rem 0.5rem;
+  letter-spacing: 0;
+}
+
+.mp-admin-filter-active .mp-admin-filter-count {
+  background: rgba(184, 152, 90, 0.35);
+  color: #F4ECD8;
+}
+
+.mp-admin-table-wrap {
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.3);
+  overflow-x: auto;
+}
+
+.mp-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mp-admin-table th {
+  background: #1A2238;
+  color: #B8985A;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid #B8985A;
+}
+
+.mp-admin-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(184, 152, 90, 0.2);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #1F1F1F;
+  vertical-align: middle;
+}
+
+.mp-admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.mp-admin-table tr:hover td {
+  background: #FAF7F0;
+}
+
+.mp-admin-td-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A2238;
+}
+
+.mp-admin-td-email a {
+  color: #1A2238;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184, 152, 90, 0.4);
+}
+
+.mp-admin-td-email a:hover {
+  border-color: #B8985A;
+}
+
+.mp-admin-td-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  color: #1A2238;
+}
+
+.mp-admin-td-date {
+  color: #5C3A2E;
+  font-size: 0.85rem;
+}
+
+.mp-admin-td-shirt {
+  font-weight: 600;
+  color: #1A2238;
+}
+
+/* ============================================
+   MP — REGISTRATION DETAIL
+   ============================================ */
+
+.mp-admin-detail-card {
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  padding: 2rem 2.25rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.mp-admin-detail-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #B8985A;
+  border-right: none;
+  border-bottom: none;
+}
+
+.mp-admin-detail-card::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #B8985A;
+  border-left: none;
+  border-top: none;
+}
+
+.mp-admin-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(184, 152, 90, 0.3);
+}
+
+.mp-admin-detail-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 1.1;
+  margin: 0;
+  color: #1A2238;
+  letter-spacing: -0.01em;
+}
+
+.mp-admin-detail-name em {
+  color: #B8985A;
+  font-style: italic;
+}
+
+.mp-admin-payment-status {
+  margin: 0 0 1.5rem;
+  font-size: 1.4rem;
+}
+
+.mp-detail-badge {
+  font-size: 0.75rem;
+  padding: 0.45rem 0.9rem;
+}
+
+.mp-admin-detail-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.mp-admin-detail-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(184, 152, 90, 0.15);
+}
+
+.mp-admin-detail-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.mp-admin-detail-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  font-weight: 600;
+}
+
+.mp-admin-detail-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #1A2238;
+}
+
+.mp-admin-detail-link {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184, 152, 90, 0.5);
+  padding-bottom: 0.15rem;
+  transition: border-color 0.2s ease;
+}
+
+.mp-admin-detail-link:hover {
+  border-color: #B8985A;
+}
+
+.mp-admin-detail-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+
+/* ============================================
+   MP — ADMIN LOGIN PAGE
+   ============================================ */
+
+.mp-admin-login-page {
+  min-height: 100vh;
+  background: #1A2238;
+  color: #F4ECD8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.mp-admin-login-section {
+  width: 100%;
+  max-width: 480px;
+}
+
+.mp-admin-login-frame {
+  text-align: center;
+  position: relative;
+  padding: 3rem 2rem;
+  border: 1px solid rgba(184, 152, 90, 0.25);
+}
+
+.mp-admin-login-frame::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #B8985A;
+  border-right: none;
+  border-bottom: none;
+}
+
+.mp-admin-login-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #B8985A;
+  border-left: none;
+  border-top: none;
+}
+
+.mp-admin-login-tagline {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  color: #B8985A;
+  margin: 0 0 2.5rem;
+  font-size: 1rem;
+}
+
+.mp-admin-login-form {
+  display: grid;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.mp-label-text-light {
+  color: #B8985A;
+}
+
+.mp-form-input-dark {
+  background: rgba(244, 236, 216, 0.08);
+  border-color: rgba(184, 152, 90, 0.35);
+  color: #F4ECD8;
+}
+
+.mp-form-input-dark:focus {
+  background: rgba(244, 236, 216, 0.15);
+  border-color: #B8985A;
+  box-shadow: 0 0 0 3px rgba(184, 152, 90, 0.2);
+}
+
+.mp-btn-login {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   MP — ADMIN RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .mp-admin-header-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mp-admin-user {
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;
+  }
+
+  .mp-admin-nav {
+    gap: 1.5rem;
+  }
+
+  .mp-admin-body {
+    padding: 2rem 0 4rem;
+  }
+
+  .mp-admin-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .mp-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-shirt-totals {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-payment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-shirt-breakdown {
+    padding: 1rem 1.25rem;
+  }
+
+  .mp-shirt-row {
+    grid-template-columns: 90px 1fr 40px;
+    gap: 0.75rem;
+  }
+
+  .mp-shirt-row-label {
+    font-size: 0.78rem;
+  }
+
+  .mp-admin-toolbar {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .mp-admin-filters {
+    flex-wrap: wrap;
+  }
+
+  .mp-admin-filter {
+    flex: 1;
+    justify-content: center;
+    font-size: 0.7rem;
+  }
+
+  .mp-admin-table th,
+  .mp-admin-table td {
+    padding: 0.7rem 0.65rem;
+    font-size: 0.82rem;
+  }
+
+  .mp-admin-detail-card {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .mp-admin-detail-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mp-admin-detail-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .mp-next-step {
+    grid-template-columns: 48px 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .mp-step-number {
+    font-size: 2rem;
+  }
+   }
