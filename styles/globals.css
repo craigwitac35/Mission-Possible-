@@ -2389,3 +2389,49 @@
     font-size: 2rem;
   }
    }
+/* ============================================
+   MP — WHAT'S INCLUDED GRID
+   ============================================ */
+
+.mp-included-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 800px;
+  margin: 2rem auto 0;
+}
+
+.mp-included-card {
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.4);
+  border-left: 4px solid #B8985A;
+  padding: 1.75rem;
+}
+
+.mp-included-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #B8985A;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.mp-included-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #1F1F1F;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .mp-included-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-included-card {
+    padding: 1.5rem;
+  }
+}
