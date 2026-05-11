@@ -9,7 +9,7 @@ export default function Events() {
         <title>Upcoming Events | Mission Possible</title>
         <meta
           name="description"
-          content="Mission Possible: Hooves and Paws Mud Run — August 29th. Register now to support Guardian 4 Heroes and Heroes K9 Odyssey Academy."
+          content="Mission Possible: Hooves and Paws Mud Run, August 29th. Register now to support Guardian 4 Heroes and Heroes K9 Odyssey Academy."
         />
       </Head>
 
@@ -31,7 +31,7 @@ export default function Events() {
             </div>
 
             <p className="mp-tagline">
-              Mud, music, and meaning &mdash; one day a year.
+              Mud, music, and meaning. One day a year.
             </p>
           </div>
         </section>
@@ -42,7 +42,7 @@ export default function Events() {
               <CompassRose className="mp-svg-compass" />
             </div>
 
-            <p className="mp-section-label">No. 01 &mdash; The Featured Event</p>
+            <p className="mp-section-label">No. 01 &ndash; The Featured Event</p>
 
             <div className="mp-event-card">
               <div className="mp-event-stamp">
@@ -101,7 +101,7 @@ export default function Events() {
               <CompassRose className="mp-svg-compass" />
             </div>
 
-            <p className="mp-section-label mp-label-light">No. 02 &mdash; About the Day</p>
+            <p className="mp-section-label mp-label-light">No. 02 &ndash; About the Day</p>
 
             <h2 className="mp-section-title mp-title-light">
               Get Muddy.<br />
@@ -131,7 +131,57 @@ export default function Events() {
               <CompassRose className="mp-svg-compass" />
             </div>
 
-            <p className="mp-section-label">No. 03 &mdash; Rates</p>
+            <p className="mp-section-label">No. 03 &ndash; What&rsquo;s Included</p>
+
+            <h2 className="mp-section-title">
+              Your Registration <em>Includes</em>
+            </h2>
+
+            <div className="mp-included-grid">
+              <div className="mp-included-card">
+                <p className="mp-included-label">Event T-Shirt</p>
+                <p className="mp-included-text">
+                  An official Mission Possible event shirt in your size.
+                </p>
+              </div>
+
+              <div className="mp-included-card">
+                <p className="mp-included-label">Finisher&rsquo;s Medal</p>
+                <p className="mp-included-text">
+                  Cross the finish line and earn a custom medal.
+                </p>
+              </div>
+
+              <div className="mp-included-card">
+                <p className="mp-included-label">Drinks &amp; Snacks</p>
+                <p className="mp-included-text">
+                  Sports drinks, water, protein bars, and bananas throughout
+                  the day.
+                </p>
+              </div>
+
+              <div className="mp-included-card">
+                <p className="mp-included-label">All Day Access</p>
+                <p className="mp-included-text">
+                  Live music, dog talks, contests, food trucks, and silent
+                  auction, all included.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="mp-section-bridge">
+          <HorseshoePawDivider className="mp-svg-divider mp-svg-divider-bridge" />
+        </div>
+
+        <section className="mp-section mp-section-cream">
+          <div className="mp-container">
+            <div className="mp-compass-mark">
+              <CompassRose className="mp-svg-compass" />
+            </div>
+
+            <p className="mp-section-label">No. 04 &ndash; Rates</p>
 
             <h2 className="mp-section-title">
               Pricing &amp; <em>Registration</em>
@@ -187,13 +237,21 @@ export default function Events() {
               <CompassRose className="mp-svg-compass" />
             </div>
 
-            <p className="mp-section-label mp-label-light">No. 04 &mdash; Schedule</p>
+            <p className="mp-section-label mp-label-light">No. 05 &ndash; Schedule</p>
 
             <h2 className="mp-section-title mp-title-light">
               A Full Day of <em>Community</em>
             </h2>
 
             <ul className="mp-schedule-list">
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">Fri. 4:00 PM</span>
+                <span className="mp-schedule-event">Pre-Registration &amp; Packet Pickup</span>
+              </li>
+              <li className="mp-schedule-item">
+                <span className="mp-schedule-time">7:00 AM</span>
+                <span className="mp-schedule-event">Check-In Opens</span>
+              </li>
               <li className="mp-schedule-item">
                 <span className="mp-schedule-time">8:00 AM</span>
                 <span className="mp-schedule-event">Mud Run Begins</span>
@@ -212,7 +270,7 @@ export default function Events() {
               </li>
               <li className="mp-schedule-item">
                 <span className="mp-schedule-time">All Day</span>
-                <span className="mp-schedule-event">Dog Talks &amp; Q&amp;A</span>
+                <span className="mp-schedule-event">Dog Talks: Body Language BINGO &amp; Breed Q&amp;A</span>
               </li>
               <li className="mp-schedule-item">
                 <span className="mp-schedule-time">All Day</span>
@@ -241,7 +299,7 @@ export default function Events() {
             </h2>
 
             <p className="mp-prose-center">
-              Spots are limited. Lock yours in.
+              Lock yours in.
             </p>
 
             <Link href="/register" className="mp-btn mp-btn-primary">
