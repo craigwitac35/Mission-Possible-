@@ -2435,3 +2435,57 @@
     padding: 1.5rem;
   }
 }
+/* ============================================
+   MP — JOINT LOGO CARD (hero)
+   ============================================ */
+
+.mp-logo-card {
+  display: inline-block;
+  background: #F4ECD8;
+  padding: 1.5rem;
+  position: relative;
+  margin: 0 auto 2.5rem;
+  max-width: 280px;
+  border: 1px solid rgba(184, 152, 90, 0.5);
+}
+
+.mp-logo-card::before,
+.mp-logo-card::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: #B8985A;
+  border-style: solid;
+}
+
+.mp-logo-card::before {
+  top: 8px;
+  left: 8px;
+  border-width: 1px 0 0 1px;
+}
+
+.mp-logo-card::after {
+  bottom: 8px;
+  right: 8px;
+  border-width: 0 1px 1px 0;
+}
+
+.mp-logo-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 240px;
+}
+
+@media (max-width: 768px) {
+  .mp-logo-card {
+    max-width: 220px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .mp-logo-image {
+    max-width: 180px;
+  }
+}
