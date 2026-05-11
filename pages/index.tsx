@@ -18,10 +18,14 @@ export default function Home() {
           <div className="mp-hero-frame">
             <p className="mp-eyebrow">Est. 2025 &middot; Minnesota</p>
 
-            <div className="mp-logo-slot">
-              <span className="mp-logo-placeholder">[ Joint Logo ]</span>
+            
+     <div className="mp-logo-card">
+              <img
+                src="/images/logo-mp.jpg"
+                alt="Mission Possible: Serving Those Who Serve"
+                className="mp-logo-image"
+              />
             </div>
-
             <h1 className="mp-title">
               <span className="mp-title-line">Mission</span>
               <span className="mp-title-line mp-title-italic">Possible</span>
