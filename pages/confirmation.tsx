@@ -34,7 +34,7 @@ export default function ConfirmationPage() {
               <CompassRose className="mp-svg-compass" />
             </div>
 
-            <p className="mp-section-label">No. 01 &mdash; A Note From Us</p>
+            <p className="mp-section-label">No. 01 &ndash; A Note From Us</p>
 
             <h2 className="mp-section-title">
               Your Registration<br />
@@ -49,9 +49,8 @@ export default function ConfirmationPage() {
               </p>
               <p>
                 Every dollar of your registration goes directly to Guardian 4
-                Heroes and Heroes K9 Odyssey Academy &mdash; funding equine
-                therapy, K9 training, and the kind of programs that change
-                lives.
+                Heroes and Heroes K9 Odyssey Academy, funding equine therapy,
+                K9 training, and the kind of programs that change lives.
               </p>
             </div>
 
@@ -71,7 +70,7 @@ export default function ConfirmationPage() {
               <CompassRose className="mp-svg-compass" />
             </div>
 
-            <p className="mp-section-label mp-label-light">No. 02 &mdash; What Happens Next</p>
+            <p className="mp-section-label mp-label-light">No. 02 &ndash; What Happens Next</p>
 
             <h2 className="mp-section-title mp-title-light">
               The Path <em>Forward</em>
@@ -84,7 +83,7 @@ export default function ConfirmationPage() {
                   <h3 className="mp-step-title">Check Your Email</h3>
                   <p className="mp-step-text">
                     A confirmation with your registration details is on its way.
-                    Save it &mdash; you&rsquo;ll need it on event day.
+                    Save it. You&rsquo;ll need it on event day.
                   </p>
                 </div>
               </li>
@@ -120,7 +119,7 @@ export default function ConfirmationPage() {
                 Continue to Payment
               </button>
               <p className="mp-payment-note">
-                Payment processing is coming soon &mdash; we&rsquo;ll email you
+                Payment processing is coming soon. We&rsquo;ll email you
                 with instructions.
               </p>
             </div>
