@@ -9,7 +9,7 @@ export default function Home() {
         <title>Mission Possible | Hooves and Paws</title>
         <meta
           name="description"
-          content="A partnership between Guardian 4 Heroes and Heroes K9 Odyssey Academy — serving veterans and first responders alongside the animals who help them heal."
+          content="Guardian 4 Heroes and Heroes K9 Odyssey Academy &ndash; two missions serving veterans and first responders alongside the animals who help them heal."
         />
       </Head>
 
@@ -19,7 +19,6 @@ export default function Home() {
             <p className="mp-eyebrow">Est. 2025 &middot; Minnesota</p>
 
             <div className="mp-logo-slot">
-              {/* IMAGE PLACEHOLDER: Joint logo goes here */}
               <span className="mp-logo-placeholder">[ Joint Logo ]</span>
             </div>
 
@@ -53,23 +52,23 @@ export default function Home() {
               <CompassRose className="mp-svg-compass" />
             </div>
 
-            <p className="mp-section-label">No. 01 &mdash; A Note From Us</p>
+            <p className="mp-section-label">No. 01 &ndash; A Note From Us</p>
             <h2 className="mp-section-title">
               Two Missions.<br />
-              <em>One Purpose.</em>
+              <em>One Day.</em>
             </h2>
 
             <div className="mp-prose">
               <p>
-                Mission Possible is a partnership between Guardian 4 Heroes and
-                Heroes K9 Odyssey Academy &mdash; two nonprofits dedicated to
-                helping veterans and first responders heal, grow, and thrive
-                alongside the animals who walk beside them.
+                Mission Possible brings Guardian 4 Heroes and Heroes K9 Odyssey
+                Academy together for one day &ndash; two nonprofits working
+                side by side to help veterans and first responders heal, grow,
+                and thrive alongside the animals who walk with them.
               </p>
               <p>
-                Through equine therapy, K9 training, and community events, we
-                honor those who served and the rescue animals who serve right
-                back.
+                Through equine therapy, K9 training, and a community event built
+                around them, we honor those who served and the rescue animals
+                who serve right back.
               </p>
             </div>
 
@@ -90,7 +89,7 @@ export default function Home() {
             </div>
 
             <p className="mp-section-label mp-label-light">
-              No. 02 &mdash; Our Partners
+              No. 02 &ndash; The Organizations
             </p>
             <h2 className="mp-section-title mp-title-light">
               The <em>Hooves</em> &amp; The <em>Paws</em>
@@ -100,7 +99,6 @@ export default function Home() {
           <div className="mp-partners">
             <article className="mp-partner-card">
               <div className="mp-partner-image-slot">
-                {/* IMAGE PLACEHOLDER: Photo of horses (G4H) */}
                 <span className="mp-image-placeholder">[ Horse Photo ]</span>
               </div>
 
@@ -108,7 +106,6 @@ export default function Home() {
                 <p className="mp-partner-tag">Hooves</p>
 
                 <div className="mp-partner-logo-slot">
-                  {/* IMAGE PLACEHOLDER: G4H logo */}
                   <span className="mp-logo-placeholder-sm">[ G4H Logo ]</span>
                 </div>
 
@@ -120,7 +117,7 @@ export default function Home() {
                 <p className="mp-partner-text">
                   Guardian 4 Heroes provides equine-facilitated psychotherapy
                   for veterans and first responders. Through the quiet strength
-                  of horses, those who served find a path toward healing &mdash;
+                  of horses, those who served find a path toward healing &ndash;
                   physically, mentally, and emotionally.
                 </p>
 
@@ -147,7 +144,6 @@ export default function Home() {
 
             <article className="mp-partner-card">
               <div className="mp-partner-image-slot">
-                {/* IMAGE PLACEHOLDER: Photo of dogs (HK9OA) */}
                 <span className="mp-image-placeholder">[ Dog Photo ]</span>
               </div>
 
@@ -155,7 +151,6 @@ export default function Home() {
                 <p className="mp-partner-tag">Paws</p>
 
                 <div className="mp-partner-logo-slot">
-                  {/* IMAGE PLACEHOLDER: HK9OA logo */}
                   <span className="mp-logo-placeholder-sm">[ HK9OA Logo ]</span>
                 </div>
 
@@ -169,7 +164,7 @@ export default function Home() {
                 <p className="mp-partner-text">
                   Heroes K9 Odyssey Academy equips veterans and first responders
                   with skills in canine training and care, while rehabilitating
-                  rescue dogs to serve as service animals or companions &mdash;
+                  rescue dogs to serve as service animals or companions &ndash;
                   creating a ripple effect of healing.
                 </p>
 
@@ -205,7 +200,7 @@ export default function Home() {
               <CompassRose className="mp-svg-compass" />
             </div>
 
-            <p className="mp-section-label">No. 03 &mdash; Find Us At</p>
+            <p className="mp-section-label">No. 03 &ndash; Find Us At</p>
             <h2 className="mp-section-title">
               Join Us at <em>Our Next Event</em>
             </h2>
