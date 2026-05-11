@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { HorseshoePawDivider, CompassRose } from '@/components/svg/Ornaments';
-
+import StaffLoginIcon from '@/components/StaffLoginIcon';
 export default function Home() {
   return (
     <>
