@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import StaffLoginIcon from '@/components/StaffLoginIcon';
+import PublicSiteHeader from '@/components/PublicSiteHeader';
 
 export default function Events() {
   return (
@@ -15,6 +16,7 @@ export default function Events() {
 
       <main className="mp-site">
         <StaffLoginIcon />
+        <PublicSiteHeader />
 
         <section className="mp-page-hero-art-v2">
           <img
