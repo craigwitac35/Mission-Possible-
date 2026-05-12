@@ -168,7 +168,7 @@ export default function AdminDashboard() {
                 </p>
                 <h1 className="mp-admin-title">Dashboard</h1>
                 <p className="mp-admin-subtitle-v2">
-                  Registrations, payment tracking, and shirt counts — all in one
+                  Registrations, payment tracking, and shirt counts - all in one
                   place.
                 </p>
               </div>
