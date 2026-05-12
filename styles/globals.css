@@ -3744,3 +3744,9 @@ select.mp-form-input {
     padding: 1.5rem;
   }
 }
+/* Admin title italic accent (matches site-wide two-tone pattern) */
+.mp-admin-title-v3 em {
+  color: #C9A961;
+  font-style: italic;
+  font-weight: 500;
+}
