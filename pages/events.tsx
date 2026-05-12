@@ -16,39 +16,31 @@ export default function Events() {
       <main className="mp-site">
         <StaffLoginIcon />
 
-        <section className="mp-page-hero-v2">
-          <div
-            className="mp-page-hero-bg"
-            style={{ backgroundImage: 'url(/images/mission-hero.png)' }}
-            aria-hidden="true"
+        <section className="mp-page-hero-art-v2">
+          <img
+            src="/images/events-hero.png"
+            alt="Mission Possible upcoming events artwork"
+            className="mp-hero-art-image-v2"
           />
-          <div className="mp-page-hero-overlay" aria-hidden="true" />
-
-          <div className="mp-page-hero-content">
-            <Link href="/" className="mp-back-link-v2">
-              &larr; Mission Possible Home
-            </Link>
-
-            <p className="mp-cinematic-eyebrow">
-              <span className="mp-divider-dot" />
-              Aug. 29 &middot; The Eagles Healing Nest
-              <span className="mp-divider-dot" />
-            </p>
-
-            <h1 className="mp-cinematic-title">
-              <span className="mp-cinematic-title-top">Upcoming</span>
-              <span className="mp-cinematic-title-bottom">Events</span>
-            </h1>
-
-            <p className="mp-cinematic-tagline">
-              Mud, music, and meaning.
-            </p>
-          </div>
         </section>
 
         <section className="mp-section-v2 mp-section-cream-v2">
           <div className="mp-container-v2">
-            <p className="mp-label-v2">Featured Event</p>
+            <div className="mp-events-intro-v2">
+              <Link href="/" className="mp-back-link-v2 mp-back-link-dark-v2">
+                &larr; Mission Possible Home
+              </Link>
+
+              <p className="mp-label-v2">Featured Event</p>
+
+              <h1 className="mp-title-v2">
+                Upcoming <em>Events</em>
+              </h1>
+
+              <p className="mp-prose-center-v2">
+                Mud, music, and meaning.
+              </p>
+            </div>
 
             <div className="mp-event-card-v2">
               <div className="mp-event-stamp-v2">
@@ -325,7 +317,10 @@ export default function Events() {
             <div className="mp-footer-bottom-v2">
               <p>&copy; 2025 Mission Possible. All rights reserved.</p>
               <p className="mp-footer-credit-v2">
-                Built by <a href="https://web-ops-studio.com" target="_blank" rel="noopener noreferrer">WebOps Studio</a>
+                Built by{' '}
+                <a href="https://web-ops-studio.com" target="_blank" rel="noopener noreferrer">
+                  WebOps Studio
+                </a>
               </p>
             </div>
           </div>
