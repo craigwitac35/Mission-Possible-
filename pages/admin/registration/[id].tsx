@@ -122,100 +122,116 @@ export default function AdminRegistrationDetail() {
       </Head>
 
       <main className="mp-site mp-admin">
-        <header className="mp-admin-header">
-          <div className="mp-container">
-            <div className="mp-admin-header-row">
-              <div>
-                <p className="mp-eyebrow mp-admin-eyebrow">Mission Possible &middot; Admin</p>
-                <h1 className="mp-admin-title">Registration Detail</h1>
+        <header className="mp-admin-header-v3">
+          <div className="mp-container-v2">
+            <div className="mp-admin-header-row-v3">
+              <div className="mp-admin-heading-v3">
+                <p className="mp-admin-eyebrow-v3">Mission Possible &middot; Admin</p>
+                <h1 className="mp-admin-title-v3">Registration Detail</h1>
+                <p className="mp-admin-subtitle-v3">
+                  View buyer information, payment status, and all participants for this registration.
+                </p>
               </div>
-              <div className="mp-admin-user">
-                <span className="mp-admin-email">{userEmail}</span>
-                <button type="button" className="mp-admin-signout" onClick={signOut}>
+
+              <div className="mp-admin-user-v3">
+                <span className="mp-admin-email-v3">{userEmail}</span>
+                <button
+                  type="button"
+                  className="mp-admin-signout-v3"
+                  onClick={signOut}
+                >
                   Sign out
                 </button>
               </div>
             </div>
 
-            <nav className="mp-admin-nav">
-              <Link href="/admin/dashboard" className="mp-admin-nav-link">
+            <nav className="mp-admin-nav-v3">
+              <Link href="/admin/dashboard" className="mp-admin-nav-link-v3">
                 Dashboard
               </Link>
-              <Link href="/admin/registrations" className="mp-admin-nav-link">
+
+              <Link
+                href="/admin/registrations"
+                className="mp-admin-nav-link-v3 mp-admin-nav-link-active-v3"
+              >
                 Registrations
+              </Link>
+
+              <Link href="/" className="mp-admin-nav-link-v3 mp-admin-nav-link-public-v3">
+                Public Home &rarr;
               </Link>
             </nav>
           </div>
         </header>
 
-        <div className="mp-admin-body">
-          <div className="mp-container">
-            <Link href="/admin/registrations" className="mp-admin-back">
+        <div className="mp-admin-body-v3">
+          <div className="mp-container-v2">
+            <Link href="/admin/registrations" className="mp-admin-back-v3">
               &larr; Back to all registrations
             </Link>
 
             {error && <p className="mp-form-error mp-admin-error">{error}</p>}
 
             {!registration ? (
-              <p className="mp-admin-loading">Loading…</p>
+              <p className="mp-admin-loading-v3">Loading&hellip;</p>
             ) : (
               <>
-                <section className="mp-admin-detail-card">
-                  <div className="mp-admin-detail-header">
+                <section className="mp-admin-detail-card-v3">
+                  <div className="mp-admin-detail-header-v3">
                     <div>
-                      <p className="mp-admin-section-label">Buyer Information</p>
-                      <h2 className="mp-admin-detail-name">{registration.buyer_name}</h2>
+                      <p className="mp-admin-block-label-v3">Buyer Information</p>
+                      <h2 className="mp-admin-detail-name-v3">{registration.buyer_name}</h2>
                     </div>
                     <span
-                      className={`mp-recent-badge mp-recent-badge-${registration.payment_status} mp-detail-badge`}
+                      className={`mp-admin-badge-v3 mp-admin-badge-${registration.payment_status}-v3 mp-admin-detail-badge-v3`}
                     >
                       {registration.payment_status}
                     </span>
                   </div>
 
-                  <div className="mp-admin-detail-grid">
-                    <div className="mp-admin-detail-row">
-                      <span className="mp-admin-detail-label">Email</span>
+                  <div className="mp-admin-detail-grid-v3">
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Email</span>
                       <a
                         href={`mailto:${registration.buyer_email}`}
-                        className="mp-admin-detail-value mp-admin-detail-link"
+                        className="mp-admin-detail-value-v3 mp-admin-detail-link-v3"
                       >
                         {registration.buyer_email}
                       </a>
                     </div>
-                    <div className="mp-admin-detail-row">
-                      <span className="mp-admin-detail-label">Phone</span>
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Phone</span>
                       <a
                         href={`tel:${registration.buyer_phone}`}
-                        className="mp-admin-detail-value mp-admin-detail-link"
+                        className="mp-admin-detail-value-v3 mp-admin-detail-link-v3"
                       >
                         {registration.buyer_phone}
                       </a>
                     </div>
-                    <div className="mp-admin-detail-row">
-                      <span className="mp-admin-detail-label">Group</span>
-                      <span className="mp-admin-detail-value">
-                        {registration.group_name || '—'}
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Group</span>
+                      <span className="mp-admin-detail-value-v3">
+                        {registration.group_name || '–'}
                       </span>
                     </div>
-                    <div className="mp-admin-detail-row">
-                      <span className="mp-admin-detail-label">Total</span>
-                      <span className="mp-admin-detail-value mp-admin-detail-amount">
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Total</span>
+                      <span className="mp-admin-detail-value-v3 mp-admin-detail-amount-v3">
                         ${registration.total_amount}
                       </span>
                     </div>
-                    <div className="mp-admin-detail-row">
-                      <span className="mp-admin-detail-label">Submitted</span>
-                      <span className="mp-admin-detail-value">
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Submitted</span>
+                      <span className="mp-admin-detail-value-v3">
                         {new Date(registration.created_at).toLocaleString()}
                       </span>
                     </div>
                   </div>
                 </section>
 
-                <section className="mp-admin-detail-card">
-                  <p className="mp-admin-section-label">Payment Status</p>
-                  <h2 className="mp-admin-detail-name mp-admin-payment-status">
+                <section className="mp-admin-detail-card-v3">
+                  <p className="mp-admin-block-label-v3">Payment Status</p>
+                  <h2 className="mp-admin-detail-name-v3 mp-admin-payment-status-v3">
                     Currently <em>{registration.payment_status}</em>
                   </h2>
 
@@ -226,7 +242,7 @@ export default function AdminRegistrationDetail() {
                       onClick={markAsPaid}
                       disabled={updating}
                     >
-                      {updating ? 'Updating…' : 'Mark as Paid'}
+                      {updating ? 'Updating\u2026' : 'Mark as Paid'}
                     </button>
                   ) : (
                     <button
@@ -235,24 +251,24 @@ export default function AdminRegistrationDetail() {
                       onClick={markAsPending}
                       disabled={updating}
                     >
-                      {updating ? 'Updating…' : 'Revert to Pending'}
+                      {updating ? 'Updating\u2026' : 'Revert to Pending'}
                     </button>
                   )}
                 </section>
 
-                <section className="mp-admin-detail-card">
-                  <p className="mp-admin-section-label">
+                <section className="mp-admin-detail-card-v3">
+                  <p className="mp-admin-block-label-v3">
                     Participants ({participants.length})
                   </p>
-                  <h2 className="mp-admin-detail-name">
+                  <h2 className="mp-admin-detail-name-v3">
                     Who&apos;s <em>showing up.</em>
                   </h2>
 
                   {participants.length === 0 ? (
-                    <p className="mp-admin-empty">No participants found.</p>
+                    <p className="mp-admin-empty-v3">No participants found.</p>
                   ) : (
-                    <div className="mp-admin-table-wrap">
-                      <table className="mp-admin-table">
+                    <div className="mp-admin-table-wrap-v3">
+                      <table className="mp-admin-table-v3">
                         <thead>
                           <tr>
                             <th>Name</th>
@@ -264,13 +280,13 @@ export default function AdminRegistrationDetail() {
                         <tbody>
                           {participants.map((p) => (
                             <tr key={p.id}>
-                              <td className="mp-admin-td-name">{p.name}</td>
+                              <td className="mp-admin-td-name-v3">{p.name}</td>
                               <td>{p.age}</td>
                               <td>{p.age > 13 ? 'Adult' : 'Child'}</td>
-                              <td className="mp-admin-td-shirt">
+                              <td className="mp-admin-td-shirt-v3">
                                 {p.shirt_size
                                   ? SHIRT_LABELS[p.shirt_size] || p.shirt_size
-                                  : '—'}
+                                  : '–'}
                               </td>
                             </tr>
                           ))}
