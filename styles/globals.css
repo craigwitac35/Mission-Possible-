@@ -2450,3 +2450,269 @@ select.mp-form-input {
   filter: none;
   opacity: 1;
 }
+/* =========================
+   HERO IMAGE LAYOUT V2
+========================= */
+
+.mp-page-hero-art-v2 {
+  background: #0b1426;
+  padding: 0;
+}
+
+.mp-hero-art-image-v2 {
+  display: block;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  height: auto;
+}
+
+/* =========================
+   INTRO / PAGE HEADER
+========================= */
+
+.mp-events-intro-v2 {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.mp-back-link-v2 {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b1e2d;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.mp-back-link-v2:hover {
+  color: #c9a961;
+}
+
+.mp-label-v2 {
+  margin: 0 0 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8b1e2d;
+  font-weight: 700;
+}
+
+.mp-title-v2 {
+  margin: 0 0 1rem;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.3rem, 5vw, 4.4rem);
+  line-height: 0.98;
+  color: #0b1426;
+}
+
+.mp-title-v2 em {
+  color: #8b1e2d;
+  font-style: italic;
+}
+
+.mp-prose-center-v2 {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: rgba(11, 20, 38, 0.82);
+}
+
+/* =========================
+   REGISTER PAGE
+========================= */
+
+.mp-register-form-wrap-v2 {
+  padding-top: 0;
+}
+
+/* =========================
+   CONFIRMATION PAGE
+========================= */
+
+.mp-confirm-card-v2 {
+  max-width: 780px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid rgba(11, 20, 38, 0.1);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(11, 20, 38, 0.08);
+}
+
+.mp-confirm-kicker-v2 {
+  margin: 0 0 1.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8b1e2d;
+  font-weight: 700;
+}
+
+.mp-confirm-steps-v2 {
+  display: grid;
+  gap: 1rem;
+}
+
+.mp-confirm-step-v2 {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(11, 20, 38, 0.08);
+}
+
+.mp-confirm-step-v2:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.mp-confirm-step-number-v2 {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: #0b1426;
+  color: #f4ecd8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Playfair Display", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.mp-confirm-step-v2 h3 {
+  margin: 0 0 0.4rem;
+  color: #0b1426;
+  font-size: 1.05rem;
+}
+
+.mp-confirm-step-v2 p {
+  margin: 0;
+  color: rgba(11, 20, 38, 0.78);
+  line-height: 1.7;
+}
+
+.mp-confirm-note-v2 {
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  background: rgba(139, 30, 45, 0.06);
+  border: 1px solid rgba(139, 30, 45, 0.12);
+  border-radius: 12px;
+  color: #5f1520;
+  line-height: 1.65;
+}
+
+.mp-confirm-actions-v2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.mp-secondary-link-btn-v2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid rgba(11, 20, 38, 0.14);
+  border-radius: 999px;
+  background: transparent;
+  color: #0b1426;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.mp-secondary-link-btn-v2:hover {
+  border-color: #c9a961;
+  color: #8b1e2d;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.mp-footer-v2 {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.mp-footer-brand-v2 {
+  margin: 0 0 0.4rem;
+  color: #f4ecd8;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.mp-footer-note-v2,
+.mp-footer-heading-v2,
+.mp-footer-credit-v2,
+.mp-footer-links-v2 a,
+.mp-footer-bottom-v2 {
+  color: rgba(244, 236, 216, 0.82);
+}
+
+.mp-footer-heading-v2 {
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+}
+
+.mp-footer-links-v2 {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.mp-footer-links-v2 a,
+.mp-footer-credit-v2 {
+  text-decoration: none;
+}
+
+.mp-footer-links-v2 a:hover,
+.mp-footer-credit-v2:hover {
+  color: #c9a961;
+}
+
+.mp-footer-bottom-v2 {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(244, 236, 216, 0.12);
+  font-size: 0.9rem;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .mp-confirm-card-v2 {
+    padding: 1.35rem;
+    border-radius: 14px;
+  }
+
+  .mp-confirm-step-v2 {
+    grid-template-columns: 44px 1fr;
+    gap: 0.85rem;
+  }
+
+  .mp-confirm-step-number-v2 {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  .mp-confirm-actions-v2 {
+    flex-direction: column;
+  }
+
+  .mp-secondary-link-btn-v2,
+  .mp-confirm-actions-v2 .mp-cinematic-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
