@@ -126,8 +126,9 @@ export default function AdminRegistrationDetail() {
           <div className="mp-container-v2">
             <div className="mp-admin-header-row-v3">
               <div className="mp-admin-heading-v3">
-                <p className="mp-admin-eyebrow-v3">Mission Possible &middot; Admin</p>
-                <h1 className="mp-admin-title-v3">Registration Detail</h1>
+                <h1 className="mp-admin-title-v3">
+                  Registration <em>Detail</em>
+                </h1>
                 <p className="mp-admin-subtitle-v3">
                   View buyer information, payment status, and all participants for this registration.
                 </p>
