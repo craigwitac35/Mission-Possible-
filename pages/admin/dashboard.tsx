@@ -163,12 +163,10 @@ export default function AdminDashboard() {
           <div className="mp-container-v2 mp-admin-shell-v2">
             <div className="mp-admin-header-row mp-admin-header-row-v2">
               <div className="mp-admin-heading-v2">
-                <p className="mp-eyebrow mp-admin-eyebrow">
-                  Mission Possible · Admin
-                </p>
+                <p className="mp-admin-eyebrow">Mission Possible · Admin</p>
                 <h1 className="mp-admin-title">Dashboard</h1>
                 <p className="mp-admin-subtitle-v2">
-                  Registrations, payment tracking, and shirt counts - all in one
+                  Registrations, payment tracking, and shirt counts — all in one
                   place.
                 </p>
               </div>
@@ -188,14 +186,22 @@ export default function AdminDashboard() {
             <nav className="mp-admin-nav mp-admin-nav-v2">
               <Link
                 href="/admin/dashboard"
-                className="mp-admin-nav-link mp-admin-nav-active"
+                className="mp-admin-nav-link mp-admin-nav-btn-v2 mp-admin-nav-active"
               >
                 Dashboard
               </Link>
-              <Link href="/admin/registrations" className="mp-admin-nav-link">
+
+              <Link
+                href="/admin/registrations"
+                className="mp-admin-nav-link mp-admin-nav-btn-v2"
+              >
                 Registrations
               </Link>
-              <Link href="/" className="mp-admin-nav-link">
+
+              <Link
+                href="/"
+                className="mp-admin-nav-link mp-admin-nav-btn-v2 mp-admin-nav-btn-secondary-v2"
+              >
                 Public Home
               </Link>
             </nav>
