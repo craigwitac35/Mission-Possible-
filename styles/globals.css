@@ -2737,47 +2737,89 @@ select.mp-form-input {
   gap: 1rem;
 }
 
-.mp-public-brand-v2 {
+.mp-public-home-badge-v2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.7rem 1rem;
   text-decoration: none;
+  background: transparent;
   color: #f4ecd8;
-  font-weight: 800;
-  letter-spacing: 0.1em;
+  border: 1px solid rgba(201, 169, 97, 0.35);
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
 }
 
-.mp-public-brand-v2:hover {
+.mp-public-home-badge-v2:hover {
   color: #c9a961;
+  border-color: #c9a961;
 }
 
 .mp-public-nav-v2 {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
-.mp-public-nav-link-v2 {
+.mp-public-nav-btn-v2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.72rem 1.05rem;
   text-decoration: none;
-  color: rgba(244, 236, 216, 0.82);
-  font-size: 0.8rem;
+  background: #8b1e2d;
+  color: #f4ecd8;
+  border: 1px solid #8b1e2d;
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.35rem 0;
-  border-bottom: 1px solid transparent;
   transition: all 0.2s ease;
 }
 
-.mp-public-nav-link-v2:hover {
-  color: #c9a961;
-  border-bottom-color: #c9a961;
+.mp-public-nav-btn-v2:hover {
+  background: #c9a961;
+  border-color: #c9a961;
+  color: #0b1426;
+  transform: translateY(-1px);
 }
 
-.mp-public-nav-active-v2 {
-  color: #c9a961;
-  border-bottom-color: #c9a961;
+.mp-public-nav-btn-active-v2 {
+  background: #c9a961;
+  border-color: #c9a961;
+  color: #0b1426;
 }
+
+@media (max-width: 768px) {
+  .mp-public-header-inner-v2 {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.9rem 1rem;
+  }
+
+  .mp-public-home-badge-v2 {
+    width: 100%;
+  }
+
+  .mp-public-nav-v2 {
+    width: 100%;
+    gap: 0.65rem;
+  }
+
+  .mp-public-nav-btn-v2 {
+    flex: 1 1 calc(50% - 0.4rem);
+    min-width: 0;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
 
 /* =========================
    MOBILE
