@@ -163,13 +163,13 @@ export default function AdminDashboard() {
           <div className="mp-container-v2">
             <div className="mp-admin-header-row-v3">
               <div className="mp-admin-heading-v3">
-                <p className="mp-admin-eyebrow-v3">Mission Possible &middot; Admin</p>
-                <h1 className="mp-admin-title-v3">Admin Dashboard</h1>
+                <h1 className="mp-admin-title-v3">
+                  Admin <em>Dashboard</em>
+                </h1>
                 <p className="mp-admin-subtitle-v3">
                   Registrations, payment tracking, and shirt counts &ndash; all in one place.
                 </p>
               </div>
-
               <div className="mp-admin-user-v3">
                 <span className="mp-admin-email-v3">{userEmail}</span>
                 <button
