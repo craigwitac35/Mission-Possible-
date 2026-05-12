@@ -64,7 +64,9 @@ export default function AdminDashboard() {
         await Promise.all([
           supabase
             .from('registrations')
-            .select('id, buyer_name, total_amount, payment_status, created_at, participants(count)')
+            .select(
+              'id, buyer_name, total_amount, payment_status, created_at, participants(count)'
+            )
             .order('created_at', { ascending: false }),
           supabase.from('participants').select('id, age, shirt_size'),
         ]);
@@ -79,10 +81,17 @@ export default function AdminDashboard() {
 
       const adultCount = partsAll.filter((p: any) => p.age > 13).length;
       const childCount = partsAll.filter((p: any) => p.age <= 13).length;
-      const pendingCount = regsAll.filter((r: any) => r.payment_status === 'pending').length;
-      const paidCount = regsAll.filter((r: any) => r.payment_status === 'paid').length;
+      const pendingCount = regsAll.filter(
+        (r: any) => r.payment_status === 'pending'
+      ).length;
+      const paidCount = regsAll.filter(
+        (r: any) => r.payment_status === 'paid'
+      ).length;
 
-      const totalRevenue = regsAll.reduce((sum: number, r: any) => sum + (r.total_amount || 0), 0);
+      const totalRevenue = regsAll.reduce(
+        (sum: number, r: any) => sum + (r.total_amount || 0),
+        0
+      );
       const pendingRevenue = regsAll
         .filter((r: any) => r.payment_status === 'pending')
         .reduce((sum: number, r: any) => sum + (r.total_amount || 0), 0);
@@ -99,6 +108,7 @@ export default function AdminDashboard() {
       const youthTotal = partsAll.filter((p: any) =>
         YOUTH_SIZES.includes(p.shirt_size)
       ).length;
+
       const adultTotal = partsAll.filter(
         (p: any) => p.shirt_size && !YOUTH_SIZES.includes(p.shirt_size)
       ).length;
@@ -142,37 +152,70 @@ export default function AdminDashboard() {
     <>
       <Head>
         <title>Dashboard | Mission Possible Admin</title>
+        <meta
+          name="description"
+          content="Mission Possible admin dashboard for registrations, revenue, and shirt counts."
+        />
       </Head>
 
       <main className="mp-site mp-admin">
-        <header className="mp-admin-header">
-          <div className="mp-container">
-            <div className="mp-admin-header-row">
-              <div>
-                <p className="mp-eyebrow mp-admin-eyebrow">Mission Possible &middot; Admin</p>
+        <header className="mp-admin-header mp-admin-header-v2">
+          <div className="mp-container-v2 mp-admin-shell-v2">
+            <div className="mp-admin-header-row mp-admin-header-row-v2">
+              <div className="mp-admin-heading-v2">
+                <p className="mp-eyebrow mp-admin-eyebrow">
+                  Mission Possible · Admin
+                </p>
                 <h1 className="mp-admin-title">Dashboard</h1>
+                <p className="mp-admin-subtitle-v2">
+                  Registrations, payment tracking, and shirt counts — all in one
+                  place.
+                </p>
               </div>
-              <div className="mp-admin-user">
+
+              <div className="mp-admin-user mp-admin-user-v2">
                 <span className="mp-admin-email">{userEmail}</span>
-                <button type="button" className="mp-admin-signout" onClick={signOut}>
+                <button
+                  type="button"
+                  className="mp-admin-signout"
+                  onClick={signOut}
+                >
                   Sign out
                 </button>
               </div>
             </div>
 
-            <nav className="mp-admin-nav">
-              <Link href="/admin/dashboard" className="mp-admin-nav-link mp-admin-nav-active">
+            <nav className="mp-admin-nav mp-admin-nav-v2">
+              <Link
+                href="/admin/dashboard"
+                className="mp-admin-nav-link mp-admin-nav-active"
+              >
                 Dashboard
               </Link>
               <Link href="/admin/registrations" className="mp-admin-nav-link">
                 Registrations
+              </Link>
+              <Link href="/" className="mp-admin-nav-link">
+                Public Home
               </Link>
             </nav>
           </div>
         </header>
 
         <div className="mp-admin-body">
-          <div className="mp-container">
+          <div className="mp-container-v2 mp-admin-shell-v2">
+            <section className="mp-admin-welcome-v2">
+              <p className="mp-admin-welcome-kicker-v2">Command Center</p>
+              <h2 className="mp-admin-welcome-title-v2">
+                Quick pulse on <em>the event</em>.
+              </h2>
+              <p className="mp-admin-welcome-text-v2">
+                Use this dashboard to track sign-ups, spot unpaid registrations,
+                and stay ahead of shirt ordering without digging through forms by
+                hand.
+              </p>
+            </section>
+
             {error && <p className="mp-form-error mp-admin-error">{error}</p>}
 
             {!stats ? (
@@ -193,7 +236,7 @@ export default function AdminDashboard() {
                       <p className="mp-stat-label">Total Participants</p>
                       <p className="mp-stat-value">{stats.totalParticipants}</p>
                       <p className="mp-stat-meta">
-                        {stats.adultCount} adults &middot; {stats.childCount} kids
+                        {stats.adultCount} adults · {stats.childCount} kids
                       </p>
                     </div>
 
@@ -201,7 +244,7 @@ export default function AdminDashboard() {
                       <p className="mp-stat-label">Total Revenue</p>
                       <p className="mp-stat-value">${stats.totalRevenue}</p>
                       <p className="mp-stat-meta">
-                        ${stats.paidRevenue} paid &middot; ${stats.pendingRevenue} pending
+                        ${stats.paidRevenue} paid · ${stats.pendingRevenue} pending
                       </p>
                     </div>
                   </div>
@@ -218,10 +261,12 @@ export default function AdminDashboard() {
                       <p className="mp-shirt-total-label">Youth Shirts</p>
                       <p className="mp-shirt-total-value">{stats.youthTotal}</p>
                     </div>
+
                     <div className="mp-shirt-total-card">
                       <p className="mp-shirt-total-label">Adult Shirts</p>
                       <p className="mp-shirt-total-value">{stats.adultTotal}</p>
                     </div>
+
                     <div className="mp-shirt-total-card mp-shirt-total-grand">
                       <p className="mp-shirt-total-label">Total to Order</p>
                       <p className="mp-shirt-total-value">
@@ -256,7 +301,10 @@ export default function AdminDashboard() {
                       <p className="mp-payment-card-label">Pending Payment</p>
                       <p className="mp-payment-card-value">{stats.pendingCount}</p>
                       <p className="mp-payment-card-amount">${stats.pendingRevenue}</p>
-                      <Link href="/admin/registrations" className="mp-payment-card-link">
+                      <Link
+                        href="/admin/registrations"
+                        className="mp-payment-card-link"
+                      >
                         View pending &rarr;
                       </Link>
                     </div>
@@ -265,7 +313,10 @@ export default function AdminDashboard() {
                       <p className="mp-payment-card-label">Paid</p>
                       <p className="mp-payment-card-value">{stats.paidCount}</p>
                       <p className="mp-payment-card-amount">${stats.paidRevenue}</p>
-                      <Link href="/admin/registrations" className="mp-payment-card-link">
+                      <Link
+                        href="/admin/registrations"
+                        className="mp-payment-card-link"
+                      >
                         View paid &rarr;
                       </Link>
                     </div>
@@ -288,13 +339,17 @@ export default function AdminDashboard() {
                           <div className="mp-recent-main">
                             <span className="mp-recent-name">{r.buyer_name}</span>
                             <span className="mp-recent-meta">
-                              {r.participantCount} {r.participantCount === 1 ? 'person' : 'people'} &middot;{' '}
+                              {r.participantCount}{' '}
+                              {r.participantCount === 1 ? 'person' : 'people'} ·{' '}
                               {new Date(r.created_at).toLocaleDateString()}
                             </span>
                           </div>
+
                           <div className="mp-recent-right">
                             <span className="mp-recent-total">${r.total_amount}</span>
-                            <span className={`mp-recent-badge mp-recent-badge-${r.payment_status}`}>
+                            <span
+                              className={`mp-recent-badge mp-recent-badge-${r.payment_status}`}
+                            >
                               {r.payment_status}
                             </span>
                           </div>
