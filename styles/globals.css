@@ -2352,3 +2352,78 @@ select.mp-form-input {
     gap: 0.25rem;
   }
    }
+/* ============================================
+   HERO ART + ORG IMAGE UPDATES
+   ============================================ */
+
+.mp-hero-art-v2,
+.mp-page-hero-art-v2 {
+  background: #0B1426;
+  padding: 0;
+}
+
+.mp-hero-art-image-v2 {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.mp-hero-cta-band-v2 {
+  background: #F4ECD8;
+  color: #1F1F1F;
+  padding: 3.5rem 0 2.5rem;
+  text-align: center;
+}
+
+.mp-hero-cta-band-v2 .mp-cinematic-cta {
+  margin-top: 1.5rem;
+}
+
+.mp-events-intro-v2 {
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.mp-back-link-dark-v2 {
+  color: #8B1E2D;
+  margin-bottom: 1.5rem;
+}
+
+.mp-back-link-dark-v2:hover {
+  border-color: #8B1E2D;
+}
+
+.mp-partner-photo-slot {
+  background: #1A2238;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  display: block;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.25);
+}
+
+.mp-partner-photo-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.mp-next-event-note-v2 {
+  margin-top: 1rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .mp-hero-cta-band-v2 {
+    padding: 3rem 0 2.25rem;
+  }
+
+  .mp-partner-photo-slot {
+    aspect-ratio: 16 / 10;
+    height: auto;
+  }
+}
