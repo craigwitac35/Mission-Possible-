@@ -159,23 +159,22 @@ export default function AdminDashboard() {
       </Head>
 
       <main className="mp-site mp-admin">
-        <header className="mp-admin-header mp-admin-header-v2">
-          <div className="mp-container-v2 mp-admin-shell-v2">
-            <div className="mp-admin-header-row mp-admin-header-row-v2">
-              <div className="mp-admin-heading-v2">
-                <p className="mp-admin-eyebrow">Mission Possible · Admin</p>
-                <h1 className="mp-admin-title">Dashboard</h1>
-                <p className="mp-admin-subtitle-v2">
-                  Registrations, payment tracking, and shirt counts - all in one
-                  place.
+        <header className="mp-admin-header-v3">
+          <div className="mp-container-v2">
+            <div className="mp-admin-header-row-v3">
+              <div className="mp-admin-heading-v3">
+                <p className="mp-admin-eyebrow-v3">Mission Possible &middot; Admin</p>
+                <h1 className="mp-admin-title-v3">Admin Dashboard</h1>
+                <p className="mp-admin-subtitle-v3">
+                  Registrations, payment tracking, and shirt counts &ndash; all in one place.
                 </p>
               </div>
 
-              <div className="mp-admin-user mp-admin-user-v2">
-                <span className="mp-admin-email">{userEmail}</span>
+              <div className="mp-admin-user-v3">
+                <span className="mp-admin-email-v3">{userEmail}</span>
                 <button
                   type="button"
-                  className="mp-admin-signout"
+                  className="mp-admin-signout-v3"
                   onClick={signOut}
                 >
                   Sign out
@@ -183,191 +182,201 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            <nav className="mp-admin-nav mp-admin-nav-v2">
+            <nav className="mp-admin-nav-v3">
               <Link
                 href="/admin/dashboard"
-                className="mp-admin-nav-link mp-admin-nav-btn-v2 mp-admin-nav-active"
+                className="mp-admin-nav-link-v3 mp-admin-nav-link-active-v3"
               >
                 Dashboard
               </Link>
 
-              <Link
-                href="/admin/registrations"
-                className="mp-admin-nav-link mp-admin-nav-btn-v2"
-              >
+              <Link href="/admin/registrations" className="mp-admin-nav-link-v3">
                 Registrations
               </Link>
 
-              <Link
-                href="/"
-                className="mp-admin-nav-link mp-admin-nav-btn-v2 mp-admin-nav-btn-secondary-v2"
-              >
-                Public Home
+              <Link href="/" className="mp-admin-nav-link-v3 mp-admin-nav-link-public-v3">
+                Public Home &rarr;
               </Link>
             </nav>
           </div>
         </header>
 
-        <div className="mp-admin-body">
-          <div className="mp-container-v2 mp-admin-shell-v2">
-            <section className="mp-admin-welcome-v2">
-              <p className="mp-admin-welcome-kicker-v2">Command Center</p>
-              <h2 className="mp-admin-welcome-title-v2">
-                Quick pulse on <em>the event</em>.
-              </h2>
-              <p className="mp-admin-welcome-text-v2">
-                Use this dashboard to track sign-ups, spot unpaid registrations,
-                and stay ahead of shirt ordering without digging through forms by
-                hand.
-              </p>
-            </section>
-
+        <div className="mp-admin-body-v3">
+          <div className="mp-container-v2">
             {error && <p className="mp-form-error mp-admin-error">{error}</p>}
 
             {!stats ? (
-              <p className="mp-admin-loading">Loading stats…</p>
+              <p className="mp-admin-loading-v3">Loading stats&hellip;</p>
             ) : (
               <>
-                <section className="mp-admin-section">
-                  <p className="mp-admin-section-label">At a Glance</p>
+                <section className="mp-admin-hero-stats-v3">
+                  <div className="mp-admin-hero-stat-v3">
+                    <p className="mp-admin-hero-label-v3">Registrations</p>
+                    <p className="mp-admin-hero-value-v3">{stats.totalRegistrations}</p>
+                    <p className="mp-admin-hero-meta-v3">Sign-ups received</p>
+                  </div>
 
-                  <div className="mp-stat-grid">
-                    <div className="mp-stat-card mp-stat-primary">
-                      <p className="mp-stat-label">Total Registrations</p>
-                      <p className="mp-stat-value">{stats.totalRegistrations}</p>
-                      <p className="mp-stat-meta">Sign-ups received</p>
-                    </div>
+                  <div className="mp-admin-hero-divider-v3" />
 
-                    <div className="mp-stat-card mp-stat-primary">
-                      <p className="mp-stat-label">Total Participants</p>
-                      <p className="mp-stat-value">{stats.totalParticipants}</p>
-                      <p className="mp-stat-meta">
-                        {stats.adultCount} adults · {stats.childCount} kids
-                      </p>
-                    </div>
+                  <div className="mp-admin-hero-stat-v3">
+                    <p className="mp-admin-hero-label-v3">People Coming</p>
+                    <p className="mp-admin-hero-value-v3">{stats.totalParticipants}</p>
+                    <p className="mp-admin-hero-meta-v3">
+                      {stats.adultCount} adults &middot; {stats.childCount} kids
+                    </p>
+                  </div>
 
-                    <div className="mp-stat-card mp-stat-revenue">
-                      <p className="mp-stat-label">Total Revenue</p>
-                      <p className="mp-stat-value">${stats.totalRevenue}</p>
-                      <p className="mp-stat-meta">
-                        ${stats.paidRevenue} paid · ${stats.pendingRevenue} pending
-                      </p>
-                    </div>
+                  <div className="mp-admin-hero-divider-v3" />
+
+                  <div className="mp-admin-hero-stat-v3 mp-admin-hero-stat-revenue-v3">
+                    <p className="mp-admin-hero-label-v3">Total Revenue</p>
+                    <p className="mp-admin-hero-value-v3">${stats.totalRevenue}</p>
+                    <p className="mp-admin-hero-meta-v3">
+                      ${stats.paidRevenue} paid &middot; ${stats.pendingRevenue} pending
+                    </p>
                   </div>
                 </section>
 
-                <section className="mp-admin-section">
-                  <p className="mp-admin-section-label">Shirt Order Sheet</p>
-                  <h2 className="mp-admin-section-title">
-                    What to <em>order</em>.
+                <div className="mp-admin-tier-v3">
+                  <section className="mp-admin-block-v3">
+                    <p className="mp-admin-block-label-v3">Needs Attention</p>
+                    <h2 className="mp-admin-block-title-v3">
+                      Payment <em>Status</em>
+                    </h2>
+
+                    <div className="mp-admin-payment-grid-v3">
+                      <div className="mp-admin-payment-card-v3 mp-admin-payment-pending-v3">
+                        <p className="mp-admin-payment-label-v3">Pending</p>
+                        <p className="mp-admin-payment-value-v3">{stats.pendingCount}</p>
+                        <p className="mp-admin-payment-amount-v3">
+                          ${stats.pendingRevenue}
+                        </p>
+                        <Link
+                          href="/admin/registrations"
+                          className="mp-admin-payment-link-v3"
+                        >
+                          View pending &rarr;
+                        </Link>
+                      </div>
+
+                      <div className="mp-admin-payment-card-v3 mp-admin-payment-paid-v3">
+                        <p className="mp-admin-payment-label-v3">Paid</p>
+                        <p className="mp-admin-payment-value-v3">{stats.paidCount}</p>
+                        <p className="mp-admin-payment-amount-v3">
+                          ${stats.paidRevenue}
+                        </p>
+                        <Link
+                          href="/admin/registrations"
+                          className="mp-admin-payment-link-v3"
+                        >
+                          View paid &rarr;
+                        </Link>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section className="mp-admin-block-v3">
+                    <p className="mp-admin-block-label-v3">Recent Activity</p>
+                    <h2 className="mp-admin-block-title-v3">
+                      Latest <em>Sign-ups</em>
+                    </h2>
+
+                    {stats.recent.length === 0 ? (
+                      <p className="mp-admin-empty-v3">No registrations yet.</p>
+                    ) : (
+                      <div className="mp-admin-recent-list-v3">
+                        {stats.recent.map((r) => (
+                          <Link
+                            key={r.id}
+                            href={`/admin/registration/${r.id}`}
+                            className="mp-admin-recent-item-v3"
+                          >
+                            <div className="mp-admin-recent-main-v3">
+                              <span className="mp-admin-recent-name-v3">
+                                {r.buyer_name}
+                              </span>
+                              <span className="mp-admin-recent-meta-v3">
+                                {r.participantCount}{' '}
+                                {r.participantCount === 1 ? 'person' : 'people'}{' '}
+                                &middot;{' '}
+                                {new Date(r.created_at).toLocaleDateString()}
+                              </span>
+                            </div>
+
+                            <div className="mp-admin-recent-right-v3">
+                              <span className="mp-admin-recent-total-v3">
+                                ${r.total_amount}
+                              </span>
+                              <span
+                                className={`mp-admin-badge-v3 mp-admin-badge-${r.payment_status}-v3`}
+                              >
+                                {r.payment_status}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="mp-admin-recent-footer-v3">
+                      <Link
+                        href="/admin/registrations"
+                        className="mp-admin-text-link-v3"
+                      >
+                        View all registrations &rarr;
+                      </Link>
+                    </div>
+                  </section>
+                </div>
+
+                <section className="mp-admin-block-v3 mp-admin-block-full-v3">
+                  <p className="mp-admin-block-label-v3">Planning</p>
+                  <h2 className="mp-admin-block-title-v3">
+                    Shirt <em>Order Sheet</em>
                   </h2>
 
-                  <div className="mp-shirt-totals">
-                    <div className="mp-shirt-total-card">
-                      <p className="mp-shirt-total-label">Youth Shirts</p>
-                      <p className="mp-shirt-total-value">{stats.youthTotal}</p>
+                  <div className="mp-admin-shirt-totals-v3">
+                    <div className="mp-admin-shirt-total-v3">
+                      <p className="mp-admin-shirt-total-label-v3">Youth Shirts</p>
+                      <p className="mp-admin-shirt-total-value-v3">
+                        {stats.youthTotal}
+                      </p>
                     </div>
 
-                    <div className="mp-shirt-total-card">
-                      <p className="mp-shirt-total-label">Adult Shirts</p>
-                      <p className="mp-shirt-total-value">{stats.adultTotal}</p>
+                    <div className="mp-admin-shirt-total-v3">
+                      <p className="mp-admin-shirt-total-label-v3">Adult Shirts</p>
+                      <p className="mp-admin-shirt-total-value-v3">
+                        {stats.adultTotal}
+                      </p>
                     </div>
 
-                    <div className="mp-shirt-total-card mp-shirt-total-grand">
-                      <p className="mp-shirt-total-label">Total to Order</p>
-                      <p className="mp-shirt-total-value">
+                    <div className="mp-admin-shirt-total-v3 mp-admin-shirt-total-grand-v3">
+                      <p className="mp-admin-shirt-total-label-v3">Total to Order</p>
+                      <p className="mp-admin-shirt-total-value-v3">
                         {stats.youthTotal + stats.adultTotal}
                       </p>
                     </div>
                   </div>
 
-                  <div className="mp-shirt-breakdown">
+                  <div className="mp-admin-shirt-breakdown-v3">
                     {stats.shirtTally.map((s) => (
-                      <div key={s.size} className="mp-shirt-row">
-                        <span className="mp-shirt-row-label">{s.label}</span>
-                        <div className="mp-shirt-row-bar">
+                      <div key={s.size} className="mp-admin-shirt-row-v3">
+                        <span className="mp-admin-shirt-row-label-v3">
+                          {s.label}
+                        </span>
+                        <div className="mp-admin-shirt-row-bar-v3">
                           <div
-                            className="mp-shirt-row-fill"
+                            className="mp-admin-shirt-row-fill-v3"
                             style={{
                               width: `${(s.count / maxShirtCount) * 100}%`,
                             }}
                           />
                         </div>
-                        <span className="mp-shirt-row-count">{s.count}</span>
+                        <span className="mp-admin-shirt-row-count-v3">
+                          {s.count}
+                        </span>
                       </div>
                     ))}
-                  </div>
-                </section>
-
-                <section className="mp-admin-section">
-                  <p className="mp-admin-section-label">Payment Status</p>
-
-                  <div className="mp-payment-grid">
-                    <div className="mp-payment-card mp-payment-pending">
-                      <p className="mp-payment-card-label">Pending Payment</p>
-                      <p className="mp-payment-card-value">{stats.pendingCount}</p>
-                      <p className="mp-payment-card-amount">${stats.pendingRevenue}</p>
-                      <Link
-                        href="/admin/registrations"
-                        className="mp-payment-card-link"
-                      >
-                        View pending &rarr;
-                      </Link>
-                    </div>
-
-                    <div className="mp-payment-card mp-payment-paid">
-                      <p className="mp-payment-card-label">Paid</p>
-                      <p className="mp-payment-card-value">{stats.paidCount}</p>
-                      <p className="mp-payment-card-amount">${stats.paidRevenue}</p>
-                      <Link
-                        href="/admin/registrations"
-                        className="mp-payment-card-link"
-                      >
-                        View paid &rarr;
-                      </Link>
-                    </div>
-                  </div>
-                </section>
-
-                <section className="mp-admin-section">
-                  <p className="mp-admin-section-label">Recent Activity</p>
-
-                  {stats.recent.length === 0 ? (
-                    <p className="mp-admin-empty">No registrations yet.</p>
-                  ) : (
-                    <div className="mp-recent-list">
-                      {stats.recent.map((r) => (
-                        <Link
-                          key={r.id}
-                          href={`/admin/registration/${r.id}`}
-                          className="mp-recent-item"
-                        >
-                          <div className="mp-recent-main">
-                            <span className="mp-recent-name">{r.buyer_name}</span>
-                            <span className="mp-recent-meta">
-                              {r.participantCount}{' '}
-                              {r.participantCount === 1 ? 'person' : 'people'} ·{' '}
-                              {new Date(r.created_at).toLocaleDateString()}
-                            </span>
-                          </div>
-
-                          <div className="mp-recent-right">
-                            <span className="mp-recent-total">${r.total_amount}</span>
-                            <span
-                              className={`mp-recent-badge mp-recent-badge-${r.payment_status}`}
-                            >
-                              {r.payment_status}
-                            </span>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="mp-recent-footer">
-                    <Link href="/admin/registrations" className="mp-admin-link">
-                      View all registrations &rarr;
-                    </Link>
                   </div>
                 </section>
               </>
