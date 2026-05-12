@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import { HorseshoeIcon, PawIcon, CaduceusIcon, HorseshoePawDivider } from '@/components/svg/Ornaments';
 import StaffLoginIcon from '@/components/StaffLoginIcon';
 
 export default function Home() {
@@ -10,61 +9,29 @@ export default function Home() {
         <title>Mission Possible | Hooves and Paws</title>
         <meta
           name="description"
-          content="Guardian 4 Heroes and Heroes K9 Odyssey Academy &ndash; serving veterans, first responders, and the animals who help them heal."
+          content="Guardian 4 Heroes and Heroes K9 Odyssey Academy – serving veterans, first responders, and the animals who help them heal."
         />
       </Head>
 
       <main className="mp-site">
         <StaffLoginIcon />
 
-        <section className="mp-cinematic-hero">
-          <div
-            className="mp-cinematic-bg"
-            style={{ backgroundImage: 'url(/images/mission-hero.png)' }}
-            aria-hidden="true"
+        <section className="mp-hero-art-v2">
+          <img
+            src="/images/mission-hero.png"
+            alt="Mission Possible Hooves and Paws hero artwork"
+            className="mp-hero-art-image-v2"
           />
-          <div className="mp-cinematic-overlay" aria-hidden="true" />
+        </section>
 
-          <div className="mp-cinematic-content">
-            <div className="mp-cinematic-logo">
-              <img
-                src="/images/logo-mp.jpg"
-                alt="Mission Possible: Serving Those Who Serve"
-              />
-            </div>
-
-            <p className="mp-cinematic-eyebrow">
-              <span className="mp-divider-dot" />
-              Est. 2025 &middot; Minnesota
-              <span className="mp-divider-dot" />
-            </p>
-
-            <h1 className="mp-cinematic-title">
-              <span className="mp-cinematic-title-top">Mission</span>
-              <span className="mp-cinematic-title-bottom">Possible</span>
+        <section className="mp-hero-cta-band-v2">
+          <div className="mp-container-v2 mp-container-narrow-v2">
+            <p className="mp-label-v2">Upcoming Event</p>
+            <h1 className="mp-title-v2">
+              See What&apos;s <em>Coming Up</em>
             </h1>
-
-            <p className="mp-cinematic-subtitle">
-              <span className="mp-cinematic-subtitle-rule" />
-              Hooves &amp; Paws
-              <span className="mp-cinematic-subtitle-rule" />
-            </p>
-
-            <p className="mp-cinematic-tagline">
-              Where Hooves, Paws, and Heroes Heal.
-            </p>
-
-            <div className="mp-cinematic-icons">
-              <HorseshoeIcon className="mp-cinematic-icon" />
-              <span className="mp-icon-divider" />
-              <PawIcon className="mp-cinematic-icon" />
-              <span className="mp-icon-divider" />
-              <CaduceusIcon className="mp-cinematic-icon" />
-            </div>
-
-            <p className="mp-cinematic-motto">
-              Serving Those Who Serve.<br />
-              Together, We Heal. Together, We Thrive.
+            <p className="mp-prose-center-v2">
+              Get the full event details, day-of schedule, and registration info.
             </p>
 
             <Link href="/events" className="mp-cinematic-cta">
@@ -114,7 +81,11 @@ export default function Home() {
           <div className="mp-partners-v2">
             <article className="mp-partner-v2">
               <div className="mp-partner-photo-slot">
-                <span className="mp-photo-placeholder">[ Sara + Horse Photo ]</span>
+                <img
+                  src="/images/g4h-image.png"
+                  alt="Sara with horse representing Guardian 4 Heroes"
+                  className="mp-partner-photo-image"
+                />
               </div>
 
               <div className="mp-partner-content">
@@ -160,7 +131,11 @@ export default function Home() {
 
             <article className="mp-partner-v2">
               <div className="mp-partner-photo-slot">
-                <span className="mp-photo-placeholder">[ Amie + Dog Photo ]</span>
+                <img
+                  src="/images/k9-image.png"
+                  alt="Amie with dogs representing Heroes K9 Odyssey Academy"
+                  className="mp-partner-photo-image"
+                />
               </div>
 
               <div className="mp-partner-content">
@@ -219,11 +194,9 @@ export default function Home() {
               shows up when there&rsquo;s something worth showing up for.
             </p>
 
-            <Link href="/events" className="mp-cinematic-cta">
-              <span className="mp-cinematic-cta-star">&#9733;</span>
-              See Upcoming Events
-              <span className="mp-cinematic-cta-star">&#9733;</span>
-            </Link>
+            <p className="mp-prose-center-v2 mp-next-event-note-v2">
+              See the full event schedule, details, and registration on the events page.
+            </p>
           </div>
         </section>
 
@@ -266,7 +239,10 @@ export default function Home() {
             <div className="mp-footer-bottom-v2">
               <p>&copy; 2025 Mission Possible. All rights reserved.</p>
               <p className="mp-footer-credit-v2">
-                Built by <a href="https://web-ops-studio.com" target="_blank" rel="noopener noreferrer">WebOps Studio</a>
+                Built by{' '}
+                <a href="https://web-ops-studio.com" target="_blank" rel="noopener noreferrer">
+                  WebOps Studio
+                </a>
               </p>
             </div>
           </div>
