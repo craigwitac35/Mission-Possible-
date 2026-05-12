@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import StaffLoginIcon from '@/components/StaffLoginIcon';
+import PublicSiteHeader from '@/components/PublicSiteHeader';
 
 export default function ConfirmationPage() {
   return (
@@ -15,6 +16,7 @@ export default function ConfirmationPage() {
 
       <main>
         <StaffLoginIcon />
+        <PublicSiteHeader />
 
         <section className="mp-page-hero-art-v2">
           <img
