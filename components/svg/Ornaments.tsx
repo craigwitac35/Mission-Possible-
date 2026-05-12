@@ -1,3 +1,71 @@
+// Icon components for Mission Possible
+// Used in the hero icon trio and decorative accents
+
+export function HorseshoeIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M 8 6 C 4 10 4 18 8 24 L 10 26" />
+      <path d="M 24 6 C 28 10 28 18 24 24 L 22 26" />
+      <path d="M 8 6 Q 16 2 24 6" />
+      <circle cx="8" cy="11" r="0.8" fill="currentColor" />
+      <circle cx="8" cy="17" r="0.8" fill="currentColor" />
+      <circle cx="24" cy="11" r="0.8" fill="currentColor" />
+      <circle cx="24" cy="17" r="0.8" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function PawIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <ellipse cx="9" cy="11" rx="2.5" ry="3.5" />
+      <ellipse cx="16" cy="8" rx="2.8" ry="3.8" />
+      <ellipse cx="23" cy="11" rx="2.5" ry="3.5" />
+      <ellipse cx="5" cy="17" rx="2.2" ry="3" />
+      <ellipse cx="27" cy="17" rx="2.2" ry="3" />
+      <path d="M 10 21 Q 16 16 22 21 Q 24 26 16 28 Q 8 26 10 21 Z" />
+    </svg>
+  );
+}
+
+export function CaduceusIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path
+        d="M 16 3 L 26 6 L 26 17 Q 26 23 16 29 Q 6 23 6 17 L 6 6 Z"
+        fill="currentColor"
+        opacity="0.1"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <rect x="15" y="9" width="2" height="14" fill="currentColor" />
+      <rect x="11" y="14" width="10" height="2" fill="currentColor" />
+    </svg>
+  );
+}
+
 export function HorseshoePawDivider({ className = '' }: { className?: string }) {
   return (
     <svg
@@ -7,62 +75,21 @@ export function HorseshoePawDivider({ className = '' }: { className?: string }) 
       className={className}
       aria-hidden="true"
     >
-      <line x1="0" y1="15" x2="85" y2="15" stroke="currentColor" strokeOpacity="0.4" strokeWidth="0.6" />
-      <line x1="215" y1="15" x2="300" y2="15" stroke="currentColor" strokeOpacity="0.4" strokeWidth="0.6" />
+      <line x1="0" y1="15" x2="120" y2="15" stroke="currentColor" strokeOpacity="0.4" strokeWidth="0.6" />
+      <line x1="180" y1="15" x2="300" y2="15" stroke="currentColor" strokeOpacity="0.4" strokeWidth="0.6" />
 
-      <g fill="currentColor" transform="translate(95, 7)">
-        <path d="M 8 12 C 5 12 3 14 3 17 C 3 20 5 22 8 22 C 9 22 10 21.5 11 21 C 12 21.5 13 22 14 22 C 17 22 19 20 19 17 C 19 14 17 12 14 12 C 13 12 12 12.5 11 13 C 10 12.5 9 12 8 12 Z" />
-        <ellipse cx="6" cy="6" rx="2" ry="3" />
-        <ellipse cx="11" cy="3" rx="2" ry="3" />
-        <ellipse cx="16" cy="6" rx="2" ry="3" />
-        <ellipse cx="2" cy="10" rx="1.8" ry="2.5" />
-        <ellipse cx="20" cy="10" rx="1.8" ry="2.5" />
+      <g fill="currentColor" transform="translate(130, 8)">
+        <ellipse cx="6" cy="6" rx="1.6" ry="2.4" />
+        <ellipse cx="10" cy="3" rx="1.6" ry="2.4" />
+        <ellipse cx="14" cy="6" rx="1.6" ry="2.4" />
+        <path d="M 5 13 Q 10 9 15 13 Q 16 17 10 18 Q 4 17 5 13 Z" />
       </g>
 
-      <g fill="currentColor" transform="translate(133, 6)">
-        <rect x="0" y="0" width="33" height="2.5" />
-        <rect x="0" y="5" width="33" height="2.5" />
-        <rect x="0" y="10" width="33" height="2.5" />
-        <rect x="0" y="15" width="33" height="2.5" />
-        <rect x="0" y="20" width="33" height="2.5" />
-        <rect x="0" y="0" width="14" height="10" />
+      <g fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" transform="translate(155, 8)">
+        <path d="M 3 2 C 1 5 1 10 3 14 L 4 16" />
+        <path d="M 13 2 C 15 5 15 10 13 14 L 12 16" />
+        <path d="M 3 2 Q 8 -1 13 2" />
       </g>
-
-      <g fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(178, 6)">
-        <path d="M 3 2 C 1 5 1 11 3 16 L 5 18" />
-        <path d="M 17 2 C 19 5 19 11 17 16 L 15 18" />
-        <path d="M 3 2 Q 10 -1 17 2" />
-        <circle cx="3" cy="6" r="0.6" fill="currentColor" stroke="none" />
-        <circle cx="3" cy="11" r="0.6" fill="currentColor" stroke="none" />
-        <circle cx="17" cy="6" r="0.6" fill="currentColor" stroke="none" />
-        <circle cx="17" cy="11" r="0.6" fill="currentColor" stroke="none" />
-      </g>
-    </svg>
-  );
-}
-
-export function CompassRose({ className = '' }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 60 60"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-      aria-hidden="true"
-    >
-      <circle cx="30" cy="30" r="28" strokeOpacity="0.3" strokeWidth="0.6" />
-      <circle cx="30" cy="30" r="22" strokeOpacity="0.5" strokeWidth="0.6" />
-      <path d="M 30 8 L 33 28 L 30 30 L 27 28 Z" fill="currentColor" stroke="none" />
-      <path d="M 30 52 L 27 32 L 30 30 L 33 32 Z" fill="currentColor" fillOpacity="0.5" stroke="none" />
-      <path d="M 8 30 L 28 27 L 30 30 L 28 33 Z" fill="currentColor" fillOpacity="0.7" stroke="none" />
-      <path d="M 52 30 L 32 33 L 30 30 L 32 27 Z" fill="currentColor" fillOpacity="0.7" stroke="none" />
-      <path d="M 14 14 L 28 28 L 30 30 L 28 28 Z" fill="currentColor" fillOpacity="0.4" stroke="none" />
-      <path d="M 46 14 L 32 28 L 30 30 L 32 28 Z" fill="currentColor" fillOpacity="0.4" stroke="none" />
-      <path d="M 14 46 L 28 32 L 30 30 L 28 32 Z" fill="currentColor" fillOpacity="0.4" stroke="none" />
-      <path d="M 46 46 L 32 32 L 30 30 L 32 32 Z" fill="currentColor" fillOpacity="0.4" stroke="none" />
-      <circle cx="30" cy="30" r="2" fill="currentColor" stroke="none" />
     </svg>
   );
 }
