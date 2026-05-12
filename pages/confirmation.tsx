@@ -145,7 +145,7 @@ export default function ConfirmationPage() {
           </div>
         </section>
 
-        <footer class="mp-footer-v2">
+        <footer className="mp-footer-v2">
           <div className="mp-container-v2">
             <div className="mp-footer-grid-v2">
               <div className="mp-footer-col-v2">
