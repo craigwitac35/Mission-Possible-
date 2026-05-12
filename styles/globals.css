@@ -1,177 +1,1193 @@
 /* ============================================
-   MISSION POSSIBLE — Field Journal Design System
+   MISSION POSSIBLE — Cinematic Design System v2
    ============================================ */
 
-.mp-site {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #1F1F1F;
-  line-height: 1.6;
-}
-
-.mp-site * {
+* {
   box-sizing: border-box;
 }
 
-.mp-container {
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0B1426;
+  color: #1F1F1F;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.mp-site {
+  font-family: 'Inter', sans-serif;
+  color: #1F1F1F;
+}
+
+/* ============================================
+   CINEMATIC HERO (homepage)
+   ============================================ */
+
+.mp-cinematic-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5rem 1.5rem;
+  overflow: hidden;
+  background: #0B1426;
+}
+
+.mp-cinematic-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.mp-cinematic-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(11, 20, 38, 0.97) 0%,
+    rgba(11, 20, 38, 0.92) 30%,
+    rgba(11, 20, 38, 0.55) 55%,
+    rgba(11, 20, 38, 0.25) 80%,
+    rgba(11, 20, 38, 0.15) 100%
+  );
+  z-index: 2;
+}
+
+.mp-cinematic-content {
+  position: relative;
+  z-index: 3;
+  max-width: 640px;
+  width: 100%;
+  color: #F4ECD8;
+  padding: 0 2rem;
+}
+
+.mp-cinematic-logo {
+  margin-bottom: 1.5rem;
+}
+
+.mp-cinematic-logo img {
+  display: block;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(201, 169, 97, 0.5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.mp-cinematic-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #F4ECD8;
+  margin: 0 0 1.5rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  opacity: 0.85;
+}
+
+.mp-divider-dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #C9A961;
+}
+
+.mp-cinematic-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 0.92;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.mp-cinematic-title-top,
+.mp-cinematic-title-bottom {
+  display: block;
+}
+
+.mp-cinematic-title-top {
+  font-size: clamp(3.5rem, 9vw, 6rem);
+  font-weight: 700;
+  color: #F4ECD8;
+  text-transform: uppercase;
+}
+
+.mp-cinematic-title-bottom {
+  font-size: clamp(3.5rem, 9vw, 6rem);
+  font-weight: 500;
+  font-style: italic;
+  color: #C9A961;
+  margin-top: -0.15em;
+}
+
+.mp-cinematic-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #F4ECD8;
+  margin: 0 0 1.5rem;
+  font-weight: 600;
+}
+
+.mp-cinematic-subtitle-rule {
+  flex: 0 0 28px;
+  height: 1px;
+  background: #C9A961;
+}
+
+.mp-cinematic-tagline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  color: #C9A961;
+  margin: 0 0 2rem;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+.mp-cinematic-icons {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 0 0 2rem;
+  color: #C9A961;
+}
+
+.mp-cinematic-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.mp-icon-divider {
+  display: inline-block;
+  width: 1px;
+  height: 18px;
+  background: rgba(201, 169, 97, 0.4);
+}
+
+.mp-cinematic-motto {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(244, 236, 216, 0.7);
+  margin: 0 0 2.5rem;
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+.mp-cinematic-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.1rem 2.25rem;
+  background: #8B1E2D;
+  color: #F4ECD8;
+  border: 1px solid #8B1E2D;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.mp-cinematic-cta:hover {
+  background: #C9A961;
+  border-color: #C9A961;
+  color: #0B1426;
+  transform: translateY(-1px);
+}
+
+.mp-cinematic-cta:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mp-cinematic-cta:disabled:hover {
+  background: #8B1E2D;
+  color: #F4ECD8;
+  border-color: #8B1E2D;
+  transform: none;
+}
+
+.mp-cinematic-cta-star {
+  color: #C9A961;
+  font-size: 0.65rem;
+}
+
+.mp-cinematic-cta:hover .mp-cinematic-cta-star {
+  color: #8B1E2D;
+}
+
+/* ============================================
+   PAGE HERO (events, register, confirmation)
+   ============================================ */
+
+.mp-page-hero-v2 {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem;
+  overflow: hidden;
+  background: #0B1426;
+  text-align: center;
+}
+
+.mp-page-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.mp-page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 20, 38, 0.7) 0%,
+    rgba(11, 20, 38, 0.85) 100%
+  );
+  z-index: 2;
+}
+
+.mp-page-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  width: 100%;
+  color: #F4ECD8;
+  padding: 0 1rem;
+}
+
+.mp-back-link-v2 {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #C9A961;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.25rem;
+}
+
+.mp-back-link-v2:hover {
+  border-color: #C9A961;
+}
+
+/* ============================================
+   SECTION FRAMEWORK
+   ============================================ */
+
+.mp-section-v2 {
+  padding: 5rem 0;
+}
+
+.mp-section-cream-v2 {
+  background: #F4ECD8;
+  color: #1F1F1F;
+}
+
+.mp-section-dark-v2 {
+  background: #0B1426;
+  color: #F4ECD8;
+}
+
+.mp-container-v2 {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.mp-container-narrow {
+.mp-container-narrow-v2 {
   max-width: 720px;
   margin: 0 auto;
   padding: 0 1.5rem;
   text-align: center;
 }
 
-/* ===== HERO ===== */
+.mp-label-v2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #8B1E2D;
+  margin: 0 0 1rem;
+  font-weight: 700;
+  text-align: center;
+  display: block;
+}
 
-.mp-hero {
-  background: #1A2238;
+.mp-label-light-v2 {
+  color: #C9A961;
+}
+
+.mp-title-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.05;
+  margin: 0 auto 2rem;
+  letter-spacing: -0.02em;
+  max-width: 800px;
+  text-align: center;
+  color: #0B1426;
+}
+
+.mp-title-v2 em {
+  color: #C9A961;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.mp-title-light-v2 {
   color: #F4ECD8;
-  min-height: 90vh;
+}
+
+.mp-title-light-v2 em {
+  color: #C9A961;
+}
+
+.mp-prose-v2 {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.mp-prose-v2 p {
+  margin: 0 0 1.25rem;
+}
+
+.mp-prose-center-v2 {
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  color: #1F1F1F;
+}
+
+.mp-prose-light-v2 {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  text-align: center;
+  color: rgba(244, 236, 216, 0.85);
+}
+
+.mp-pullquote-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+  color: #C9A961;
+  margin: 3rem auto 0;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid rgba(201, 169, 97, 0.4);
+  max-width: 640px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.mp-pullquote-light-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+  color: #C9A961;
+  margin: 3rem auto 0;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid rgba(201, 169, 97, 0.4);
+  max-width: 640px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* ============================================
+   PARTNERS GRID
+   ============================================ */
+
+.mp-partners-v2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.mp-partner-v2 {
+  background: rgba(244, 236, 216, 0.04);
+  border: 1px solid rgba(201, 169, 97, 0.25);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6rem 1.5rem;
-  position: relative;
+  flex-direction: column;
   overflow: hidden;
 }
 
-.mp-hero::before {
-  content: '';
-  position: absolute;
-  inset: 1.5rem;
-  border: 1px solid rgba(184, 152, 90, 0.25);
-  pointer-events: none;
+.mp-partner-photo-slot {
+  background: #1A2238;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.25);
 }
 
-.mp-hero-frame {
+.mp-photo-placeholder {
+  color: rgba(244, 236, 216, 0.4);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+}
+
+.mp-partner-content {
+  padding: 2rem 1.75rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mp-partner-logo-v2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.mp-partner-logo-v2 img {
+  display: block;
+  max-width: 130px;
+  max-height: 130px;
+  width: auto;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+
+.mp-partner-kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #C9A961;
+  margin: 0 0 0.75rem;
+  font-weight: 700;
   text-align: center;
-  max-width: 800px;
-  position: relative;
-  z-index: 1;
 }
 
-.mp-eyebrow {
+.mp-partner-name-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.65rem;
+  line-height: 1.15;
+  margin: 0 0 0.5rem;
+  color: #F4ECD8;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.mp-partner-tagline-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #C9A961;
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.mp-partner-text-v2 {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+  color: rgba(244, 236, 216, 0.85);
+}
+
+.mp-partner-quote-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #C9A961;
+  border-left: 2px solid #C9A961;
+  padding: 0 0 0 1.1rem;
+  margin: 0 0 1.5rem;
+}
+
+.mp-partner-founder-v2 {
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  color: rgba(244, 236, 216, 0.65);
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.mp-partner-founder-v2 strong {
+  color: #F4ECD8;
+  font-weight: 600;
+}
+
+.mp-partner-link-v2 {
+  margin-top: auto;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #F4ECD8;
+  text-decoration: none;
+  border-bottom: 1px solid #C9A961;
+  padding-bottom: 0.35rem;
+  align-self: center;
+}
+
+.mp-partner-link-v2:hover {
+  color: #C9A961;
+}
+
+/* ============================================
+   EVENT CARD
+   ============================================ */
+
+.mp-event-card-v2 {
+  background: #fff;
+  max-width: 900px;
+  margin: 2rem auto 0;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  display: grid;
+  grid-template-columns: 180px 1fr;
+}
+
+.mp-event-stamp-v2 {
+  background: #0B1426;
+  color: #F4ECD8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.mp-stamp-month-v2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: #C9A961;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.mp-stamp-day-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 4.5rem;
+  line-height: 1;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+
+.mp-stamp-year-v2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: rgba(244, 236, 216, 0.6);
+  margin-top: 0.5rem;
+}
+
+.mp-event-body-v2 {
+  padding: 2.5rem 2rem;
+}
+
+.mp-event-tag-v2 {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #8B1E2D;
+  background: rgba(139, 30, 45, 0.08);
+  border: 1px solid rgba(139, 30, 45, 0.2);
+  padding: 0.4rem 0.85rem;
+  margin: 0 0 1.25rem;
+  font-weight: 700;
+}
+
+.mp-event-name-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+  color: #0B1426;
+  letter-spacing: -0.01em;
+}
+
+.mp-event-name-v2 em {
+  color: #C9A961;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.mp-event-subtitle-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #5C3A2E;
+  margin: 0 0 1.75rem;
+  line-height: 1.5;
+}
+
+.mp-event-meta-v2 {
+  margin: 0 0 2rem;
+  border-top: 1px solid rgba(201, 169, 97, 0.3);
+  border-bottom: 1px solid rgba(201, 169, 97, 0.3);
+  padding: 1rem 0;
+}
+
+.mp-event-meta-row-v2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+.mp-meta-label-v2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  font-weight: 700;
+}
+
+.mp-meta-value-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #0B1426;
+  font-weight: 600;
+}
+
+/* ============================================
+   WHAT'S INCLUDED
+   ============================================ */
+
+.mp-included-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 800px;
+  margin: 2rem auto 0;
+}
+
+.mp-included-card-v2 {
+  background: #fff;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  border-left: 4px solid #C9A961;
+  padding: 1.75rem;
+}
+
+.mp-included-label-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0B1426;
+  margin: 0 0 0.6rem;
+}
+
+.mp-included-text-v2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #1F1F1F;
+  margin: 0;
+}
+
+/* ============================================
+   RATE CARD
+   ============================================ */
+
+.mp-rates-section {
+  padding-top: 0;
+}
+
+.mp-rate-card-v2 {
+  background: #fff;
+  max-width: 700px;
+  margin: 2rem auto 0;
+  padding: 2.5rem;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+}
+
+.mp-rate-tier-v2 {
+  text-align: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.25);
+}
+
+.mp-rate-tier-v2:last-of-type {
+  border-bottom: none;
+}
+
+.mp-rate-label-v2 {
   font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #B8985A;
-  margin: 0 0 3rem;
+  color: #8B1E2D;
+  margin: 0 0 0.5rem;
+  font-weight: 700;
 }
 
-.mp-logo-slot {
-  margin: 0 auto 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mp-logo-placeholder {
-  display: inline-block;
-  border: 1px dashed rgba(184, 152, 90, 0.5);
-  color: rgba(244, 236, 216, 0.5);
-  padding: 3rem 4rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-}
-
-.mp-logo-placeholder-sm {
-  display: inline-block;
-  border: 1px dashed rgba(184, 152, 90, 0.4);
-  color: rgba(31, 31, 31, 0.4);
-  padding: 1rem 1.5rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-}
-
-.mp-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(3rem, 9vw, 5.5rem);
-  line-height: 0.95;
+.mp-rate-window-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: #5C3A2E;
   margin: 0 0 1.5rem;
-  letter-spacing: -0.02em;
+  font-size: 1.05rem;
 }
 
-.mp-title-line {
-  display: block;
-}
-
-.mp-title-italic {
-  font-style: italic;
-  color: #B8985A;
-  font-weight: 400;
-}
-
-/* ===== SVG ORNAMENTS ===== */
-
-.mp-hero-divider {
-  margin: 2rem auto;
+.mp-rate-amounts-v2 {
   display: flex;
   justify-content: center;
-  color: #B8985A;
+  align-items: center;
+  gap: 2.5rem;
 }
 
-.mp-svg-divider {
-  width: 100%;
-  max-width: 360px;
-  height: auto;
-}
-
-.mp-section-bridge {
-  background: #F4ECD8;
+.mp-rate-amounts-v2 > div {
   display: flex;
-  justify-content: center;
-  padding: 2rem 1.5rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mp-rate-price-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #0B1426;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.mp-rate-type-v2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: #5C3A2E;
+  font-weight: 600;
 }
 
-.mp-section-bridge-dark {
-  background: #1A2238;
-  color: #B8985A;
+.mp-rate-divider-v2 {
+  width: 1px;
+  height: 50px;
+  background: rgba(201, 169, 97, 0.4);
 }
 
-.mp-svg-divider-bridge {
+.mp-rate-note-v2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #5C3A2E;
+  text-align: center;
+  margin: 1.5rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(201, 169, 97, 0.25);
+}
+
+/* ============================================
+   SCHEDULE LIST
+   ============================================ */
+
+.mp-schedule-list-v2 {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto 0;
+  max-width: 600px;
+}
+
+.mp-schedule-item-v2 {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.mp-schedule-item-v2:last-child {
+  border-bottom: none;
+}
+
+.mp-schedule-time-v2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A961;
+  font-weight: 700;
+}
+
+.mp-schedule-event-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  color: #F4ECD8;
+  font-weight: 500;
+}
+
+/* ============================================
+   CONFIRMATION PAGE
+   ============================================ */
+
+.mp-next-steps-v2 {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto 3rem;
+  max-width: 600px;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.mp-next-step-v2 {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem;
+  background: rgba(244, 236, 216, 0.05);
+  border: 1px solid rgba(201, 169, 97, 0.2);
+  border-left: 3px solid #C9A961;
+}
+
+.mp-step-number-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #C9A961;
+  line-height: 1;
+}
+
+.mp-step-body-v2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.mp-step-title-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+  color: #F4ECD8;
+}
+
+.mp-step-text-v2 {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(244, 236, 216, 0.8);
+  margin: 0;
+}
+
+.mp-payment-cta-v2 {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.mp-payment-note-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(244, 236, 216, 0.65);
+  margin: 1rem 0 0;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.mp-footer-v2 {
+  background: #050A14;
+  color: #F4ECD8;
+  padding: 4rem 0 2rem;
+}
+
+.mp-footer-grid-v2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin: 0 0 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.mp-footer-brand-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.mp-footer-tagline-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: #C9A961;
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+
+.mp-footer-text-v2 {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin: 0;
   max-width: 320px;
+  line-height: 1.6;
 }
 
-.mp-compass-mark {
+.mp-footer-heading-v2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A961;
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+
+.mp-footer-link-v2 {
+  font-size: 0.9rem;
+  color: #F4ECD8;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.3);
+  padding-bottom: 0.25rem;
+}
+
+.mp-footer-link-v2:hover {
+  border-color: #C9A961;
+}
+
+.mp-footer-bottom-v2 {
   display: flex;
-  justify-content: center;
-  margin: 0 auto 2rem;
-  color: #5C3A2E;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  opacity: 0.6;
 }
 
-.mp-compass-light {
-  color: #B8985A;
+.mp-footer-bottom-v2 p {
+  margin: 0;
 }
 
-.mp-svg-compass {
-  width: 48px;
-  height: 48px;
-  opacity: 0.85;
+.mp-footer-credit-v2 a {
+  color: #C9A961;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
 
-.mp-tagline {
-  font-family: 'Fraunces', Georgia, serif;
+.mp-footer-credit-v2 a:hover {
+  border-color: #C9A961;
+}
+
+/* ============================================
+   REGISTRATION FORM
+   ============================================ */
+
+.mp-register-section-v2 {
+  padding-top: 0;
+}
+
+.mp-register-intro-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  color: #B8985A;
-  margin: 0 0 2.5rem;
-  letter-spacing: 0.01em;
+  font-size: 1.15rem;
+  color: #5C3A2E;
+  text-align: center;
+  margin: 4rem auto 2.5rem;
+  max-width: 560px;
+  line-height: 1.6;
 }
 
-.mp-subtagline {
+.mp-form-card {
+  background: #fff;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  padding: 0;
+}
+
+.mp-form-step {
+  padding: 2.5rem 2.5rem 2rem;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.25);
+}
+
+.mp-form-step:last-of-type {
+  border-bottom: none;
+}
+
+.mp-form-step-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #8B1E2D;
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+}
+
+.mp-form-step-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0 0 1.75rem;
+  color: #0B1426;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #C9A961;
+  display: inline-block;
+}
+
+.mp-form-fields {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.mp-form-label {
+  display: block;
+  margin: 0;
+}
+
+.mp-label-text {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5C3A2E;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.mp-label-optional {
+  color: #9b8068;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  font-size: 0.85em;
+}
+
+.mp-form-input {
+  display: block;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(92, 58, 46, 0.3);
+  border-radius: 0;
+  background: #FAF7F0;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  line-height: 1.8;
-  color: #F4ECD8;
-  margin: 0 0 3rem;
-  opacity: 0.85;
+  color: #0B1426;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.mp-form-input:focus {
+  outline: none;
+  border-color: #C9A961;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.15);
+}
+
+.mp-form-label-narrow {
+  max-width: 140px;
+}
+
+.mp-form-label-shirt {
+  margin-top: 1rem;
+}
+
+select.mp-form-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%3E%3Cpath%20fill%3D%22%235C3A2E%22%20d%3D%22M6%208L0%200h12z%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.mp-participants-list {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mp-participant-card {
+  background: #FAF7F0;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  border-left: 4px solid #C9A961;
+  padding: 1.5rem;
+}
+
+.mp-participant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.mp-participant-number {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  color: #0B1426;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+}
+
+.mp-participant-remove {
+  background: none;
+  border: none;
+  color: #8B1E2D;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  border-bottom: 1px solid transparent;
+}
+
+.mp-participant-remove:hover {
+  border-color: #8B1E2D;
+}
+
+.mp-participant-fields {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  gap: 1rem;
 }
 
 .mp-btn {
@@ -196,942 +1212,34 @@
 }
 
 .mp-btn-primary:hover {
-  background: transparent;
-  color: #F4ECD8;
-  border-color: #B8985A;
-}
-
-/* ===== SECTION FRAMEWORK ===== */
-
-.mp-section {
-  padding: 6rem 0;
-  position: relative;
-}
-
-.mp-section-cream {
-  background: #F4ECD8;
-  color: #1F1F1F;
-}
-
-.mp-section-dark {
-  background: #1A2238;
-  color: #F4ECD8;
-}
-
-.mp-section-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #5C3A2E;
-  margin: 0 0 1rem;
-  font-weight: 500;
-  text-align: center;
-}
-
-.mp-label-light {
-  color: #B8985A;
-}
-
-.mp-section-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  line-height: 1.05;
-  margin: 0 auto 3rem;
-  letter-spacing: -0.02em;
-  max-width: 800px;
-  text-align: center;
-}
-
-.mp-section-title em {
-  color: #B8985A;
-  font-style: italic;
-}
-
-.mp-title-light {
-  color: #F4ECD8;
-}
-
-.mp-title-light em {
-  color: #B8985A;
-}
-
-.mp-prose {
-  max-width: 640px;
-  margin: 0 auto;
-  font-size: 1.05rem;
-  line-height: 1.8;
-  text-align: center;
-}
-
-.mp-prose p {
-  margin: 0 0 1.25rem;
-}
-
-.mp-prose-center {
-  text-align: center;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  max-width: 560px;
-  margin: 0 auto 2.5rem;
-  color: #1F1F1F;
-}
-
-.mp-pullquote {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  color: #B8985A;
-  margin: 3rem auto 0;
-  padding: 1.5rem 0 0;
-  border-top: 1px solid rgba(92, 58, 46, 0.3);
-  max-width: 640px;
-  line-height: 1.4;
-  text-align: center;
-}
-
-/* ===== PARTNERS GRID ===== */
-
-.mp-partners {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  max-width: 1200px;
-  margin: 3rem auto 0;
-  padding: 0 1.5rem;
-}
-
-.mp-partner-card {
-  background: #F4ECD8;
-  color: #1F1F1F;
-  border: 1px solid rgba(184, 152, 90, 0.3);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.mp-partner-card::before,
-.mp-partner-card::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: #B8985A;
-  border-style: solid;
-}
-
-.mp-partner-card::before {
-  top: 12px;
-  left: 12px;
-  border-width: 1px 0 0 1px;
-}
-
-.mp-partner-card::after {
-  bottom: 12px;
-  right: 12px;
-  border-width: 0 1px 1px 0;
-}
-
-.mp-partner-image-slot {
-  background: #5C3A2E;
-  height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.mp-image-placeholder {
-  color: rgba(244, 236, 216, 0.5);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-}
-
-.mp-partner-body {
-  padding: 2.5rem 2rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.mp-partner-tag {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #5C3A2E;
-  background: rgba(184, 152, 90, 0.2);
-  padding: 0.4rem 0.85rem;
-  align-self: flex-start;
-  margin: 0 0 1.5rem;
-  border: 1px solid rgba(184, 152, 90, 0.4);
-}
-
-.mp-partner-logo-slot {
-  margin: 0 0 1.25rem;
-}
-
-.mp-partner-name {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  font-size: 1.85rem;
-  line-height: 1.1;
-  margin: 0 0 0.5rem;
-  color: #1A2238;
-}
-
-.mp-partner-tagline {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  font-size: 1.05rem;
-  color: #B8985A;
-  margin: 0 0 1.5rem;
-}
-
-.mp-partner-text {
-  font-size: 0.95rem;
-  line-height: 1.75;
-  margin: 0 0 1.5rem;
-  color: #1F1F1F;
-}
-
-.mp-partner-quote {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #5C3A2E;
-  border-left: 2px solid #B8985A;
-  padding: 0 0 0 1.25rem;
-  margin: 0 0 1.5rem;
-}
-
-.mp-partner-founder {
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-  color: #5C3A2E;
-  margin: 0 0 1.5rem;
-}
-
-.mp-partner-founder strong {
-  color: #1A2238;
-  font-weight: 600;
-}
-
-.mp-partner-link {
-  margin-top: auto;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #1A2238;
-  text-decoration: none;
-  border-bottom: 1px solid #B8985A;
-  padding-bottom: 0.4rem;
-  align-self: flex-start;
-  transition: color 0.2s ease;
-}
-
-.mp-partner-link:hover {
-  color: #B8985A;
-}
-
-/* ===== FOOTER ===== */
-
-.mp-footer {
-  background: #1F1F1F;
-  color: #F4ECD8;
-  padding: 4rem 0 2rem;
-}
-
-.mp-footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 3rem;
-  margin: 0 0 3rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(184, 152, 90, 0.2);
-}
-
-.mp-footer-brand {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 1.5rem;
-  margin: 0 0 0.25rem;
-  letter-spacing: -0.01em;
-}
-
-.mp-footer-tagline {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  color: #B8985A;
-  margin: 0 0 1rem;
-  font-size: 1.05rem;
-}
-
-.mp-footer-text {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin: 0;
-  max-width: 320px;
-  line-height: 1.6;
-}
-
-.mp-footer-heading {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #B8985A;
-  margin: 0 0 1rem;
-  font-weight: 600;
-}
-
-.mp-footer-link {
-  font-size: 0.9rem;
-  color: #F4ECD8;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(184, 152, 90, 0.3);
-  padding-bottom: 0.25rem;
-  transition: border-color 0.2s ease;
-}
-
-.mp-footer-link:hover {
-  border-color: #B8985A;
-}
-
-.mp-footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  opacity: 0.6;
-}
-
-.mp-footer-bottom p {
-  margin: 0;
-}
-
-.mp-footer-credit a {
-  color: #B8985A;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.mp-footer-credit a:hover {
-  border-color: #B8985A;
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 768px) {
-  .mp-hero {
-    min-height: 75vh;
-    padding: 4rem 1rem;
-  }
-
-  .mp-hero::before {
-    inset: 0.75rem;
-  }
-
-  .mp-section {
-    padding: 4rem 0;
-  }
-
-  .mp-section-bridge {
-    padding: 1.5rem 1rem;
-  }
-
-  .mp-svg-divider {
-    max-width: 260px;
-  }
-
-  .mp-svg-compass {
-    width: 40px;
-    height: 40px;
-  }
-
-  .mp-partners {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 0 1rem;
-  }
-
-  .mp-partner-image-slot {
-    height: 220px;
-  }
-
-  .mp-partner-body {
-    padding: 2rem 1.5rem;
-  }
-
-  .mp-footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .mp-footer-bottom {
-    flex-direction: column;
-    gap: 0.75rem;
-    text-align: center;
-  }
-
-  .mp-eyebrow {
-    margin-bottom: 2rem;
-  }
-
-  .mp-logo-placeholder {
-    padding: 2rem 2.5rem;
-  }
-   }
-/* ============================================
-   MP — PAGE HERO (smaller hero for sub-pages)
-   ============================================ */
-
-.mp-page-hero {
-  background: #1A2238;
-  color: #F4ECD8;
-  padding: 4rem 1.5rem 5rem;
-  position: relative;
-  text-align: center;
-  overflow: hidden;
-}
-
-.mp-page-hero::before {
-  content: '';
-  position: absolute;
-  inset: 1.5rem;
-  border: 1px solid rgba(184, 152, 90, 0.25);
-  pointer-events: none;
-}
-
-.mp-back-link {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #B8985A;
-  text-decoration: none;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 0.25rem;
-  transition: border-color 0.2s ease;
-}
-
-.mp-back-link:hover {
-  border-color: #B8985A;
-}
-
-.mp-page-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  line-height: 1;
-  margin: 0 0 1.5rem;
-  letter-spacing: -0.02em;
-}
-
-.mp-page-title em {
-  color: #B8985A;
-  font-style: italic;
-}
-
-/* ============================================
-   MP — EVENT CARD (featured event on /events)
-   ============================================ */
-
-.mp-event-card {
-  background: #fff;
-  max-width: 900px;
-  margin: 3rem auto 0;
-  border: 1px solid rgba(184, 152, 90, 0.4);
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  position: relative;
-}
-
-.mp-event-card::before,
-.mp-event-card::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: #B8985A;
-  border-style: solid;
-}
-
-.mp-event-card::before {
-  top: 12px;
-  left: 12px;
-  border-width: 1px 0 0 1px;
-}
-
-.mp-event-card::after {
-  bottom: 12px;
-  right: 12px;
-  border-width: 0 1px 1px 0;
-}
-
-.mp-event-stamp {
-  background: #1A2238;
-  color: #F4ECD8;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-  border-right: 1px solid rgba(184, 152, 90, 0.4);
-}
-
-.mp-stamp-month {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.3em;
-  color: #B8985A;
-  margin-bottom: 0.25rem;
-}
-
-.mp-stamp-day {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 4.5rem;
-  line-height: 1;
-  font-weight: 500;
-  margin: 0.25rem 0;
-}
-
-.mp-stamp-year {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.25em;
-  color: rgba(244, 236, 216, 0.6);
-  margin-top: 0.5rem;
-}
-
-.mp-event-body {
-  padding: 2.5rem 2rem;
-}
-
-.mp-event-tag {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #5C3A2E;
-  background: rgba(184, 152, 90, 0.2);
-  border: 1px solid rgba(184, 152, 90, 0.4);
-  padding: 0.4rem 0.85rem;
-  margin: 0 0 1.25rem;
-}
-
-.mp-event-name {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
-  line-height: 1.1;
-  margin: 0 0 0.75rem;
-  color: #1A2238;
-  letter-spacing: -0.01em;
-}
-
-.mp-event-name em {
-  color: #B8985A;
-  font-style: italic;
-}
-
-.mp-event-subtitle {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  font-size: 1.05rem;
-  color: #5C3A2E;
-  margin: 0 0 1.75rem;
-  line-height: 1.5;
-}
-
-.mp-event-meta {
-  margin: 0 0 2rem;
-  border-top: 1px solid rgba(184, 152, 90, 0.3);
-  border-bottom: 1px solid rgba(184, 152, 90, 0.3);
-  padding: 1rem 0;
-}
-
-.mp-event-meta-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.4rem 0;
-  font-size: 0.95rem;
-}
-
-.mp-meta-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #5C3A2E;
-  font-weight: 600;
-}
-
-.mp-meta-value {
-  font-family: 'Fraunces', Georgia, serif;
-  color: #1A2238;
-  font-weight: 500;
-}
-
-/* ============================================
-   MP — RATE CARD (pricing)
-   ============================================ */
-
-.mp-rate-card {
-  background: #fff;
-  max-width: 700px;
-  margin: 2rem auto 0;
-  padding: 2.5rem;
-  border: 1px solid rgba(184, 152, 90, 0.4);
-  position: relative;
-}
-
-.mp-rate-card::before,
-.mp-rate-card::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: #B8985A;
-  border-style: solid;
-}
-
-.mp-rate-card::before {
-  top: 12px;
-  left: 12px;
-  border-width: 1px 0 0 1px;
-}
-
-.mp-rate-card::after {
-  bottom: 12px;
-  right: 12px;
-  border-width: 0 1px 1px 0;
-}
-
-.mp-rate-tier {
-  text-align: center;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(184, 152, 90, 0.3);
-}
-
-.mp-rate-tier:last-of-type {
-  border-bottom: none;
-}
-
-.mp-rate-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #B8985A;
-  margin: 0 0 0.5rem;
-  font-weight: 600;
-}
-
-.mp-rate-window {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  color: #5C3A2E;
-  margin: 0 0 1.5rem;
-  font-size: 1.05rem;
-}
-
-.mp-rate-amounts {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2.5rem;
-}
-
-.mp-rate-amounts > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.mp-rate-price {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 2.75rem;
-  font-weight: 500;
-  color: #1A2238;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.mp-rate-type {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #5C3A2E;
-}
-
-.mp-rate-divider {
-  width: 1px;
-  height: 50px;
-  background: rgba(184, 152, 90, 0.4);
-}
-
-.mp-rate-note {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  color: #5C3A2E;
-  text-align: center;
-  margin: 1.5rem 0 0;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(184, 152, 90, 0.3);
-}
-
-/* ============================================
-   MP — SCHEDULE LIST
-   ============================================ */
-
-.mp-schedule-list {
-  list-style: none;
-  padding: 0;
-  margin: 2rem auto 0;
-  max-width: 600px;
-}
-
-.mp-schedule-item {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 1.5rem;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(184, 152, 90, 0.2);
-}
-
-.mp-schedule-item:last-child {
-  border-bottom: none;
-}
-
-.mp-schedule-time {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #B8985A;
-  font-weight: 600;
-}
-
-.mp-schedule-event {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 1.15rem;
-  color: #F4ECD8;
-}
-
-/* ============================================
-   MP — REGISTRATION FORM
-   ============================================ */
-
-.mp-register-section {
-  padding-top: 0;
-}
-
-.mp-register-intro {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  font-size: 1.1rem;
-  color: #5C3A2E;
-  text-align: center;
-  margin: 4rem auto 2.5rem;
-  max-width: 560px;
-  line-height: 1.6;
-}
-
-.mp-form-card {
-  background: #fff;
-  border: 1px solid rgba(184, 152, 90, 0.4);
-  padding: 0;
-  position: relative;
-}
-
-.mp-form-card::before,
-.mp-form-card::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: #B8985A;
-  border-style: solid;
-}
-
-.mp-form-card::before {
-  top: 12px;
-  left: 12px;
-  border-width: 1px 0 0 1px;
-}
-
-.mp-form-card::after {
-  bottom: 12px;
-  right: 12px;
-  border-width: 0 1px 1px 0;
-}
-
-.mp-form-step {
-  padding: 2.5rem 2.5rem 2rem;
-  border-bottom: 1px solid rgba(184, 152, 90, 0.3);
-}
-
-.mp-form-step:last-of-type {
-  border-bottom: none;
-}
-
-.mp-form-step-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #B8985A;
-  margin: 0 0 0.5rem;
-  font-weight: 600;
-}
-
-.mp-form-step-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  font-size: 1.5rem;
-  margin: 0 0 1.75rem;
-  color: #1A2238;
-  letter-spacing: -0.01em;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #B8985A;
-  display: inline-block;
-}
-
-.mp-form-fields {
-  display: grid;
-  gap: 1.25rem;
-}
-
-.mp-form-label {
-  display: block;
-  margin: 0;
-}
-
-.mp-label-text {
-  display: block;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #5C3A2E;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.mp-label-optional {
-  color: #9b8068;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: none;
-  font-size: 0.85em;
-}
-
-.mp-form-input {
-  display: block;
-  width: 100%;
-  padding: 0.85rem 1rem;
-  border: 1px solid rgba(92, 58, 46, 0.3);
-  border-radius: 0;
-  background: #FAF7F0;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  color: #1A2238;
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.mp-form-input:focus {
-  outline: none;
-  border-color: #B8985A;
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(184, 152, 90, 0.15);
-}
-
-.mp-form-label-narrow {
-  max-width: 140px;
-}
-
-.mp-participants-list {
-  display: grid;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.mp-participant-card {
-  background: #FAF7F0;
-  border: 1px solid rgba(184, 152, 90, 0.4);
-  border-left: 4px solid #B8985A;
-  padding: 1.5rem;
-}
-
-.mp-participant-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.25rem;
-}
-
-.mp-participant-number {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  color: #1A2238;
-  font-size: 1.05rem;
-  letter-spacing: 0.05em;
-}
-
-.mp-participant-remove {
-  background: none;
-  border: none;
-  color: #8B1E2D;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.mp-participant-remove:hover {
-  border-color: #8B1E2D;
-}
-
-.mp-participant-fields {
-  display: grid;
-  grid-template-columns: 1fr 140px;
-  gap: 1rem;
+  background: #C9A961;
+  color: #0B1426;
+  border-color: #C9A961;
+}
+
+.mp-btn-primary:disabled {
+  background: #9ca3af;
+  border-color: #9ca3af;
+  color: #fff;
+  cursor: not-allowed;
 }
 
 .mp-btn-secondary {
   background: transparent;
-  color: #1A2238;
-  border-color: #1A2238;
+  color: #0B1426;
+  border-color: #0B1426;
   width: 100%;
 }
 
 .mp-btn-secondary:hover {
-  background: #1A2238;
+  background: #0B1426;
   color: #F4ECD8;
 }
 
 .mp-summary-ticket {
-  background: #1A2238;
+  background: #0B1426;
   color: #F4ECD8;
   padding: 0;
-  position: relative;
 }
 
 .mp-ticket-header {
@@ -1139,13 +1247,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 1.75rem;
-  border-bottom: 1px dashed rgba(184, 152, 90, 0.4);
+  border-bottom: 1px dashed rgba(201, 169, 97, 0.4);
 }
 
 .mp-ticket-event {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .mp-ticket-phase {
@@ -1153,8 +1261,8 @@
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #B8985A;
-  font-weight: 600;
+  color: #C9A961;
+  font-weight: 700;
 }
 
 .mp-ticket-body {
@@ -1179,7 +1287,7 @@
 .mp-ticket-perforation {
   height: 1px;
   margin: 0 1.75rem;
-  border-top: 1px dashed rgba(184, 152, 90, 0.4);
+  border-top: 1px dashed rgba(201, 169, 97, 0.4);
 }
 
 .mp-ticket-total {
@@ -1187,13 +1295,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 1.75rem;
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .mp-ticket-total > span:first-child {
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  color: #B8985A;
+  font-weight: 700;
+  color: #C9A961;
   letter-spacing: 0.2em;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -1201,7 +1309,7 @@
 
 .mp-ticket-total-amount {
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .mp-btn-submit {
@@ -1210,13 +1318,6 @@
   margin: 2rem 2.5rem 2.5rem;
   padding: 1.25rem 2rem;
   font-size: 0.9rem;
-}
-
-.mp-btn-submit:disabled {
-  background: #9ca3af;
-  border-color: #9ca3af;
-  color: #fff;
-  cursor: not-allowed;
 }
 
 .mp-form-error {
@@ -1236,196 +1337,49 @@
 }
 
 /* ============================================
-   MP — DARK SECTION SUPPORT
+   STAFF LOGIN ICON
    ============================================ */
 
-.mp-prose-light {
-  max-width: 640px;
-  margin: 0 auto;
-  font-size: 1.05rem;
-  line-height: 1.8;
-  text-align: center;
-  color: rgba(244, 236, 216, 0.85);
-}
-
-.mp-pullquote-light {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  color: #B8985A;
-  margin: 3rem auto 0;
-  padding: 1.5rem 0 0;
-  border-top: 1px solid rgba(184, 152, 90, 0.4);
-  max-width: 640px;
-  line-height: 1.4;
-  text-align: center;
-}
-
-/* ============================================
-   MP — RESPONSIVE (sub-pages)
-   ============================================ */
-
-@media (max-width: 768px) {
-  .mp-page-hero {
-    padding: 3rem 1rem 4rem;
-  }
-
-  .mp-page-hero::before {
-    inset: 0.75rem;
-  }
-
-  .mp-event-card {
-    grid-template-columns: 1fr;
-  }
-
-  .mp-event-stamp {
-    flex-direction: row;
-    gap: 1rem;
-    padding: 1.5rem;
-    border-right: none;
-    border-bottom: 1px solid rgba(184, 152, 90, 0.4);
-  }
-
-  .mp-stamp-day {
-    font-size: 3rem;
-  }
-
-  .mp-event-body {
-    padding: 2rem 1.5rem;
-  }
-
-  .mp-rate-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .mp-rate-amounts {
-    gap: 1.5rem;
-  }
-
-  .mp-rate-price {
-    font-size: 2.25rem;
-  }
-
-  .mp-schedule-item {
-    grid-template-columns: 90px 1fr;
-    gap: 1rem;
-  }
-
-  .mp-form-step {
-    padding: 2rem 1.5rem 1.5rem;
-  }
-
-  .mp-participant-fields {
-    grid-template-columns: 1fr;
-  }
-
-  .mp-form-label-narrow {
-    max-width: 100%;
-  }
-
-  .mp-btn-submit {
-    width: calc(100% - 3rem);
-    margin: 1.5rem 1.5rem 2rem;
-  }
-
-  .mp-form-error {
-    margin: 1.5rem 1.5rem 0;
-  }
-
-  .mp-ticket-header,
-  .mp-ticket-body,
-  .mp-ticket-total {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .mp-ticket-perforation {
-    margin: 0 1.25rem;
-  }
-}
-/* ============================================
-   MP — CONFIRMATION PAGE EXTRAS
-   ============================================ */
-
-.mp-next-steps {
-  list-style: none;
-  padding: 0;
-  margin: 2rem auto 3rem;
-  max-width: 600px;
-  display: grid;
-  gap: 1.5rem;
-}
-
-.mp-next-step {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 1.5rem;
-  align-items: start;
-  padding: 1.5rem;
-  background: rgba(184, 152, 90, 0.08);
-  border: 1px solid rgba(184, 152, 90, 0.25);
-}
-
-.mp-step-number {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: #B8985A;
-  line-height: 1;
-}
-
-.mp-step-body {
+.mp-staff-login {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  width: 38px;
+  height: 38px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 20, 38, 0.4);
+  border: 1px solid rgba(201, 169, 97, 0.4);
+  color: rgba(201, 169, 97, 0.7);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.mp-step-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  font-size: 1.25rem;
-  margin: 0 0 0.5rem;
-  color: #F4ECD8;
+.mp-staff-login:hover {
+  color: #C9A961;
+  background: rgba(11, 20, 38, 0.8);
+  border-color: #C9A961;
+  transform: scale(1.05);
 }
 
-.mp-step-text {
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: rgba(244, 236, 216, 0.8);
-  margin: 0;
-}
-
-.mp-payment-cta {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.mp-payment-note {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  font-size: 0.9rem;
-  color: rgba(244, 236, 216, 0.65);
-  margin: 1rem 0 0;
-}
-
-.mp-btn-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.mp-btn-primary:disabled:hover {
-  background: #8B1E2D;
-  color: #F4ECD8;
-  border-color: #8B1E2D;
+.mp-staff-login-icon {
+  width: 20px;
+  height: 20px;
 }
 
 /* ============================================
-   MP — ADMIN GLOBAL
+   ADMIN (keeps Field Journal aesthetic, functional)
    ============================================ */
 
 .mp-admin {
   background: #F4ECD8;
   min-height: 100vh;
   color: #1F1F1F;
+  font-family: 'Inter', sans-serif;
 }
 
 .mp-admin-header {
@@ -1446,11 +1400,16 @@
 .mp-admin-eyebrow {
   margin: 0 0 0.4rem !important;
   color: #B8985A;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .mp-admin-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   line-height: 1;
   margin: 0;
@@ -1483,7 +1442,6 @@
   cursor: pointer;
   padding: 0;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
 }
 
 .mp-admin-signout:hover {
@@ -1507,7 +1465,6 @@
   text-decoration: none;
   padding: 0.5rem 0;
   border-bottom: 2px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .mp-admin-nav-link:hover {
@@ -1525,7 +1482,7 @@
 
 .mp-admin-loading,
 .mp-admin-empty {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   color: #5C3A2E;
   text-align: center;
@@ -1548,12 +1505,12 @@
   text-transform: uppercase;
   color: #B8985A;
   margin: 0 0 0.5rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .mp-admin-section-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
   font-size: 1.75rem;
   margin: 0 0 1.5rem;
   color: #1A2238;
@@ -1563,6 +1520,7 @@
 .mp-admin-section-title em {
   color: #B8985A;
   font-style: italic;
+  font-weight: 500;
 }
 
 .mp-admin-link {
@@ -1594,10 +1552,6 @@
 .mp-admin-back:hover {
   color: #B8985A;
 }
-
-/* ============================================
-   MP — DASHBOARD STAT CARDS
-   ============================================ */
 
 .mp-stat-grid {
   display: grid;
@@ -1660,29 +1614,25 @@
   text-transform: uppercase;
   color: #5C3A2E;
   margin: 0 0 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .mp-stat-value {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1;
   color: #1A2238;
   margin: 0 0 0.5rem;
 }
 
 .mp-stat-meta {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   font-size: 0.9rem;
   color: #5C3A2E;
   margin: 0;
 }
-
-/* ============================================
-   MP — SHIRT BREAKDOWN
-   ============================================ */
 
 .mp-shirt-totals {
   display: grid;
@@ -1719,13 +1669,13 @@
   text-transform: uppercase;
   color: #5C3A2E;
   margin: 0 0 0.5rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .mp-shirt-total-value {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 2.25rem;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1;
   color: #1A2238;
   margin: 0;
@@ -1750,34 +1700,28 @@
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   color: #1A2238;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .mp-shirt-row-bar {
   height: 12px;
   background: rgba(184, 152, 90, 0.15);
   border: 1px solid rgba(184, 152, 90, 0.3);
-  position: relative;
   overflow: hidden;
 }
 
 .mp-shirt-row-fill {
   height: 100%;
   background: linear-gradient(90deg, #B8985A 0%, #5C3A2E 100%);
-  transition: width 0.3s ease;
 }
 
 .mp-shirt-row-count {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.15rem;
-  font-weight: 500;
+  font-weight: 700;
   color: #1A2238;
   text-align: right;
 }
-
-/* ============================================
-   MP — PAYMENT STATUS GRID
-   ============================================ */
 
 .mp-payment-grid {
   display: grid;
@@ -1789,7 +1733,6 @@
   background: #fff;
   border: 1px solid rgba(184, 152, 90, 0.4);
   padding: 1.75rem;
-  position: relative;
 }
 
 .mp-payment-pending {
@@ -1807,20 +1750,20 @@
   text-transform: uppercase;
   color: #5C3A2E;
   margin: 0 0 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .mp-payment-card-value {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 2.5rem;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1;
   color: #1A2238;
   margin: 0 0 0.25rem;
 }
 
 .mp-payment-card-amount {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   font-size: 1rem;
   color: #5C3A2E;
@@ -1834,18 +1777,13 @@
   text-transform: uppercase;
   color: #B8985A;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   border-bottom: 1px solid transparent;
-  padding-bottom: 0.2rem;
 }
 
 .mp-payment-card-link:hover {
   border-color: #B8985A;
 }
-
-/* ============================================
-   MP — RECENT ACTIVITY
-   ============================================ */
 
 .mp-recent-list {
   display: grid;
@@ -1862,7 +1800,6 @@
   padding: 1rem 1.5rem;
   text-decoration: none;
   color: inherit;
-  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .mp-recent-item:hover {
@@ -1877,9 +1814,9 @@
 }
 
 .mp-recent-name {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 700;
   color: #1A2238;
 }
 
@@ -1896,9 +1833,9 @@
 }
 
 .mp-recent-total {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.05rem;
-  font-weight: 500;
+  font-weight: 700;
   color: #1A2238;
 }
 
@@ -1930,10 +1867,6 @@
   text-align: right;
 }
 
-/* ============================================
-   MP — REGISTRATIONS LIST (toolbar + table)
-   ============================================ */
-
 .mp-admin-toolbar {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -1960,7 +1893,6 @@
   outline: none;
   border-color: #B8985A;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(184, 152, 90, 0.15);
 }
 
 .mp-admin-filters {
@@ -1975,14 +1907,13 @@
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   color: #5C3A2E;
   padding: 0.55rem 1rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.15s ease;
 }
 
 .mp-admin-filter:hover {
@@ -1997,7 +1928,7 @@
 }
 
 .mp-admin-filter-count {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 0.85rem;
   background: rgba(184, 152, 90, 0.2);
   padding: 0.1rem 0.5rem;
@@ -2027,7 +1958,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   padding: 0.85rem 1rem;
   text-align: left;
   border-bottom: 2px solid #B8985A;
@@ -2051,9 +1982,9 @@
 }
 
 .mp-admin-td-name {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   color: #1A2238;
 }
 
@@ -2068,8 +1999,8 @@
 }
 
 .mp-admin-td-amount {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
   color: #1A2238;
 }
 
@@ -2079,44 +2010,15 @@
 }
 
 .mp-admin-td-shirt {
-  font-weight: 600;
+  font-weight: 700;
   color: #1A2238;
 }
-
-/* ============================================
-   MP — REGISTRATION DETAIL
-   ============================================ */
 
 .mp-admin-detail-card {
   background: #fff;
   border: 1px solid rgba(184, 152, 90, 0.4);
   padding: 2rem 2.25rem;
   margin-bottom: 2rem;
-  position: relative;
-}
-
-.mp-admin-detail-card::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #B8985A;
-  border-right: none;
-  border-bottom: none;
-}
-
-.mp-admin-detail-card::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #B8985A;
-  border-left: none;
-  border-top: none;
 }
 
 .mp-admin-detail-header {
@@ -2130,8 +2032,8 @@
 }
 
 .mp-admin-detail-name {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
   font-size: 1.75rem;
   line-height: 1.1;
   margin: 0;
@@ -2142,6 +2044,7 @@
 .mp-admin-detail-name em {
   color: #B8985A;
   font-style: italic;
+  font-weight: 500;
 }
 
 .mp-admin-payment-status {
@@ -2179,7 +2082,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #5C3A2E;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .mp-admin-detail-value {
@@ -2192,7 +2095,6 @@
   text-decoration: none;
   border-bottom: 1px solid rgba(184, 152, 90, 0.5);
   padding-bottom: 0.15rem;
-  transition: border-color 0.2s ease;
 }
 
 .mp-admin-detail-link:hover {
@@ -2200,18 +2102,14 @@
 }
 
 .mp-admin-detail-amount {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
   font-size: 1.15rem;
 }
 
-/* ============================================
-   MP — ADMIN LOGIN PAGE
-   ============================================ */
-
 .mp-admin-login-page {
   min-height: 100vh;
-  background: #1A2238;
+  background: #0B1426;
   color: #F4ECD8;
   display: flex;
   align-items: center;
@@ -2226,39 +2124,14 @@
 
 .mp-admin-login-frame {
   text-align: center;
-  position: relative;
   padding: 3rem 2rem;
-  border: 1px solid rgba(184, 152, 90, 0.25);
-}
-
-.mp-admin-login-frame::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 24px;
-  height: 24px;
-  border: 1px solid #B8985A;
-  border-right: none;
-  border-bottom: none;
-}
-
-.mp-admin-login-frame::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 24px;
-  height: 24px;
-  border: 1px solid #B8985A;
-  border-left: none;
-  border-top: none;
+  border: 1px solid rgba(201, 169, 97, 0.25);
 }
 
 .mp-admin-login-tagline {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
-  color: #B8985A;
+  color: #C9A961;
   margin: 0 0 2.5rem;
   font-size: 1rem;
 }
@@ -2270,19 +2143,18 @@
 }
 
 .mp-label-text-light {
-  color: #B8985A;
+  color: #C9A961;
 }
 
 .mp-form-input-dark {
   background: rgba(244, 236, 216, 0.08);
-  border-color: rgba(184, 152, 90, 0.35);
+  border-color: rgba(201, 169, 97, 0.35);
   color: #F4ECD8;
 }
 
 .mp-form-input-dark:focus {
   background: rgba(244, 236, 216, 0.15);
-  border-color: #B8985A;
-  box-shadow: 0 0 0 3px rgba(184, 152, 90, 0.2);
+  border-color: #C9A961;
 }
 
 .mp-btn-login {
@@ -2291,10 +2163,151 @@
 }
 
 /* ============================================
-   MP — ADMIN RESPONSIVE
+   RESPONSIVE
    ============================================ */
 
 @media (max-width: 768px) {
+  .mp-cinematic-hero {
+    min-height: 85vh;
+    padding: 4rem 1rem;
+    justify-content: center;
+  }
+
+  .mp-cinematic-content {
+    padding: 0 0.5rem;
+    text-align: left;
+  }
+
+  .mp-cinematic-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(11, 20, 38, 0.92) 0%,
+      rgba(11, 20, 38, 0.92) 60%,
+      rgba(11, 20, 38, 0.75) 100%
+    );
+  }
+
+  .mp-cinematic-logo img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .mp-cinematic-eyebrow {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .mp-page-hero-v2 {
+    min-height: 50vh;
+    padding: 4rem 1rem;
+  }
+
+  .mp-section-v2 {
+    padding: 4rem 0;
+  }
+
+  .mp-partners-v2 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .mp-partner-photo-slot {
+    height: 200px;
+  }
+
+  .mp-included-grid-v2 {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-event-card-v2 {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-event-stamp-v2 {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .mp-stamp-day-v2 {
+    font-size: 3rem;
+  }
+
+  .mp-event-body-v2 {
+    padding: 2rem 1.5rem;
+  }
+
+  .mp-rate-card-v2 {
+    padding: 2rem 1.5rem;
+  }
+
+  .mp-rate-amounts-v2 {
+    gap: 1.5rem;
+  }
+
+  .mp-rate-price-v2 {
+    font-size: 2.25rem;
+  }
+
+  .mp-schedule-item-v2 {
+    grid-template-columns: 90px 1fr;
+    gap: 1rem;
+  }
+
+  .mp-footer-grid-v2 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .mp-footer-bottom-v2 {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .mp-form-step {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .mp-participant-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-form-label-narrow {
+    max-width: 100%;
+  }
+
+  .mp-btn-submit {
+    width: calc(100% - 3rem);
+    margin: 1.5rem 1.5rem 2rem;
+  }
+
+  .mp-form-error {
+    margin: 1.5rem 1.5rem 0;
+  }
+
+  .mp-ticket-header,
+  .mp-ticket-body,
+  .mp-ticket-total {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .mp-ticket-perforation {
+    margin: 0 1.25rem;
+  }
+
+  .mp-next-step-v2 {
+    grid-template-columns: 48px 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .mp-step-number-v2 {
+    font-size: 2rem;
+  }
+
   .mp-admin-header-row {
     flex-direction: column;
     gap: 1rem;
@@ -2304,18 +2317,6 @@
     flex-direction: row;
     align-items: center;
     align-self: flex-start;
-  }
-
-  .mp-admin-nav {
-    gap: 1.5rem;
-  }
-
-  .mp-admin-body {
-    padding: 2rem 0 4rem;
-  }
-
-  .mp-admin-section {
-    margin-bottom: 2.5rem;
   }
 
   .mp-stat-grid {
@@ -2330,27 +2331,10 @@
     grid-template-columns: 1fr;
   }
 
-  .mp-shirt-breakdown {
-    padding: 1rem 1.25rem;
-  }
-
-  .mp-shirt-row {
-    grid-template-columns: 90px 1fr 40px;
-    gap: 0.75rem;
-  }
-
-  .mp-shirt-row-label {
-    font-size: 0.78rem;
-  }
-
   .mp-admin-toolbar {
     grid-template-columns: 1fr;
     gap: 0.75rem;
     padding: 1rem;
-  }
-
-  .mp-admin-filters {
-    flex-wrap: wrap;
   }
 
   .mp-admin-filter {
@@ -2359,181 +2343,12 @@
     font-size: 0.7rem;
   }
 
-  .mp-admin-table th,
-  .mp-admin-table td {
-    padding: 0.7rem 0.65rem;
-    font-size: 0.82rem;
-  }
-
   .mp-admin-detail-card {
     padding: 1.75rem 1.5rem;
-  }
-
-  .mp-admin-detail-header {
-    flex-direction: column;
-    gap: 0.75rem;
   }
 
   .mp-admin-detail-row {
     grid-template-columns: 1fr;
     gap: 0.25rem;
   }
-
-  .mp-next-step {
-    grid-template-columns: 48px 1fr;
-    gap: 1rem;
-    padding: 1.25rem;
-  }
-
-  .mp-step-number {
-    font-size: 2rem;
-  }
    }
-/* ============================================
-   MP — WHAT'S INCLUDED GRID
-   ============================================ */
-
-.mp-included-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-  max-width: 800px;
-  margin: 2rem auto 0;
-}
-
-.mp-included-card {
-  background: #fff;
-  border: 1px solid rgba(184, 152, 90, 0.4);
-  border-left: 4px solid #B8985A;
-  padding: 1.75rem;
-}
-
-.mp-included-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #B8985A;
-  margin: 0 0 0.75rem;
-  font-weight: 600;
-}
-
-.mp-included-text {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #1F1F1F;
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .mp-included-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .mp-included-card {
-    padding: 1.5rem;
-  }
-}
-/* ============================================
-   MP — JOINT LOGO CARD (hero)
-   ============================================ */
-
-.mp-logo-card {
-  display: inline-block;
-  background: #F4ECD8;
-  padding: 1.5rem;
-  position: relative;
-  margin: 0 auto 2.5rem;
-  max-width: 280px;
-  border: 1px solid rgba(184, 152, 90, 0.5);
-}
-
-.mp-logo-card::before,
-.mp-logo-card::after {
-  content: '';
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border-color: #B8985A;
-  border-style: solid;
-}
-
-.mp-logo-card::before {
-  top: 8px;
-  left: 8px;
-  border-width: 1px 0 0 1px;
-}
-
-.mp-logo-card::after {
-  bottom: 8px;
-  right: 8px;
-  border-width: 0 1px 1px 0;
-}
-
-.mp-logo-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 240px;
-}
-
-@media (max-width: 768px) {
-  .mp-logo-card {
-     /* ============================================
-   MP — STAFF LOGIN KEY ICON
-   ============================================ */
-
-.mp-staff-login {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 100;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(184, 152, 90, 0.08);
-  border: 1px solid rgba(184, 152, 90, 0.25);
-  color: rgba(184, 152, 90, 0.55);
-  text-decoration: none;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-.mp-staff-login:hover {
-  color: #B8985A;
-  background: rgba(244, 236, 216, 0.95);
-  border-color: #B8985A;
-  transform: scale(1.05);
-}
-
-.mp-staff-login-icon {
-  width: 20px;
-  height: 20px;
-}
-
-@media (max-width: 768px) {
-  .mp-staff-login {
-    width: 36px;
-    height: 36px;
-    top: 0.75rem;
-    right: 0.75rem;
-  }
-
-  .mp-staff-login-icon {
-    width: 18px;
-    height: 18px;
-  }
-}
-    max-width: 220px;
-    padding: 1.25rem;
-    margin-bottom: 2rem;
-  }
-
-  .mp-logo-image {
-    max-width: 180px;
-  }
-}
