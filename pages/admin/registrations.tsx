@@ -92,7 +92,6 @@ export default function AdminRegistrationsList() {
           <div className="mp-container-v2">
             <div className="mp-admin-header-row-v3">
               <div className="mp-admin-heading-v3">
-              <div className="mp-admin-heading-v3">
                 <h1 className="mp-admin-title-v3">
                   All <em>Registrations</em>
                 </h1>
