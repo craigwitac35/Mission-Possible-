@@ -2427,3 +2427,26 @@ select.mp-form-input {
     height: auto;
   }
 }
+/* ============================================
+   PARTNER LOGO FIX
+   ============================================ */
+
+.mp-partner-logo-v2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 132px;
+  height: 132px;
+  margin: 0 auto 1.25rem;
+  background: #ffffff;
+  padding: 0.5rem;
+}
+
+.mp-partner-logo-v2 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: none;
+  opacity: 1;
+}
