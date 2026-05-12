@@ -88,23 +88,23 @@ export default function AdminRegistrationsList() {
       </Head>
 
       <main className="mp-site mp-admin">
-        <header className="mp-admin-header mp-admin-header-v2">
-          <div className="mp-container-v2 mp-admin-shell-v2">
-            <div className="mp-admin-header-row mp-admin-header-row-v2">
-              <div className="mp-admin-heading-v2">
-                <p className="mp-admin-eyebrow">Mission Possible · Admin</p>
-                <h1 className="mp-admin-title">Registrations</h1>
-                <p className="mp-admin-subtitle-v2">
+        <header className="mp-admin-header-v3">
+          <div className="mp-container-v2">
+            <div className="mp-admin-header-row-v3">
+              <div className="mp-admin-heading-v3">
+                <p className="mp-admin-eyebrow-v3">Mission Possible &middot; Admin</p>
+                <h1 className="mp-admin-title-v3">Registrations</h1>
+                <p className="mp-admin-subtitle-v3">
                   Search sign-ups, review payment status, and open each
                   registration for details.
                 </p>
               </div>
 
-              <div className="mp-admin-user mp-admin-user-v2">
-                <span className="mp-admin-email">{userEmail}</span>
+              <div className="mp-admin-user-v3">
+                <span className="mp-admin-email-v3">{userEmail}</span>
                 <button
                   type="button"
-                  className="mp-admin-signout"
+                  className="mp-admin-signout-v3"
                   onClick={signOut}
                 >
                   Sign out
@@ -112,101 +112,87 @@ export default function AdminRegistrationsList() {
               </div>
             </div>
 
-            <nav className="mp-admin-nav mp-admin-nav-v2">
-              <Link
-                href="/admin/dashboard"
-                className="mp-admin-nav-link mp-admin-nav-btn-v2"
-              >
+            <nav className="mp-admin-nav-v3">
+              <Link href="/admin/dashboard" className="mp-admin-nav-link-v3">
                 Dashboard
               </Link>
 
               <Link
                 href="/admin/registrations"
-                className="mp-admin-nav-link mp-admin-nav-btn-v2 mp-admin-nav-active"
+                className="mp-admin-nav-link-v3 mp-admin-nav-link-active-v3"
               >
                 Registrations
               </Link>
 
-              <Link
-                href="/"
-                className="mp-admin-nav-link mp-admin-nav-btn-v2 mp-admin-nav-btn-secondary-v2"
-              >
-                Public Home
+              <Link href="/" className="mp-admin-nav-link-v3 mp-admin-nav-link-public-v3">
+                Public Home &rarr;
               </Link>
             </nav>
           </div>
         </header>
 
-        <div className="mp-admin-body">
-          <div className="mp-container-v2 mp-admin-shell-v2">
-            <section className="mp-admin-welcome-v2">
-              <p className="mp-admin-welcome-kicker-v2">Registration Queue</p>
-              <h2 className="mp-admin-welcome-title-v2">
-                Find what you need <em>fast</em>.
-              </h2>
-              <p className="mp-admin-welcome-text-v2">
-                Filter by payment status, search by buyer name or email, and
-                jump straight into each registration record without digging
-                through the dashboard first.
-              </p>
-            </section>
-
+        <div className="mp-admin-body-v3">
+          <div className="mp-container-v2">
             {error && <p className="mp-form-error mp-admin-error">{error}</p>}
 
-            <div className="mp-admin-toolbar">
+            <div className="mp-admin-toolbar-v3">
               <input
                 type="search"
-                className="mp-admin-search"
-                placeholder="Search by name or email…"
+                className="mp-admin-search-v3"
+                placeholder="Search by name or email&hellip;"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
 
-              <div className="mp-admin-filters">
+              <div className="mp-admin-filters-v3">
                 <button
                   type="button"
-                  className={`mp-admin-filter ${
-                    filter === 'all' ? 'mp-admin-filter-active' : ''
+                  className={`mp-admin-filter-v3 ${
+                    filter === 'all' ? 'mp-admin-filter-active-v3' : ''
                   }`}
                   onClick={() => setFilter('all')}
                 >
-                  All <span className="mp-admin-filter-count">{counts.all}</span>
+                  All{' '}
+                  <span className="mp-admin-filter-count-v3">{counts.all}</span>
                 </button>
 
                 <button
                   type="button"
-                  className={`mp-admin-filter ${
-                    filter === 'pending' ? 'mp-admin-filter-active' : ''
+                  className={`mp-admin-filter-v3 ${
+                    filter === 'pending' ? 'mp-admin-filter-active-v3' : ''
                   }`}
                   onClick={() => setFilter('pending')}
                 >
                   Pending{' '}
-                  <span className="mp-admin-filter-count">{counts.pending}</span>
+                  <span className="mp-admin-filter-count-v3">
+                    {counts.pending}
+                  </span>
                 </button>
 
                 <button
                   type="button"
-                  className={`mp-admin-filter ${
-                    filter === 'paid' ? 'mp-admin-filter-active' : ''
+                  className={`mp-admin-filter-v3 ${
+                    filter === 'paid' ? 'mp-admin-filter-active-v3' : ''
                   }`}
                   onClick={() => setFilter('paid')}
                 >
-                  Paid <span className="mp-admin-filter-count">{counts.paid}</span>
+                  Paid{' '}
+                  <span className="mp-admin-filter-count-v3">{counts.paid}</span>
                 </button>
               </div>
             </div>
 
             {!rows ? (
-              <p className="mp-admin-loading">Loading…</p>
+              <p className="mp-admin-loading-v3">Loading&hellip;</p>
             ) : filteredRows.length === 0 ? (
-              <p className="mp-admin-empty">
+              <p className="mp-admin-empty-v3">
                 {rows.length === 0
                   ? 'No registrations yet.'
                   : 'No registrations match your search.'}
               </p>
             ) : (
-              <div className="mp-admin-table-wrap">
-                <table className="mp-admin-table">
+              <div className="mp-admin-table-wrap-v3">
+                <table className="mp-admin-table-v3">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -225,34 +211,34 @@ export default function AdminRegistrationsList() {
 
                       return (
                         <tr key={r.id}>
-                          <td className="mp-admin-td-name">{r.buyer_name}</td>
+                          <td className="mp-admin-td-name-v3">{r.buyer_name}</td>
 
-                          <td className="mp-admin-td-email">
+                          <td className="mp-admin-td-email-v3">
                             <a href={`mailto:${r.buyer_email}`}>{r.buyer_email}</a>
                           </td>
 
                           <td>{participantCount}</td>
 
-                          <td className="mp-admin-td-amount">
+                          <td className="mp-admin-td-amount-v3">
                             ${r.total_amount}
                           </td>
 
                           <td>
                             <span
-                              className={`mp-recent-badge mp-recent-badge-${r.payment_status}`}
+                              className={`mp-admin-badge-v3 mp-admin-badge-${r.payment_status}-v3`}
                             >
                               {r.payment_status}
                             </span>
                           </td>
 
-                          <td className="mp-admin-td-date">
+                          <td className="mp-admin-td-date-v3">
                             {new Date(r.created_at).toLocaleDateString()}
                           </td>
 
                           <td>
                             <Link
                               href={`/admin/registration/${r.id}`}
-                              className="mp-admin-link"
+                              className="mp-admin-text-link-v3"
                             >
                               View &rarr;
                             </Link>
