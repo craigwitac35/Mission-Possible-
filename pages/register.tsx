@@ -7,97 +7,93 @@ export default function RegisterPage() {
   return (
     <>
       <Head>
-        <title>Register | Mission Possible: Hooves and Paws</title>
+        <title>Register | Mission Possible: Hooves & Paws</title>
         <meta
           name="description"
-          content="Register for the Mission Possible Hooves and Paws Mud Run. Supporting Guardian 4 Heroes and Heroes K9 Odyssey Academy."
+          content="Register for Mission Possible: Hooves & Paws Mud Run and support Guardian 4 Heroes and Heroes K9 Odyssey Academy."
         />
       </Head>
 
-      <main className="mp-site">
+      <main>
         <StaffLoginIcon />
 
-        <section className="mp-page-hero-v2">
-          <div
-            className="mp-page-hero-bg"
-            style={{ backgroundImage: 'url(/images/mission-hero.png)' }}
-            aria-hidden="true"
+        <section className="mp-page-hero-art-v2">
+          <img
+            src="/images/registration-image.png"
+            alt="Mission Possible registration hero"
+            className="mp-hero-art-image-v2"
           />
-          <div className="mp-page-hero-overlay" aria-hidden="true" />
+        </section>
 
-          <div className="mp-page-hero-content">
+        <section className="mp-section-v2 mp-section-cream-v2">
+          <div className="mp-container-v2 mp-container-narrow-v2 mp-events-intro-v2">
             <Link href="/events" className="mp-back-link-v2">
-              &larr; Back to Events
+              ← Back to Events
             </Link>
 
-            <p className="mp-cinematic-eyebrow">
-              <span className="mp-divider-dot" />
-              Mission Possible &middot; Aug. 29
-              <span className="mp-divider-dot" />
-            </p>
-
-            <h1 className="mp-cinematic-title">
-              <span className="mp-cinematic-title-top">Event</span>
-              <span className="mp-cinematic-title-bottom">Registration</span>
+            <p className="mp-label-v2">Aug. 29 • The Eagles Healing Nest</p>
+            <h1 className="mp-title-v2">
+              Event <em>Registration</em>
             </h1>
-
-            <p className="mp-cinematic-tagline">
-              Hooves, Paws &amp; Heroes
+            <p className="mp-prose-center-v2">
+              Sign up for a day built around grit, purpose, and community while
+              supporting equine therapy and K9 training for veterans and first
+              responders.
             </p>
           </div>
         </section>
 
-        <section className="mp-section-v2 mp-section-cream-v2 mp-register-section-v2">
+        <section className="mp-section-v2 mp-section-cream-v2 mp-register-form-wrap-v2">
           <div className="mp-container-v2 mp-container-narrow-v2">
-            <p className="mp-register-intro-v2">
-              Your registration directly supports equine therapy and K9 training
-              programs for veterans and first responders.
-            </p>
             <RegistrationForm />
           </div>
         </section>
 
-        <footer className="mp-footer-v2">
+        <footer className="mp-section-v2 mp-section-dark-v2 mp-footer-v2">
           <div className="mp-container-v2">
             <div className="mp-footer-grid-v2">
-              <div className="mp-footer-col-v2">
-                <p className="mp-footer-brand-v2">Mission Possible</p>
-                <p className="mp-footer-tagline-v2">Hooves &amp; Paws</p>
-                <p className="mp-footer-text-v2">
-                  Where Hooves, Paws, and Heroes Heal.
+              <div>
+                <p className="mp-footer-brand-v2">MISSION POSSIBLE</p>
+                <p className="mp-footer-note-v2">
+                  Hooves, paws, purpose, and people.
                 </p>
               </div>
 
-              <div className="mp-footer-col-v2">
-                <p className="mp-footer-heading-v2">Guardian 4 Heroes</p>
-                <a
-                  href="https://www.guardian4heroes.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mp-footer-link-v2"
-                >
-                  guardian4heroes.org &rarr;
-                </a>
+              <div>
+                <p className="mp-footer-heading-v2">Partner Organizations</p>
+                <div className="mp-footer-links-v2">
+                  <a
+                    href="https://www.guardian4heroes.org"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Guardian 4 Heroes
+                  </a>
+                  <a
+                    href="https://heroesk9odysseyacademy.org"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Heroes K9 Odyssey Academy
+                  </a>
+                </div>
               </div>
 
-              <div className="mp-footer-col-v2">
-                <p className="mp-footer-heading-v2">Heroes K9 Odyssey Academy</p>
+              <div>
+                <p className="mp-footer-heading-v2">Built By</p>
                 <a
-                  href="https://heroesk9odysseyacademy.org"
+                  href="https://web-ops-studio.com"
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="mp-footer-link-v2"
+                  rel="noreferrer"
+                  className="mp-footer-credit-v2"
                 >
-                  heroesk9odysseyacademy.org &rarr;
+                  WebOps Studio
                 </a>
               </div>
             </div>
 
             <div className="mp-footer-bottom-v2">
-              <p>&copy; 2025 Mission Possible. All rights reserved.</p>
-              <p className="mp-footer-credit-v2">
-                Built by <a href="https://web-ops-studio.com" target="_blank" rel="noopener noreferrer">WebOps Studio</a>
-              </p>
+              © 2025 Mission Possible. All rights reserved.
             </div>
           </div>
         </footer>
