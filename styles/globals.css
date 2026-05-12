@@ -2840,101 +2840,68 @@ select.mp-form-input {
 /* =========================
    ADMIN DASHBOARD POLISH V2
 ========================= */
-
-.mp-admin-shell-v2 {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.mp-admin-header-v2 {
-  box-shadow: inset 0 -1px 0 rgba(184, 152, 90, 0.14);
-}
-
-.mp-admin-header-row-v2 {
-  align-items: flex-end;
-}
-
-.mp-admin-heading-v2 {
-  max-width: 720px;
-}
-
-.mp-admin-subtitle-v2 {
-  margin: 0.85rem 0 0;
-  max-width: 620px;
-  color: rgba(244, 236, 216, 0.72);
-  font-size: 0.98rem;
-  line-height: 1.7;
-}
-
-.mp-admin-user-v2 {
-  min-width: 220px;
-}
-
-.mp-admin-nav-v2 {
+.mp-admin-nav {
+  display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem 1.75rem;
-  padding-bottom: 0.35rem;
+  gap: 0.85rem;
+  border-top: 1px solid rgba(184, 152, 90, 0.2);
+  padding-top: 1rem;
 }
 
-.mp-admin-welcome-v2 {
-  background: linear-gradient(180deg, #fffdf7 0%, #f8f0df 100%);
-  border: 1px solid rgba(184, 152, 90, 0.28);
-  padding: 1.5rem 1.5rem 1.35rem;
-  margin-bottom: 2.25rem;
+.mp-admin-nav-link {
+  text-decoration: none;
 }
 
-.mp-admin-welcome-kicker-v2 {
-  margin: 0 0 0.45rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+.mp-admin-nav-btn-v2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.72rem 1rem;
+  background: #8b1e2d;
+  border: 1px solid #8b1e2d;
+  color: #f4ecd8;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.76rem;
   font-weight: 700;
-  color: #b8985a;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
 }
 
-.mp-admin-welcome-title-v2 {
-  margin: 0 0 0.65rem;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.65rem, 3vw, 2.4rem);
-  line-height: 1.02;
-  color: #1a2238;
+.mp-admin-nav-btn-v2:hover {
+  background: #c9a961;
+  border-color: #c9a961;
+  color: #0b1426;
+  transform: translateY(-1px);
 }
 
-.mp-admin-welcome-title-v2 em {
-  color: #8b1e2d;
-  font-style: italic;
-  font-weight: 500;
+.mp-admin-nav-active {
+  background: #c9a961;
+  border-color: #c9a961;
+  color: #0b1426;
 }
 
-.mp-admin-welcome-text-v2 {
-  margin: 0;
-  max-width: 760px;
-  color: rgba(26, 34, 56, 0.78);
-  line-height: 1.7;
+.mp-admin-nav-btn-secondary-v2 {
+  background: transparent;
+  border-color: rgba(184, 152, 90, 0.45);
+  color: #f4ecd8;
+}
+
+.mp-admin-nav-btn-secondary-v2:hover {
+  background: rgba(201, 169, 97, 0.12);
+  border-color: #c9a961;
+  color: #c9a961;
 }
 
 @media (max-width: 768px) {
-  .mp-admin-shell-v2 {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .mp-admin-nav {
+    gap: 0.7rem;
   }
 
-  .mp-admin-header-row-v2 {
-    align-items: flex-start;
-  }
-
-  .mp-admin-subtitle-v2 {
-    font-size: 0.92rem;
-  }
-
-  .mp-admin-nav-v2 {
-    gap: 0.75rem 1rem;
-  }
-
-  .mp-admin-welcome-v2 {
-    padding: 1.2rem 1rem 1.05rem;
-    margin-bottom: 1.75rem;
+  .mp-admin-nav-btn-v2 {
+    flex: 1 1 100%;
+    width: 100%;
   }
 }
+
