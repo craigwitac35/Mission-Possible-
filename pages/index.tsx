@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import StaffLoginIcon from '@/components/StaffLoginIcon';
+import PublicSiteHeader from '@/components/PublicSiteHeader';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
 
       <main className="mp-site">
         <StaffLoginIcon />
+        <PublicSiteHeader />
 
         <section className="mp-hero-art-v2">
           <img
