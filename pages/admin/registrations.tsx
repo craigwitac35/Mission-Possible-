@@ -92,8 +92,10 @@ export default function AdminRegistrationsList() {
           <div className="mp-container-v2">
             <div className="mp-admin-header-row-v3">
               <div className="mp-admin-heading-v3">
-                <p className="mp-admin-eyebrow-v3">Mission Possible &middot; Admin</p>
-                <h1 className="mp-admin-title-v3">Registrations</h1>
+              <div className="mp-admin-heading-v3">
+                <h1 className="mp-admin-title-v3">
+                  All <em>Registrations</em>
+                </h1>
                 <p className="mp-admin-subtitle-v3">
                   Search sign-ups, review payment status, and open each
                   registration for details.
