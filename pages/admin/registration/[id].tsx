@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import { useAdminAuth } from '@/lib/useAdminAuth';
+import SignOutIcon from '@/components/SignOutIcon';
 
 type Registration = {
   id: string;
@@ -122,55 +123,68 @@ export default function AdminRegistrationDetail() {
       </Head>
 
       <main className="mp-site mp-admin">
-        <header className="mp-admin-header-v3">
-          <div className="mp-container-v2">
-            <div className="mp-admin-header-row-v3">
-              <div className="mp-admin-heading-v3">
-                <h1 className="mp-admin-title-v3">
-                  Registration <em>Detail</em>
-                </h1>
-                <p className="mp-admin-subtitle-v3">
-                  View buyer information, payment status, and all participants for this registration.
-                </p>
-              </div>
+        <SignOutIcon onClick={signOut} />
 
-              <div className="mp-admin-user-v3">
-                <span className="mp-admin-email-v3">{userEmail}</span>
-                <button
-                  type="button"
-                  className="mp-admin-signout-v3"
-                  onClick={signOut}
-                >
-                  Sign out
-                </button>
-              </div>
-            </div>
+        <section className="mp-page-hero-v2">
+          <div
+            className="mp-page-hero-bg"
+            style={{ backgroundImage: 'url(/images/dashboard-image.png)' }}
+            aria-hidden="true"
+          />
+          <div className="mp-page-hero-overlay" aria-hidden="true" />
 
-            <nav className="mp-admin-nav-v3">
-              <Link href="/admin/dashboard" className="mp-admin-nav-link-v3">
-                Dashboard
-              </Link>
-
-              <Link
-                href="/admin/registrations"
-                className="mp-admin-nav-link-v3 mp-admin-nav-link-active-v3"
-              >
-                Registrations
-              </Link>
-
-              <Link href="/" className="mp-admin-nav-link-v3 mp-admin-nav-link-public-v3">
-                Public Home &rarr;
-              </Link>
-            </nav>
-          </div>
-        </header>
-
-        <div className="mp-admin-body-v3">
-          <div className="mp-container-v2">
-            <Link href="/admin/registrations" className="mp-admin-back-v3">
+          <div className="mp-page-hero-content">
+            <Link href="/admin/registrations" className="mp-back-link-v2">
               &larr; Back to all registrations
             </Link>
 
+            <p className="mp-cinematic-eyebrow">
+              <span className="mp-divider-dot" />
+              Mission Possible &middot; Admin
+              <span className="mp-divider-dot" />
+            </p>
+
+            <h1 className="mp-cinematic-title">
+              <span className="mp-cinematic-title-top">Registration</span>
+              <span className="mp-cinematic-title-bottom">Detail</span>
+            </h1>
+
+            <p className="mp-cinematic-tagline">
+              Buyer info, payment status, and participants.
+            </p>
+          </div>
+        </section>
+
+        <nav className="mp-admin-nav-bar-v4">
+          <div className="mp-container-v2">
+            <div className="mp-admin-nav-inner-v4">
+              <div className="mp-admin-nav-links-v4">
+                <Link href="/admin/dashboard" className="mp-admin-nav-link-v4">
+                  Dashboard
+                </Link>
+
+                <Link
+                  href="/admin/registrations"
+                  className="mp-admin-nav-link-v4 mp-admin-nav-link-active-v4"
+                >
+                  Registrations
+                </Link>
+
+                <Link
+                  href="/"
+                  className="mp-admin-nav-link-v4 mp-admin-nav-link-public-v4"
+                >
+                  Public Home &rarr;
+                </Link>
+              </div>
+
+              <span className="mp-admin-nav-email-v4">{userEmail}</span>
+            </div>
+          </div>
+        </nav>
+
+        <div className="mp-admin-body-v3">
+          <div className="mp-container-v2">
             {error && <p className="mp-form-error mp-admin-error">{error}</p>}
 
             {!registration ? (
