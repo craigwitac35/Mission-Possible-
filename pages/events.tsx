@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import StaffLoginIcon from '@/components/StaffLoginIcon';
 import PublicSiteHeader from '@/components/PublicSiteHeader';
 
 export default function Events() {
