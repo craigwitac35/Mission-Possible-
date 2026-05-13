@@ -3857,3 +3857,154 @@ button.mp-staff-login {
     border-top: 1px solid rgba(201, 169, 97, 0.2);
   }
 }
+/* =========================
+   ADMIN HEADER + NAV (v5)
+========================= */
+
+.mp-admin-header-v5 {
+  position: relative;
+  z-index: 20;
+  background: #0b1426;
+  border-bottom: 1px solid rgba(244, 236, 216, 0.08);
+}
+
+.mp-admin-header-inner-v5 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.95rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.mp-admin-nav-v5 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.mp-admin-nav-pill-v5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0.55rem 0.95rem;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid #8b1e2d;
+  color: #f4ecd8;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.mp-admin-nav-pill-v5:hover {
+  background: rgba(139, 30, 45, 0.18);
+  border-color: #c9a961;
+  color: #c9a961;
+}
+
+.mp-admin-nav-pill-active-v5 {
+  background: #0b1426;
+  border-color: #c9a961;
+  color: #c9a961;
+}
+
+.mp-admin-nav-pill-active-v5:hover {
+  background: #0b1426;
+  color: #c9a961;
+}
+
+.mp-admin-nav-pill-public-v5 {
+  border-color: rgba(184, 152, 90, 0.45);
+  color: rgba(244, 236, 216, 0.82);
+}
+
+.mp-admin-nav-pill-public-v5:hover {
+  background: rgba(201, 169, 97, 0.12);
+  border-color: #c9a961;
+  color: #c9a961;
+}
+
+/* =========================
+   ADMIN INTRO BAND (v5)
+========================= */
+
+.mp-admin-intro-v5 {
+  background: #f4ecd8;
+  padding: 2.25rem 0 1.75rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(184, 152, 90, 0.18);
+}
+
+.mp-admin-intro-eyebrow-v5 {
+  margin: 0 0 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #5c3a2e;
+  font-weight: 600;
+}
+
+.mp-admin-intro-subtitle-v5 {
+  margin: 0 auto 0.85rem;
+  max-width: 640px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  line-height: 1.45;
+  color: #1a2238;
+}
+
+.mp-admin-intro-email-v5 {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: rgba(26, 34, 56, 0.7);
+}
+
+.mp-admin-intro-email-v5 strong {
+  color: #1a2238;
+  font-weight: 700;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .mp-admin-header-inner-v5 {
+    padding: 0.75rem 1rem;
+  }
+
+  .mp-admin-nav-v5 {
+    gap: 0.45rem;
+    width: 100%;
+  }
+
+  .mp-admin-nav-pill-v5 {
+    flex: 1 1 auto;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+  }
+
+  .mp-admin-intro-v5 {
+    padding: 1.75rem 1rem 1.4rem;
+  }
+
+  .mp-admin-intro-eyebrow-v5 {
+    font-size: 0.66rem;
+    letter-spacing: 0.24em;
+  }
+}
