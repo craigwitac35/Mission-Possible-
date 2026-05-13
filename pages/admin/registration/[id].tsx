@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import { useAdminAuth } from '@/lib/useAdminAuth';
+import AdminSiteHeader from '@/components/AdminSiteHeader';
 import SignOutIcon from '@/components/SignOutIcon';
 
 type Registration = {
@@ -125,66 +126,38 @@ export default function AdminRegistrationDetail() {
       <main className="mp-site mp-admin">
         <SignOutIcon onClick={signOut} />
 
-        <section className="mp-page-hero-v2">
-          <div
-            className="mp-page-hero-bg"
-            style={{ backgroundImage: 'url(/images/dashboard-image.png)' }}
-            aria-hidden="true"
+        <AdminSiteHeader />
+
+        <section className="mp-hero-art-v2">
+          <img
+            src="/images/dashboard-image.png"
+            alt="Mission Possible Admin"
+            className="mp-hero-art-image-v2"
           />
-          <div className="mp-page-hero-overlay" aria-hidden="true" />
+        </section>
 
-          <div className="mp-page-hero-content">
-            <Link href="/admin/registrations" className="mp-back-link-v2">
-              &larr; Back to all registrations
-            </Link>
-
-            <p className="mp-cinematic-eyebrow">
+        <section className="mp-admin-intro-v5">
+          <div className="mp-container-v2">
+            <p className="mp-admin-intro-eyebrow-v5">
               <span className="mp-divider-dot" />
               Mission Possible &middot; Admin
               <span className="mp-divider-dot" />
             </p>
-
-            <h1 className="mp-cinematic-title">
-              <span className="mp-cinematic-title-top">Registration</span>
-              <span className="mp-cinematic-title-bottom">Detail</span>
-            </h1>
-
-            <p className="mp-cinematic-tagline">
+            <p className="mp-admin-intro-subtitle-v5">
               Buyer info, payment status, and participants.
+            </p>
+            <p className="mp-admin-intro-email-v5">
+              Signed in as <strong>{userEmail}</strong>
             </p>
           </div>
         </section>
 
-        <nav className="mp-admin-nav-bar-v4">
-          <div className="mp-container-v2">
-            <div className="mp-admin-nav-inner-v4">
-              <div className="mp-admin-nav-links-v4">
-                <Link href="/admin/dashboard" className="mp-admin-nav-link-v4">
-                  Dashboard
-                </Link>
-
-                <Link
-                  href="/admin/registrations"
-                  className="mp-admin-nav-link-v4 mp-admin-nav-link-active-v4"
-                >
-                  Registrations
-                </Link>
-
-                <Link
-                  href="/"
-                  className="mp-admin-nav-link-v4 mp-admin-nav-link-public-v4"
-                >
-                  Public Home &rarr;
-                </Link>
-              </div>
-
-              <span className="mp-admin-nav-email-v4">{userEmail}</span>
-            </div>
-          </div>
-        </nav>
-
         <div className="mp-admin-body-v3">
           <div className="mp-container-v2">
+            <Link href="/admin/registrations" className="mp-admin-back-v3">
+              &larr; Back to all registrations
+            </Link>
+
             {error && <p className="mp-form-error mp-admin-error">{error}</p>}
 
             {!registration ? (
