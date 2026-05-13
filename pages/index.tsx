@@ -15,7 +15,7 @@ export default function Home() {
       </Head>
 
       <main className="mp-site">
-        <StaffLoginIcon />
+        
         <PublicSiteHeader />
 
         <section className="mp-hero-art-v2">
