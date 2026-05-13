@@ -16,7 +16,6 @@ export default function RegisterPage() {
       </Head>
 
       <main>
-        <StaffLoginIcon />
         <PublicSiteHeader />
 
         <section className="mp-page-hero-art-v2">
