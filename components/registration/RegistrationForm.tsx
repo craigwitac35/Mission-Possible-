@@ -1,43 +1,71 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '@/lib/supabaseClient';
 import {
   calculatePrice,
-  Participant,
   phaseLabel,
+  ShirtSize,
 } from '@/lib/pricing';
 import ParticipantFields from './ParticipantFields';
 
 type BuyerInfo = {
-  buyer_name: string;
-  buyer_email: string;
-  buyer_phone: string;
+  name: string;
+  email: string;
+  phone: string;
   group_name: string;
 };
 
-const emptyParticipant = (): Participant => ({ name: '', age: '', shirt_size: '' });
+type Participant = {
+  name: string;
+  age: string;
+  shirt_size: ShirtSize | '';
+};
+
+const emptyParticipant = (): Participant => ({
+  name: '',
+  age: '',
+  shirt_size: '',
+});
+
+// MP-XXXX where X is alphanumeric, easy-to-read characters only
+const REF_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+function generateReferenceCode(): string {
+  let code = 'MP-';
+  for (let i = 0; i < 4; i++) {
+    code += REF_CHARS[Math.floor(Math.random() * REF_CHARS.length)];
+  }
+  return code;
+}
 
 export default function RegistrationForm() {
   const router = useRouter();
 
   const [buyer, setBuyer] = useState<BuyerInfo>({
-    buyer_name: '',
-    buyer_email: '',
-    buyer_phone: '',
+    name: '',
+    email: '',
+    phone: '',
     group_name: '',
   });
-
   const [participants, setParticipants] = useState<Participant[]>([
     emptyParticipant(),
   ]);
-
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const pricing = useMemo(() => calculatePrice(participants), [participants]);
+  const pricing = useMemo(() => {
+    const parsed = participants.map((p) => ({
+      name: p.name,
+      age: parseInt(p.age, 10) || 0,
+      shirt_size: (p.shirt_size || 'M') as ShirtSize,
+    }));
+    return calculatePrice(parsed);
+  }, [participants]);
 
-  const handleBuyerChange = (field: keyof BuyerInfo, value: string) => {
-    setBuyer((prev) => ({ ...prev, [field]: value }));
+  const handleBuyerChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setBuyer({ ...buyer, [e.target.name]: e.target.value });
   };
 
   const handleParticipantChange = (
@@ -45,49 +73,43 @@ export default function RegistrationForm() {
     field: keyof Participant,
     value: string
   ) => {
-    setParticipants((prev) => {
-      const next = [...prev];
-      if (field === 'age') {
-        next[index] = { ...next[index], age: value === '' ? '' : Number(value) };
-      } else {
-        next[index] = { ...next[index], [field]: value };
-      }
-      return next;
-    });
+    const next = [...participants];
+    next[index] = { ...next[index], [field]: value };
+    setParticipants(next);
   };
 
   const addParticipant = () => {
-    setParticipants((prev) => [...prev, emptyParticipant()]);
+    setParticipants([...participants, emptyParticipant()]);
   };
 
   const removeParticipant = (index: number) => {
-    setParticipants((prev) => prev.filter((_, i) => i !== index));
+    if (participants.length <= 1) return;
+    setParticipants(participants.filter((_, i) => i !== index));
   };
 
   const validate = (): string | null => {
-    if (!pricing.isOpen) return 'Registration is closed.';
-    if (!buyer.buyer_name.trim()) return 'Buyer name is required.';
-    if (!buyer.buyer_email.trim()) return 'Buyer email is required.';
-    if (!buyer.buyer_phone.trim()) return 'Buyer phone is required.';
-    if (participants.length === 0) return 'At least one participant is required.';
+    if (!pricing.open) return 'Registration is closed.';
+    if (!buyer.name.trim()) return 'Buyer name is required.';
+    if (!buyer.email.trim()) return 'Buyer email is required.';
+    if (!buyer.phone.trim()) return 'Buyer phone is required.';
+    if (participants.length === 0) return 'Add at least one participant.';
+
     for (let i = 0; i < participants.length; i++) {
       const p = participants[i];
-      if (!p.name.trim()) return `Participant ${i + 1}: name is required.`;
-      if (p.age === '' || Number.isNaN(Number(p.age))) {
-        return `Participant ${i + 1}: age is required.`;
-      }
-      const ageNum = Number(p.age);
-      if (ageNum < 0 || ageNum > 120) {
-        return `Participant ${i + 1}: age must be between 0 and 120.`;
+      if (!p.name.trim()) return `Participant ${i + 1} needs a name.`;
+      const age = parseInt(p.age, 10);
+      if (Number.isNaN(age) || age < 0 || age > 120) {
+        return `Participant ${i + 1} needs a valid age (0–120).`;
       }
       if (!p.shirt_size) {
-        return `Participant ${i + 1}: t-shirt size is required.`;
+        return `Participant ${i + 1} needs a shirt size.`;
       }
     }
+
     return null;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
 
@@ -100,27 +122,52 @@ export default function RegistrationForm() {
     setSubmitting(true);
 
     try {
-      const { data: registration, error: regErr } = await supabase
-        .from('registrations')
-        .insert({
-          buyer_name: buyer.buyer_name.trim(),
-          buyer_email: buyer.buyer_email.trim().toLowerCase(),
-          buyer_phone: buyer.buyer_phone.trim(),
-          group_name: buyer.group_name.trim() || null,
-          total_amount: pricing.total,
-          payment_status: 'pending',
-        })
-        .select('id')
-        .single();
+      // Try a few times in case of unique-collision (extremely unlikely)
+      let referenceCode = generateReferenceCode();
+      let attempts = 0;
+      let registrationId: string | null = null;
 
-      if (regErr || !registration) {
-        throw new Error(regErr?.message || 'Failed to create registration.');
+      while (attempts < 5 && !registrationId) {
+        const { data, error: insertErr } = await supabase
+          .from('registrations')
+          .insert({
+            buyer_name: buyer.name.trim(),
+            buyer_email: buyer.email.trim(),
+            buyer_phone: buyer.phone.trim(),
+            group_name: buyer.group_name.trim() || null,
+            total_amount: pricing.total,
+            payment_status: 'pending',
+            amount_paid: 0,
+            reference_code: referenceCode,
+          })
+          .select('id, reference_code')
+          .single();
+
+        if (insertErr) {
+          // Unique violation on reference_code → retry with a new code
+          if (
+            insertErr.code === '23505' &&
+            insertErr.message.includes('reference_code')
+          ) {
+            attempts += 1;
+            referenceCode = generateReferenceCode();
+            continue;
+          }
+          throw insertErr;
+        }
+
+        registrationId = data.id;
+        referenceCode = data.reference_code;
+      }
+
+      if (!registrationId) {
+        throw new Error('Could not generate a unique reference code.');
       }
 
       const participantRows = participants.map((p) => ({
-        registration_id: registration.id,
+        registration_id: registrationId,
         name: p.name.trim(),
-        age: Number(p.age),
+        age: parseInt(p.age, 10),
         shirt_size: p.shirt_size,
       }));
 
@@ -128,99 +175,82 @@ export default function RegistrationForm() {
         .from('participants')
         .insert(participantRows);
 
-      if (partErr) {
-        throw new Error(partErr.message);
-      }
+      if (partErr) throw partErr;
 
-      router.push('/confirmation');
+      router.push(`/confirmation?ref=${encodeURIComponent(referenceCode)}`);
     } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.');
+      setError(err?.message || 'Something went wrong. Please try again.');
       setSubmitting(false);
     }
   };
 
-  if (!pricing.isOpen) {
-    return (
-      <div className="mp-form-card mp-form-closed">
-        <h2 className="mp-form-step-title">Registration Closed</h2>
-        <p>
-          Online registration is closed. Please contact the event organizers
-          for assistance.
-        </p>
-      </div>
-    );
-  }
-
   return (
-    <form className="mp-form-card" onSubmit={handleSubmit}>
+    <form className="mp-form" onSubmit={handleSubmit} noValidate>
       <section className="mp-form-step">
-        <p className="mp-form-step-label">Step 01</p>
-        <h2 className="mp-form-step-title">Your Information</h2>
+        <p className="mp-form-step-label">Step 1</p>
+        <h2 className="mp-form-step-title">Your Info</h2>
 
-        <div className="mp-form-fields">
-          <label className="mp-form-label">
-            <span className="mp-label-text">Full Name</span>
+        <div className="mp-form-grid">
+          <label className="mp-form-field">
+            <span className="mp-form-label">Full Name</span>
             <input
               type="text"
+              name="name"
+              value={buyer.name}
+              onChange={handleBuyerChange}
               required
-              className="mp-form-input"
-              value={buyer.buyer_name}
-              onChange={(e) => handleBuyerChange('buyer_name', e.target.value)}
             />
           </label>
 
-          <label className="mp-form-label">
-            <span className="mp-label-text">Email</span>
+          <label className="mp-form-field">
+            <span className="mp-form-label">Email</span>
             <input
               type="email"
+              name="email"
+              value={buyer.email}
+              onChange={handleBuyerChange}
               required
-              className="mp-form-input"
-              value={buyer.buyer_email}
-              onChange={(e) => handleBuyerChange('buyer_email', e.target.value)}
             />
           </label>
 
-          <label className="mp-form-label">
-            <span className="mp-label-text">Phone</span>
+          <label className="mp-form-field">
+            <span className="mp-form-label">Phone</span>
             <input
               type="tel"
+              name="phone"
+              value={buyer.phone}
+              onChange={handleBuyerChange}
               required
-              className="mp-form-input"
-              value={buyer.buyer_phone}
-              onChange={(e) => handleBuyerChange('buyer_phone', e.target.value)}
             />
           </label>
 
-          <label className="mp-form-label">
-            <span className="mp-label-text">
-              Group Name <span className="mp-label-optional">(optional)</span>
-            </span>
+          <label className="mp-form-field">
+            <span className="mp-form-label">Group / Team Name (optional)</span>
             <input
               type="text"
-              className="mp-form-input"
+              name="group_name"
               value={buyer.group_name}
-              onChange={(e) => handleBuyerChange('group_name', e.target.value)}
+              onChange={handleBuyerChange}
             />
           </label>
         </div>
       </section>
 
       <section className="mp-form-step">
-        <p className="mp-form-step-label">Step 02</p>
+        <p className="mp-form-step-label">Step 2</p>
         <h2 className="mp-form-step-title">Participants</h2>
 
-        <div className="mp-participants-list">
-          {participants.map((p, i) => (
-            <ParticipantFields
-              key={i}
-              index={i}
-              participant={p}
-              canRemove={participants.length > 1}
-              onChange={handleParticipantChange}
-              onRemove={removeParticipant}
-            />
-          ))}
-        </div>
+        {participants.map((p, i) => (
+          <ParticipantFields
+            key={i}
+            index={i}
+            participant={p}
+            onChange={(field, value) => handleParticipantChange(i, field, value)}
+            onRemove={
+              participants.length > 1 ? () => removeParticipant(i) : undefined
+            }
+          />
+        ))}
 
         <button
           type="button"
@@ -232,8 +262,8 @@ export default function RegistrationForm() {
       </section>
 
       <section className="mp-form-step">
-        <p className="mp-form-step-label">Step 03</p>
-        <h2 className="mp-form-step-title">Review &amp; Submit</h2>
+        <p className="mp-form-step-label">Step 3</p>
+        <h2 className="mp-form-step-title">Summary</h2>
 
         <div className="mp-summary-ticket">
           <div className="mp-ticket-header">
@@ -244,14 +274,14 @@ export default function RegistrationForm() {
           <div className="mp-ticket-body">
             <div className="mp-ticket-row">
               <span>
-                Adults &times; {pricing.adultCount}
+                Adults × {pricing.adultCount}
                 <span className="mp-ticket-rate"> @ ${pricing.adultPrice}</span>
               </span>
               <span>${pricing.adultCount * pricing.adultPrice}</span>
             </div>
             <div className="mp-ticket-row">
               <span>
-                Children &times; {pricing.childCount}
+                Children × {pricing.childCount}
                 <span className="mp-ticket-rate"> @ ${pricing.childPrice}</span>
               </span>
               <span>${pricing.childCount * pricing.childPrice}</span>
@@ -265,17 +295,17 @@ export default function RegistrationForm() {
             <span className="mp-ticket-total-amount">${pricing.total}</span>
           </div>
         </div>
+
+        {error && <p className="mp-form-error">{error}</p>}
+
+        <button
+          type="submit"
+          className="mp-btn mp-btn-primary mp-btn-submit"
+          disabled={submitting || !pricing.open}
+        >
+          {submitting ? 'Submitting…' : 'Complete Registration'}
+        </button>
       </section>
-
-      {error && <p className="mp-form-error">{error}</p>}
-
-      <button
-        type="submit"
-        className="mp-btn mp-btn-primary mp-btn-submit"
-        disabled={submitting}
-      >
-        {submitting ? 'Submitting…' : 'Complete Registration'}
-      </button>
     </form>
   );
 }
