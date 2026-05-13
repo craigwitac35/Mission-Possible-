@@ -3750,3 +3750,110 @@ select.mp-form-input {
   font-style: italic;
   font-weight: 500;
 }
+/* ============================================
+   MP — ADMIN NAV BAR v4 (post-cinematic-hero)
+   ============================================ */
+
+.mp-admin-nav-bar-v4 {
+  background: #fff;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.mp-admin-nav-inner-v4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mp-admin-nav-links-v4 {
+  display: flex;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.mp-admin-nav-link-v4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #5C3A2E;
+  text-decoration: none;
+  padding: 1rem 1.25rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.mp-admin-nav-link-v4:hover {
+  color: #0B1426;
+}
+
+.mp-admin-nav-link-active-v4 {
+  color: #0B1426;
+  border-bottom-color: #C9A961;
+}
+
+.mp-admin-nav-link-public-v4 {
+  margin-left: auto;
+  color: #8B1E2D;
+}
+
+.mp-admin-nav-link-public-v4:hover {
+  color: #C9A961;
+}
+
+.mp-admin-nav-email-v4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #5C3A2E;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+  flex-shrink: 0;
+}
+
+button.mp-staff-login {
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .mp-admin-nav-inner-v4 {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .mp-admin-nav-links-v4 {
+    overflow-x: auto;
+    gap: 0;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mp-admin-nav-link-v4 {
+    padding: 0.85rem 0.85rem;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  .mp-admin-nav-link-public-v4 {
+    margin-left: 0;
+  }
+
+  .mp-admin-nav-email-v4 {
+    padding: 0.5rem 0.85rem 0.85rem;
+    max-width: 100%;
+    font-size: 0.75rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+  }
+}
