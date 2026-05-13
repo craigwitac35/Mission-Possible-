@@ -15,7 +15,7 @@ export default function ConfirmationPage() {
       </Head>
 
       <main>
-        <StaffLoginIcon />
+        
         <PublicSiteHeader />
 
         <section className="mp-page-hero-art-v2">
