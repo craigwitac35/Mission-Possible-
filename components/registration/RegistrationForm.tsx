@@ -27,14 +27,15 @@ const emptyParticipant = (): Participant => ({
   shirt_size: '',
 });
 
-// MP-XXXX where X is alphanumeric, easy-to-read characters only
 const REF_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
 function generateReferenceCode(): string {
   let code = 'MP-';
+
   for (let i = 0; i < 4; i++) {
     code += REF_CHARS[Math.floor(Math.random() * REF_CHARS.length)];
   }
+
   return code;
 }
 
@@ -47,9 +48,11 @@ export default function RegistrationForm() {
     phone: '',
     group_name: '',
   });
+
   const [participants, setParticipants] = useState<Participant[]>([
     emptyParticipant(),
   ]);
+
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -59,13 +62,17 @@ export default function RegistrationForm() {
       age: parseInt(p.age, 10) || 0,
       shirt_size: (p.shirt_size || 'M') as ShirtSize,
     }));
+
     return calculatePrice(parsed);
   }, [participants]);
 
   const handleBuyerChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setBuyer({ ...buyer, [e.target.name]: e.target.value });
+    setBuyer({
+      ...buyer,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleParticipantChange = (
@@ -74,7 +81,12 @@ export default function RegistrationForm() {
     value: string
   ) => {
     const next = [...participants];
-    next[index] = { ...next[index], [field]: value };
+
+    next[index] = {
+      ...next[index],
+      [field]: value,
+    };
+
     setParticipants(next);
   };
 
@@ -84,11 +96,11 @@ export default function RegistrationForm() {
 
   const removeParticipant = (index: number) => {
     if (participants.length <= 1) return;
+
     setParticipants(participants.filter((_, i) => i !== index));
   };
 
   const validate = (): string | null => {
-    if (!pricing.open) return 'Registration is closed.';
     if (!buyer.name.trim()) return 'Buyer name is required.';
     if (!buyer.email.trim()) return 'Buyer email is required.';
     if (!buyer.phone.trim()) return 'Buyer phone is required.';
@@ -96,11 +108,17 @@ export default function RegistrationForm() {
 
     for (let i = 0; i < participants.length; i++) {
       const p = participants[i];
-      if (!p.name.trim()) return `Participant ${i + 1} needs a name.`;
+
+      if (!p.name.trim()) {
+        return `Participant ${i + 1} needs a name.`;
+      }
+
       const age = parseInt(p.age, 10);
+
       if (Number.isNaN(age) || age < 0 || age > 120) {
         return `Participant ${i + 1} needs a valid age (0–120).`;
       }
+
       if (!p.shirt_size) {
         return `Participant ${i + 1} needs a shirt size.`;
       }
@@ -114,6 +132,7 @@ export default function RegistrationForm() {
     setError(null);
 
     const validationError = validate();
+
     if (validationError) {
       setError(validationError);
       return;
@@ -122,7 +141,6 @@ export default function RegistrationForm() {
     setSubmitting(true);
 
     try {
-      // Try a few times in case of unique-collision (extremely unlikely)
       let referenceCode = generateReferenceCode();
       let attempts = 0;
       let registrationId: string | null = null;
@@ -144,7 +162,6 @@ export default function RegistrationForm() {
           .single();
 
         if (insertErr) {
-          // Unique violation on reference_code → retry with a new code
           if (
             insertErr.code === '23505' &&
             insertErr.message.includes('reference_code')
@@ -153,6 +170,7 @@ export default function RegistrationForm() {
             referenceCode = generateReferenceCode();
             continue;
           }
+
           throw insertErr;
         }
 
@@ -279,6 +297,7 @@ export default function RegistrationForm() {
               </span>
               <span>${pricing.adultCount * pricing.adultPrice}</span>
             </div>
+
             <div className="mp-ticket-row">
               <span>
                 Children × {pricing.childCount}
@@ -301,7 +320,7 @@ export default function RegistrationForm() {
         <button
           type="submit"
           className="mp-btn mp-btn-primary mp-btn-submit"
-          disabled={submitting || !pricing.open}
+          disabled={submitting}
         >
           {submitting ? 'Submitting…' : 'Complete Registration'}
         </button>
