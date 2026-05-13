@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import RegistrationForm from '@/components/registration/RegistrationForm';
-import StaffLoginIcon from '@/components/StaffLoginIcon';
 import PublicSiteHeader from '@/components/PublicSiteHeader';
 
 export default function RegisterPage() {
