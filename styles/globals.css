@@ -2803,20 +2803,116 @@ select.mp-form-input {
     padding: 0.9rem 1rem;
   }
 
-  .mp-public-home-badge-v2 {
-    width: 100%;
+/* =========================
+   PUBLIC SITE HEADER (v5)
+========================= */
+
+.mp-public-header-v5 {
+  position: relative;
+  z-index: 20;
+  background: #0b1426;
+  border-bottom: 1px solid rgba(244, 236, 216, 0.08);
+}
+
+.mp-public-header-inner-v5 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.95rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mp-public-nav-v5 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.mp-public-nav-pill-v5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0.55rem 0.95rem;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid #8b1e2d;
+  color: #f4ecd8;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.mp-public-nav-pill-v5:hover {
+  background: rgba(139, 30, 45, 0.18);
+  border-color: #c9a961;
+  color: #c9a961;
+}
+
+.mp-public-nav-pill-active-v5 {
+  background: #0b1426;
+  border-color: #c9a961;
+  color: #c9a961;
+}
+
+.mp-public-nav-pill-active-v5:hover {
+  background: #0b1426;
+  color: #c9a961;
+}
+
+/* Staff key icon — now lives inside the nav */
+.mp-public-staff-key-v5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid rgba(201, 169, 97, 0.4);
+  color: rgba(201, 169, 97, 0.75);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mp-public-staff-key-v5:hover {
+  color: #c9a961;
+  border-color: #c9a961;
+  background: rgba(201, 169, 97, 0.08);
+}
+
+.mp-public-staff-key-icon-v5 {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 768px) {
+  .mp-public-header-inner-v5 {
+    padding: 0.75rem 1rem;
+    gap: 0.6rem;
   }
 
-  .mp-public-nav-v2 {
-    width: 100%;
-    gap: 0.65rem;
+  .mp-public-nav-v5 {
+    gap: 0.45rem;
+    flex: 1 1 auto;
   }
 
-  .mp-public-nav-btn-v2 {
-    flex: 1 1 calc(50% - 0.4rem);
-    min-width: 0;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+  .mp-public-nav-pill-v5 {
+    flex: 1 1 auto;
+    padding: 0.5rem 0.55rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+  }
+
+  .mp-public-staff-key-v5 {
+    width: 34px;
+    height: 34px;
   }
 }
 
