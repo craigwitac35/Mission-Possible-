@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import { useAdminAuth } from '@/lib/useAdminAuth';
+import SignOutIcon from '@/components/SignOutIcon';
 
 type RegistrationRow = {
   id: string;
@@ -88,49 +89,61 @@ export default function AdminRegistrationsList() {
       </Head>
 
       <main className="mp-site mp-admin">
-        <header className="mp-admin-header-v3">
-          <div className="mp-container-v2">
-            <div className="mp-admin-header-row-v3">
-              <div className="mp-admin-heading-v3">
-                <h1 className="mp-admin-title-v3">
-                  All <em>Registrations</em>
-                </h1>
-                <p className="mp-admin-subtitle-v3">
-                  Search sign-ups, review payment status, and open each
-                  registration for details.
-                </p>
-              </div>
+        <SignOutIcon onClick={signOut} />
 
-              <div className="mp-admin-user-v3">
-                <span className="mp-admin-email-v3">{userEmail}</span>
-                <button
-                  type="button"
-                  className="mp-admin-signout-v3"
-                  onClick={signOut}
-                >
-                  Sign out
-                </button>
-              </div>
-            </div>
+        <section className="mp-page-hero-v2">
+          <div
+            className="mp-page-hero-bg"
+            style={{ backgroundImage: 'url(/images/dashboard-image.png)' }}
+            aria-hidden="true"
+          />
+          <div className="mp-page-hero-overlay" aria-hidden="true" />
 
-            <nav className="mp-admin-nav-v3">
-              <Link href="/admin/dashboard" className="mp-admin-nav-link-v3">
-                Dashboard
-              </Link>
+          <div className="mp-page-hero-content">
+            <p className="mp-cinematic-eyebrow">
+              <span className="mp-divider-dot" />
+              Mission Possible &middot; Admin
+              <span className="mp-divider-dot" />
+            </p>
 
-              <Link
-                href="/admin/registrations"
-                className="mp-admin-nav-link-v3 mp-admin-nav-link-active-v3"
-              >
-                Registrations
-              </Link>
+            <h1 className="mp-cinematic-title">
+              <span className="mp-cinematic-title-top">All</span>
+              <span className="mp-cinematic-title-bottom">Registrations</span>
+            </h1>
 
-              <Link href="/" className="mp-admin-nav-link-v3 mp-admin-nav-link-public-v3">
-                Public Home &rarr;
-              </Link>
-            </nav>
+            <p className="mp-cinematic-tagline">
+              Search, filter, and review every sign-up.
+            </p>
           </div>
-        </header>
+        </section>
+
+        <nav className="mp-admin-nav-bar-v4">
+          <div className="mp-container-v2">
+            <div className="mp-admin-nav-inner-v4">
+              <div className="mp-admin-nav-links-v4">
+                <Link href="/admin/dashboard" className="mp-admin-nav-link-v4">
+                  Dashboard
+                </Link>
+
+                <Link
+                  href="/admin/registrations"
+                  className="mp-admin-nav-link-v4 mp-admin-nav-link-active-v4"
+                >
+                  Registrations
+                </Link>
+
+                <Link
+                  href="/"
+                  className="mp-admin-nav-link-v4 mp-admin-nav-link-public-v4"
+                >
+                  Public Home &rarr;
+                </Link>
+              </div>
+
+              <span className="mp-admin-nav-email-v4">{userEmail}</span>
+            </div>
+          </div>
+        </nav>
 
         <div className="mp-admin-body-v3">
           <div className="mp-container-v2">
