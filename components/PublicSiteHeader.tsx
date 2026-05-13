@@ -7,19 +7,26 @@ export default function PublicSiteHeader() {
   const isActive = (path: string) => router.pathname === path;
 
   return (
-    <header className="mp-public-header-v2">
-      <div className="mp-public-header-inner-v2">
-        <Link href="/" className="mp-public-home-badge-v2">
-          Home
-        </Link>
+    <header className="mp-public-header-v5">
+      <div className="mp-public-header-inner-v5">
+        <nav className="mp-public-nav-v5" aria-label="Public site navigation">
+          <Link
+            href="/"
+            className={
+              isActive('/')
+                ? 'mp-public-nav-pill-v5 mp-public-nav-pill-active-v5'
+                : 'mp-public-nav-pill-v5'
+            }
+          >
+            Home
+          </Link>
 
-        <nav className="mp-public-nav-v2" aria-label="Public site navigation">
           <Link
             href="/events"
             className={
               isActive('/events')
-                ? 'mp-public-nav-btn-v2 mp-public-nav-btn-active-v2'
-                : 'mp-public-nav-btn-v2'
+                ? 'mp-public-nav-pill-v5 mp-public-nav-pill-active-v5'
+                : 'mp-public-nav-pill-v5'
             }
           >
             Events
@@ -29,13 +36,37 @@ export default function PublicSiteHeader() {
             href="/register"
             className={
               isActive('/register')
-                ? 'mp-public-nav-btn-v2 mp-public-nav-btn-active-v2'
-                : 'mp-public-nav-btn-v2'
+                ? 'mp-public-nav-pill-v5 mp-public-nav-pill-active-v5'
+                : 'mp-public-nav-pill-v5'
             }
           >
             Register
           </Link>
         </nav>
+
+        <Link
+          href="/admin/login"
+          className="mp-public-staff-key-v5"
+          aria-label="Staff login"
+          title="Staff login"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            className="mp-public-staff-key-icon-v5"
+          >
+            <circle cx="7.5" cy="15.5" r="3.5" />
+            <line x1="10" y1="13" x2="20" y2="3" />
+            <line x1="17" y1="6" x2="20" y2="9" />
+            <line x1="14" y1="9" x2="17" y2="12" />
+          </svg>
+        </Link>
       </div>
     </header>
   );
