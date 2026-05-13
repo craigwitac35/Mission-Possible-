@@ -1,20 +1,64 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { supabase } from '@/lib/supabaseClient';
 import PublicSiteHeader from '@/components/PublicSiteHeader';
 
+const GIVEBUTTER_URL = 'https://givebutter.com/z6eQeg';
+
+type Registration = {
+  reference_code: string;
+  total_amount: number;
+  buyer_name: string;
+};
+
 export default function ConfirmationPage() {
+  const router = useRouter();
+  const refCode =
+    typeof router.query.ref === 'string' ? router.query.ref : null;
+
+  const [registration, setRegistration] = useState<Registration | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!refCode) return;
+
+    const load = async () => {
+      const { data } = await supabase
+        .from('registrations')
+        .select('reference_code, total_amount, buyer_name')
+        .eq('reference_code', refCode)
+        .single();
+
+      if (data) setRegistration(data as Registration);
+    };
+
+    load();
+  }, [refCode]);
+
+  const copyCode = async () => {
+    if (!registration?.reference_code) return;
+    try {
+      await navigator.clipboard.writeText(registration.reference_code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard blocked — fall back silently
+    }
+  };
+
   return (
     <>
       <Head>
         <title>You&apos;re In | Mission Possible</title>
         <meta
           name="description"
-          content="Your Mission Possible registration has been received. Review what happens next and get ready for event day."
+          content="Your Mission Possible registration has been received. Complete your payment via Givebutter."
         />
       </Head>
 
       <main>
-        
         <PublicSiteHeader />
 
         <section className="mp-page-hero-art-v2">
@@ -36,11 +80,80 @@ export default function ConfirmationPage() {
               You&apos;re <em>In</em>
             </h1>
             <p className="mp-prose-center-v2">
-              Thanks for registering for Mission Possible: Hooves & Paws. Your
-              support helps Guardian 4 Heroes and Heroes K9 Odyssey Academy
-              continue their work for veterans, first responders, and the people
-              who need them most.
+              {registration
+                ? `Thanks for registering, ${registration.buyer_name.split(' ')[0]}. One more step to lock in your spot.`
+                : 'Thanks for registering. One more step to lock in your spot.'}
             </p>
+          </div>
+        </section>
+
+        <section className="mp-section-v2 mp-section-cream-v2">
+          <div className="mp-container-v2 mp-container-narrow-v2">
+            <div className="mp-pay-card-v2">
+              <p className="mp-pay-kicker-v2">Complete Your Payment</p>
+
+              {registration ? (
+                <>
+                  <p className="mp-pay-total-label-v2">Your total</p>
+                  <p className="mp-pay-total-v2">${registration.total_amount}</p>
+
+                  <div className="mp-pay-code-block-v2">
+                    <p className="mp-pay-code-label-v2">Your reference code</p>
+                    <div className="mp-pay-code-row-v2">
+                      <span className="mp-pay-code-v2">
+                        {registration.reference_code}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={copyCode}
+                        className="mp-pay-copy-btn-v2"
+                        aria-label="Copy reference code"
+                      >
+                        {copied ? 'Copied!' : 'Copy'}
+                      </button>
+                    </div>
+                  </div>
+
+                  <ol className="mp-pay-steps-v2">
+                    <li>
+                      <strong>Click the Givebutter button below</strong> to open
+                      the donation page.
+                    </li>
+                    <li>
+                      <strong>Enter ${registration.total_amount}</strong> as your
+                      donation amount.
+                    </li>
+                    <li>
+                      <strong>Paste your reference code</strong> (
+                      <code>{registration.reference_code}</code>) into the
+                      &ldquo;Add a note&rdquo; field.
+                    </li>
+                    <li>
+                      <strong>Submit your payment.</strong>
+                    </li>
+                  </ol>
+
+                  <a
+                    href={GIVEBUTTER_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mp-cinematic-cta mp-pay-cta-v2"
+                  >
+                    Pay ${registration.total_amount} via Givebutter
+                  </a>
+
+                  <p className="mp-pay-note-v2">
+                    Once we receive your payment, we&apos;ll mark your
+                    registration as paid. If you can&apos;t paste the code, no
+                    problem — we&apos;ll match you by name.
+                  </p>
+                </>
+              ) : (
+                <p className="mp-pay-loading-v2">
+                  Loading your registration details…
+                </p>
+              )}
+            </div>
           </div>
         </section>
 
@@ -53,10 +166,10 @@ export default function ConfirmationPage() {
                 <div className="mp-confirm-step-v2">
                   <span className="mp-confirm-step-number-v2">1</span>
                   <div>
-                    <h3>Check your registration details</h3>
+                    <h3>Complete your Givebutter donation</h3>
                     <p>
-                      Make sure everything you entered looks right and keep an
-                      eye out for any event updates.
+                      Use the button above. Don&apos;t forget the reference
+                      code in the note field.
                     </p>
                   </div>
                 </div>
@@ -64,10 +177,10 @@ export default function ConfirmationPage() {
                 <div className="mp-confirm-step-v2">
                   <span className="mp-confirm-step-number-v2">2</span>
                   <div>
-                    <h3>Payment info coming next</h3>
+                    <h3>We confirm your payment</h3>
                     <p>
-                      Once payment is connected, this page can direct people to
-                      the next step automatically.
+                      We&apos;ll review and mark your registration as paid,
+                      usually within a day or two.
                     </p>
                   </div>
                 </div>
@@ -75,18 +188,13 @@ export default function ConfirmationPage() {
                 <div className="mp-confirm-step-v2">
                   <span className="mp-confirm-step-number-v2">3</span>
                   <div>
-                    <h3>Get ready for event day</h3>
+                    <h3>Show up ready</h3>
                     <p>
-                      Bring your grit, your people, and your game face. We’ll
+                      Bring your grit, your people, and your game face. We&apos;ll
                       take care of the mud.
                     </p>
                   </div>
                 </div>
-              </div>
-
-              <div className="mp-confirm-note-v2">
-                Payment integration is still being finalized, so this page is
-                acting as your clean “you made it” checkpoint for now.
               </div>
 
               <div className="mp-confirm-actions-v2">
