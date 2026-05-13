@@ -7,6 +7,8 @@ import { useAdminAuth } from '@/lib/useAdminAuth';
 import AdminSiteHeader from '@/components/AdminSiteHeader';
 import SignOutIcon from '@/components/SignOutIcon';
 
+const PAID_TOLERANCE = 5; // dollars
+
 type Registration = {
   id: string;
   buyer_name: string;
@@ -14,7 +16,9 @@ type Registration = {
   buyer_phone: string;
   group_name: string | null;
   total_amount: number;
+  amount_paid: number;
   payment_status: 'pending' | 'paid';
+  reference_code: string | null;
   created_at: string;
 };
 
@@ -39,6 +43,14 @@ const SHIRT_LABELS: Record<string, string> = {
   XXXL: 'Adult XXXL',
 };
 
+type DerivedStatus = 'unpaid' | 'partial' | 'paid';
+
+function deriveStatus(total: number, paid: number): DerivedStatus {
+  if (paid <= 0) return 'unpaid';
+  if (paid >= total - PAID_TOLERANCE) return 'paid';
+  return 'partial';
+}
+
 export default function AdminRegistrationDetail() {
   const router = useRouter();
   const { id } = router.query;
@@ -47,7 +59,9 @@ export default function AdminRegistrationDetail() {
   const [registration, setRegistration] = useState<Registration | null>(null);
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [saveSuccess, setSaveSuccess] = useState(false);
   const [updating, setUpdating] = useState(false);
+  const [paidInput, setPaidInput] = useState<string>('');
 
   useEffect(() => {
     if (!ready || !id || typeof id !== 'string') return;
@@ -70,19 +84,36 @@ export default function AdminRegistrationDetail() {
 
       setRegistration(reg as Registration);
       setParticipants((parts || []) as Participant[]);
+      setPaidInput(String(reg?.amount_paid ?? 0));
     };
 
     load();
   }, [ready, id]);
 
-  const markAsPaid = async () => {
+  const saveAmountPaid = async () => {
     if (!registration) return;
+
+    const parsed = parseFloat(paidInput);
+    if (Number.isNaN(parsed) || parsed < 0) {
+      setError('Amount paid must be a number greater than or equal to 0.');
+      return;
+    }
+
     setUpdating(true);
     setError(null);
+    setSaveSuccess(false);
+
+    const newStatus =
+      deriveStatus(registration.total_amount, parsed) === 'paid'
+        ? 'paid'
+        : 'pending';
 
     const { error: updateErr } = await supabase
       .from('registrations')
-      .update({ payment_status: 'paid' })
+      .update({
+        amount_paid: parsed,
+        payment_status: newStatus,
+      })
       .eq('id', registration.id);
 
     setUpdating(false);
@@ -92,30 +123,31 @@ export default function AdminRegistrationDetail() {
       return;
     }
 
-    setRegistration({ ...registration, payment_status: 'paid' });
+    setRegistration({
+      ...registration,
+      amount_paid: parsed,
+      payment_status: newStatus,
+    });
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 2500);
   };
 
-  const markAsPending = async () => {
+  const markAsFullPaid = async () => {
     if (!registration) return;
-    setUpdating(true);
-    setError(null);
-
-    const { error: updateErr } = await supabase
-      .from('registrations')
-      .update({ payment_status: 'pending' })
-      .eq('id', registration.id);
-
-    setUpdating(false);
-
-    if (updateErr) {
-      setError(updateErr.message);
-      return;
-    }
-
-    setRegistration({ ...registration, payment_status: 'pending' });
+    setPaidInput(String(registration.total_amount));
+    // small delay so input reflects first, then save
+    setTimeout(saveAmountPaid, 0);
   };
 
   if (!ready) return null;
+
+  const derivedStatus = registration
+    ? deriveStatus(registration.total_amount, registration.amount_paid)
+    : 'unpaid';
+
+  const remaining = registration
+    ? Math.max(0, registration.total_amount - registration.amount_paid)
+    : 0;
 
   return (
     <>
@@ -168,16 +200,24 @@ export default function AdminRegistrationDetail() {
                   <div className="mp-admin-detail-header-v3">
                     <div>
                       <p className="mp-admin-block-label-v3">Buyer Information</p>
-                      <h2 className="mp-admin-detail-name-v3">{registration.buyer_name}</h2>
+                      <h2 className="mp-admin-detail-name-v3">
+                        {registration.buyer_name}
+                      </h2>
                     </div>
                     <span
-                      className={`mp-admin-badge-v3 mp-admin-badge-${registration.payment_status}-v3 mp-admin-detail-badge-v3`}
+                      className={`mp-admin-badge-v3 mp-admin-badge-${derivedStatus}-v3 mp-admin-detail-badge-v3`}
                     >
-                      {registration.payment_status}
+                      {derivedStatus}
                     </span>
                   </div>
 
                   <div className="mp-admin-detail-grid-v3">
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Reference</span>
+                      <span className="mp-admin-detail-value-v3 mp-admin-detail-ref-v3">
+                        {registration.reference_code || '—'}
+                      </span>
+                    </div>
                     <div className="mp-admin-detail-row-v3">
                       <span className="mp-admin-detail-label-v3">Email</span>
                       <a
@@ -203,7 +243,7 @@ export default function AdminRegistrationDetail() {
                       </span>
                     </div>
                     <div className="mp-admin-detail-row-v3">
-                      <span className="mp-admin-detail-label-v3">Total</span>
+                      <span className="mp-admin-detail-label-v3">Total Due</span>
                       <span className="mp-admin-detail-value-v3 mp-admin-detail-amount-v3">
                         ${registration.total_amount}
                       </span>
@@ -218,30 +258,75 @@ export default function AdminRegistrationDetail() {
                 </section>
 
                 <section className="mp-admin-detail-card-v3">
-                  <p className="mp-admin-block-label-v3">Payment Status</p>
+                  <p className="mp-admin-block-label-v3">Payment Tracking</p>
                   <h2 className="mp-admin-detail-name-v3 mp-admin-payment-status-v3">
-                    Currently <em>{registration.payment_status}</em>
+                    Currently <em>{derivedStatus}</em>
                   </h2>
 
-                  {registration.payment_status === 'pending' ? (
+                  <div className="mp-admin-pay-grid-v3">
+                    <div className="mp-admin-pay-stat-v3">
+                      <p className="mp-admin-pay-stat-label-v3">Total Due</p>
+                      <p className="mp-admin-pay-stat-value-v3">
+                        ${registration.total_amount}
+                      </p>
+                    </div>
+                    <div className="mp-admin-pay-stat-v3">
+                      <p className="mp-admin-pay-stat-label-v3">Paid</p>
+                      <p className="mp-admin-pay-stat-value-v3">
+                        ${registration.amount_paid}
+                      </p>
+                    </div>
+                    <div className="mp-admin-pay-stat-v3">
+                      <p className="mp-admin-pay-stat-label-v3">Remaining</p>
+                      <p className="mp-admin-pay-stat-value-v3">${remaining}</p>
+                    </div>
+                  </div>
+
+                  <div className="mp-admin-pay-edit-v3">
+                    <label className="mp-admin-pay-label-v3" htmlFor="amount_paid">
+                      Update amount paid
+                    </label>
+                    <div className="mp-admin-pay-row-v3">
+                      <span className="mp-admin-pay-dollar-v3">$</span>
+                      <input
+                        id="amount_paid"
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        className="mp-admin-pay-input-v3"
+                        value={paidInput}
+                        onChange={(e) => setPaidInput(e.target.value)}
+                      />
+                      <button
+                        type="button"
+                        className="mp-btn mp-btn-primary"
+                        onClick={saveAmountPaid}
+                        disabled={updating}
+                      >
+                        {updating ? 'Saving…' : 'Save'}
+                      </button>
+                    </div>
+
                     <button
                       type="button"
-                      className="mp-btn mp-btn-primary"
-                      onClick={markAsPaid}
+                      className="mp-admin-pay-full-link-v3"
+                      onClick={markAsFullPaid}
                       disabled={updating}
                     >
-                      {updating ? 'Updating\u2026' : 'Mark as Paid'}
+                      Mark as paid in full (${registration.total_amount})
                     </button>
-                  ) : (
-                    <button
-                      type="button"
-                      className="mp-btn mp-btn-secondary"
-                      onClick={markAsPending}
-                      disabled={updating}
-                    >
-                      {updating ? 'Updating\u2026' : 'Revert to Pending'}
-                    </button>
-                  )}
+
+                    {saveSuccess && (
+                      <p className="mp-admin-pay-success-v3">
+                        Payment updated.
+                      </p>
+                    )}
+
+                    <p className="mp-admin-pay-help-v3">
+                      Payments within ${PAID_TOLERANCE} of the total are
+                      automatically considered paid.
+                    </p>
+                  </div>
                 </section>
 
                 <section className="mp-admin-detail-card-v3">
