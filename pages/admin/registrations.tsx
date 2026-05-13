@@ -6,17 +6,28 @@ import { useAdminAuth } from '@/lib/useAdminAuth';
 import AdminSiteHeader from '@/components/AdminSiteHeader';
 import SignOutIcon from '@/components/SignOutIcon';
 
+const PAID_TOLERANCE = 5;
+
 type RegistrationRow = {
   id: string;
   buyer_name: string;
   buyer_email: string;
+  reference_code: string | null;
   total_amount: number;
+  amount_paid: number;
   payment_status: 'pending' | 'paid';
   created_at: string;
   participants: { count: number }[];
 };
 
 type FilterMode = 'all' | 'pending' | 'paid';
+type DerivedStatus = 'unpaid' | 'partial' | 'paid';
+
+function deriveStatus(total: number, paid: number): DerivedStatus {
+  if (paid <= 0) return 'unpaid';
+  if (paid >= total - PAID_TOLERANCE) return 'paid';
+  return 'partial';
+}
 
 export default function AdminRegistrationsList() {
   const { ready, userEmail, signOut } = useAdminAuth();
@@ -32,7 +43,7 @@ export default function AdminRegistrationsList() {
       const { data, error: err } = await supabase
         .from('registrations')
         .select(
-          'id, buyer_name, buyer_email, total_amount, payment_status, created_at, participants(count)'
+          'id, buyer_name, buyer_email, reference_code, total_amount, amount_paid, payment_status, created_at, participants(count)'
         )
         .order('created_at', { ascending: false });
 
@@ -52,7 +63,12 @@ export default function AdminRegistrationsList() {
     let result = rows;
 
     if (filter !== 'all') {
-      result = result.filter((r) => r.payment_status === filter);
+      result = result.filter((r) => {
+        const status = deriveStatus(r.total_amount, r.amount_paid);
+        if (filter === 'paid') return status === 'paid';
+        // 'pending' filter includes unpaid + partial
+        return status !== 'paid';
+      });
     }
 
     if (search.trim()) {
@@ -60,7 +76,8 @@ export default function AdminRegistrationsList() {
       result = result.filter(
         (r) =>
           r.buyer_name.toLowerCase().includes(q) ||
-          r.buyer_email.toLowerCase().includes(q)
+          r.buyer_email.toLowerCase().includes(q) ||
+          (r.reference_code || '').toLowerCase().includes(q)
       );
     }
 
@@ -70,11 +87,15 @@ export default function AdminRegistrationsList() {
   const counts = useMemo(() => {
     if (!rows) return { all: 0, pending: 0, paid: 0 };
 
-    return {
-      all: rows.length,
-      pending: rows.filter((r) => r.payment_status === 'pending').length,
-      paid: rows.filter((r) => r.payment_status === 'paid').length,
-    };
+    let pending = 0;
+    let paid = 0;
+    for (const r of rows) {
+      const status = deriveStatus(r.total_amount, r.amount_paid);
+      if (status === 'paid') paid += 1;
+      else pending += 1;
+    }
+
+    return { all: rows.length, pending, paid };
   }, [rows]);
 
   if (!ready) return null;
@@ -126,7 +147,7 @@ export default function AdminRegistrationsList() {
               <input
                 type="search"
                 className="mp-admin-search-v3"
-                placeholder="Search by name or email&hellip;"
+                placeholder="Search by name, email, or reference code…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -183,9 +204,11 @@ export default function AdminRegistrationsList() {
                   <thead>
                     <tr>
                       <th>Name</th>
+                      <th>Reference</th>
                       <th>Email</th>
                       <th>People</th>
                       <th>Total</th>
+                      <th>Paid</th>
                       <th>Status</th>
                       <th>Date</th>
                       <th></th>
@@ -195,13 +218,20 @@ export default function AdminRegistrationsList() {
                   <tbody>
                     {filteredRows.map((r) => {
                       const participantCount = r.participants?.[0]?.count ?? 0;
+                      const status = deriveStatus(r.total_amount, r.amount_paid);
 
                       return (
                         <tr key={r.id}>
                           <td className="mp-admin-td-name-v3">{r.buyer_name}</td>
 
+                          <td className="mp-admin-td-ref-v3">
+                            {r.reference_code || '—'}
+                          </td>
+
                           <td className="mp-admin-td-email-v3">
-                            <a href={`mailto:${r.buyer_email}`}>{r.buyer_email}</a>
+                            <a href={`mailto:${r.buyer_email}`}>
+                              {r.buyer_email}
+                            </a>
                           </td>
 
                           <td>{participantCount}</td>
@@ -210,11 +240,15 @@ export default function AdminRegistrationsList() {
                             ${r.total_amount}
                           </td>
 
+                          <td className="mp-admin-td-amount-v3">
+                            ${r.amount_paid}
+                          </td>
+
                           <td>
                             <span
-                              className={`mp-admin-badge-v3 mp-admin-badge-${r.payment_status}-v3`}
+                              className={`mp-admin-badge-v3 mp-admin-badge-${status}-v3`}
                             >
-                              {r.payment_status}
+                              {status}
                             </span>
                           </td>
 
