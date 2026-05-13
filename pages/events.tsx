@@ -15,7 +15,6 @@ export default function Events() {
       </Head>
 
       <main className="mp-site">
-        <StaffLoginIcon />
         <PublicSiteHeader />
 
         <section className="mp-page-hero-art-v2">
