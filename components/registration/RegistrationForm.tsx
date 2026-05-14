@@ -17,13 +17,13 @@ type BuyerInfo = {
 
 type Participant = {
   name: string;
-  age: string;
+  age: number;
   shirt_size: ShirtSize | '';
 };
 
 const emptyParticipant = (): Participant => ({
   name: '',
-  age: '',
+  age: 0,
   shirt_size: '',
 });
 
@@ -59,7 +59,7 @@ export default function RegistrationForm() {
   const pricing = useMemo(() => {
     const parsed = participants.map((p) => ({
       name: p.name,
-      age: parseInt(p.age, 10) || 0,
+      age: Number(p.age) || 0,
       shirt_size: (p.shirt_size || 'M') as ShirtSize,
     }));
 
@@ -78,13 +78,13 @@ export default function RegistrationForm() {
   const handleParticipantChange = (
     index: number,
     field: keyof Participant,
-    value: string
+    value: string | number
   ) => {
     const next = [...participants];
 
     next[index] = {
       ...next[index],
-      [field]: value,
+      [field]: field === 'age' ? Number(value) : value,
     };
 
     setParticipants(next);
@@ -113,7 +113,7 @@ export default function RegistrationForm() {
         return `Participant ${i + 1} needs a name.`;
       }
 
-      const age = parseInt(p.age, 10);
+      const age = Number(p.age);
 
       if (Number.isNaN(age) || age < 0 || age > 120) {
         return `Participant ${i + 1} needs a valid age (0–120).`;
@@ -185,7 +185,7 @@ export default function RegistrationForm() {
       const participantRows = participants.map((p) => ({
         registration_id: registrationId,
         name: p.name.trim(),
-        age: parseInt(p.age, 10),
+        age: Number(p.age),
         shirt_size: p.shirt_size,
       }));
 
