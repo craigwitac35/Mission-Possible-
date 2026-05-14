@@ -24,7 +24,7 @@ export type ShirtSize =
 export type Participant = {
   name: string;
   age: number | '';
-  shirt_size: ShirtSize;
+  shirt_size: ShirtSize | '';
 };
 
 export type PricingPhase = 'early_bird' | 'regular' | 'closed';
