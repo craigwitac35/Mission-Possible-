@@ -1,330 +1,378 @@
-import { useMemo, useState, ChangeEvent, FormEvent } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
-import {
-  calculatePrice,
-  phaseLabel,
-  ShirtSize,
-} from '@/lib/pricing';
-import ParticipantFields from './ParticipantFields';
+import { useAdminAuth } from '@/lib/useAdminAuth';
+import AdminSiteHeader from '@/components/AdminSiteHeader';
+import SignOutIcon from '@/components/SignOutIcon';
 
-type BuyerInfo = {
-  name: string;
-  email: string;
-  phone: string;
-  group_name: string;
+const PAID_TOLERANCE = 5; // dollars
+
+type Registration = {
+  id: string;
+  buyer_name: string;
+  buyer_email: string;
+  buyer_phone: string;
+  group_name: string | null;
+  total_amount: number;
+  amount_paid: number;
+  payment_status: 'pending' | 'paid';
+  reference_code: string | null;
+  created_at: string;
 };
 
 type Participant = {
+  id: string;
   name: string;
   age: number;
-  shirt_size: ShirtSize | '';
+  shirt_size: string | null;
 };
 
-const emptyParticipant = (): Participant => ({
-  name: '',
-  age: 0,
-  shirt_size: '',
-});
+const SHIRT_LABELS: Record<string, string> = {
+  YS: 'Youth S',
+  YM: 'Youth M',
+  YL: 'Youth L',
+  YXL: 'Youth XL',
+  XS: 'Adult XS',
+  S: 'Adult S',
+  M: 'Adult M',
+  L: 'Adult L',
+  XL: 'Adult XL',
+  XXL: 'Adult XXL',
+  XXXL: 'Adult XXXL',
+};
 
-const REF_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+type DerivedStatus = 'unpaid' | 'partial' | 'paid';
 
-function generateReferenceCode(): string {
-  let code = 'MP-';
-
-  for (let i = 0; i < 4; i++) {
-    code += REF_CHARS[Math.floor(Math.random() * REF_CHARS.length)];
-  }
-
-  return code;
+function deriveStatus(total: number, paid: number): DerivedStatus {
+  if (paid <= 0) return 'unpaid';
+  if (paid >= total - PAID_TOLERANCE) return 'paid';
+  return 'partial';
 }
 
-export default function RegistrationForm() {
+export default function AdminRegistrationDetail() {
   const router = useRouter();
+  const { id } = router.query;
+  const { ready, userEmail, signOut } = useAdminAuth();
 
-  const [buyer, setBuyer] = useState<BuyerInfo>({
-    name: '',
-    email: '',
-    phone: '',
-    group_name: '',
-  });
-
-  const [participants, setParticipants] = useState<Participant[]>([
-    emptyParticipant(),
-  ]);
-
-  const [submitting, setSubmitting] = useState(false);
+  const [registration, setRegistration] = useState<Registration | null>(null);
+  const [participants, setParticipants] = useState<Participant[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [updating, setUpdating] = useState(false);
+  const [paidInput, setPaidInput] = useState<string>('');
 
-  const pricing = useMemo(() => {
-    const parsed = participants.map((p) => ({
-      name: p.name,
-      age: Number(p.age) || 0,
-      shirt_size: (p.shirt_size || 'M') as ShirtSize,
-    }));
+  useEffect(() => {
+    if (!ready || !id || typeof id !== 'string') return;
 
-    return calculatePrice(parsed);
-  }, [participants]);
+    const load = async () => {
+      const [{ data: reg, error: regErr }, { data: parts, error: partErr }] =
+        await Promise.all([
+          supabase.from('registrations').select('*').eq('id', id).single(),
+          supabase
+            .from('participants')
+            .select('id, name, age, shirt_size')
+            .eq('registration_id', id)
+            .order('created_at', { ascending: true }),
+        ]);
 
-  const handleBuyerChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setBuyer({
-      ...buyer,
-      [e.target.name]: e.target.value,
-    });
-  };
+      if (regErr || partErr) {
+        setError(regErr?.message || partErr?.message || 'Failed to load.');
+        return;
+      }
 
-  const handleParticipantChange = (
-    index: number,
-    field: keyof Participant,
-    value: string | number
-  ) => {
-    const next = [...participants];
-
-    next[index] = {
-      ...next[index],
-      [field]: field === 'age' ? Number(value) : value,
+      setRegistration(reg as Registration);
+      setParticipants((parts || []) as Participant[]);
+      setPaidInput(String(reg?.amount_paid ?? 0));
     };
 
-    setParticipants(next);
-  };
+    load();
+  }, [ready, id]);
 
-  const addParticipant = () => {
-    setParticipants([...participants, emptyParticipant()]);
-  };
+  const saveAmountPaid = async () => {
+    if (!registration) return;
 
-  const removeParticipant = (index: number) => {
-    if (participants.length <= 1) return;
-
-    setParticipants(participants.filter((_, i) => i !== index));
-  };
-
-  const validate = (): string | null => {
-    if (!buyer.name.trim()) return 'Buyer name is required.';
-    if (!buyer.email.trim()) return 'Buyer email is required.';
-    if (!buyer.phone.trim()) return 'Buyer phone is required.';
-    if (participants.length === 0) return 'Add at least one participant.';
-
-    for (let i = 0; i < participants.length; i++) {
-      const p = participants[i];
-
-      if (!p.name.trim()) {
-        return `Participant ${i + 1} needs a name.`;
-      }
-
-      const age = Number(p.age);
-
-      if (Number.isNaN(age) || age < 0 || age > 120) {
-        return `Participant ${i + 1} needs a valid age (0–120).`;
-      }
-
-      if (!p.shirt_size) {
-        return `Participant ${i + 1} needs a shirt size.`;
-      }
-    }
-
-    return null;
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(null);
-
-    const validationError = validate();
-
-    if (validationError) {
-      setError(validationError);
+    const parsed = parseFloat(paidInput);
+    if (Number.isNaN(parsed) || parsed < 0) {
+      setError('Amount paid must be a number greater than or equal to 0.');
       return;
     }
 
-    setSubmitting(true);
+    setUpdating(true);
+    setError(null);
+    setSaveSuccess(false);
 
-    try {
-      let referenceCode = generateReferenceCode();
-      let attempts = 0;
-      let registrationId: string | null = null;
+    const newStatus =
+      deriveStatus(registration.total_amount, parsed) === 'paid'
+        ? 'paid'
+        : 'pending';
 
-      while (attempts < 5 && !registrationId) {
-        const { data, error: insertErr } = await supabase
-          .from('registrations')
-          .insert({
-            buyer_name: buyer.name.trim(),
-            buyer_email: buyer.email.trim(),
-            buyer_phone: buyer.phone.trim(),
-            group_name: buyer.group_name.trim() || null,
-            total_amount: pricing.total,
-            payment_status: 'pending',
-            amount_paid: 0,
-            reference_code: referenceCode,
-          })
-          .select('id, reference_code')
-          .single();
+    const { error: updateErr } = await supabase
+      .from('registrations')
+      .update({
+        amount_paid: parsed,
+        payment_status: newStatus,
+      })
+      .eq('id', registration.id);
 
-        if (insertErr) {
-          if (
-            insertErr.code === '23505' &&
-            insertErr.message.includes('reference_code')
-          ) {
-            attempts += 1;
-            referenceCode = generateReferenceCode();
-            continue;
-          }
+    setUpdating(false);
 
-          throw insertErr;
-        }
-
-        registrationId = data.id;
-        referenceCode = data.reference_code;
-      }
-
-      if (!registrationId) {
-        throw new Error('Could not generate a unique reference code.');
-      }
-
-      const participantRows = participants.map((p) => ({
-        registration_id: registrationId,
-        name: p.name.trim(),
-        age: Number(p.age),
-        shirt_size: p.shirt_size,
-      }));
-
-      const { error: partErr } = await supabase
-        .from('participants')
-        .insert(participantRows);
-
-      if (partErr) throw partErr;
-
-      router.push(`/confirmation?ref=${encodeURIComponent(referenceCode)}`);
-    } catch (err: any) {
-      setError(err?.message || 'Something went wrong. Please try again.');
-      setSubmitting(false);
+    if (updateErr) {
+      setError(updateErr.message);
+      return;
     }
+
+    setRegistration({
+      ...registration,
+      amount_paid: parsed,
+      payment_status: newStatus,
+    });
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 2500);
   };
 
+  const markAsFullPaid = async () => {
+    if (!registration) return;
+    setPaidInput(String(registration.total_amount));
+    // small delay so input reflects first, then save
+    setTimeout(saveAmountPaid, 0);
+  };
+
+  if (!ready) return null;
+
+  const derivedStatus = registration
+    ? deriveStatus(registration.total_amount, registration.amount_paid)
+    : 'unpaid';
+
+  const remaining = registration
+    ? Math.max(0, registration.total_amount - registration.amount_paid)
+    : 0;
+
   return (
-    <form className="mp-form" onSubmit={handleSubmit} noValidate>
-      <section className="mp-form-step">
-        <p className="mp-form-step-label">Step 1</p>
-        <h2 className="mp-form-step-title">Your Info</h2>
+    <>
+      <Head>
+        <title>Registration Detail | Mission Possible Admin</title>
+      </Head>
 
-        <div className="mp-form-grid">
-          <label className="mp-form-field">
-            <span className="mp-form-label">Full Name</span>
-            <input
-              type="text"
-              name="name"
-              value={buyer.name}
-              onChange={handleBuyerChange}
-              required
-            />
-          </label>
+      <main className="mp-site mp-admin">
+        <SignOutIcon onClick={signOut} />
 
-          <label className="mp-form-field">
-            <span className="mp-form-label">Email</span>
-            <input
-              type="email"
-              name="email"
-              value={buyer.email}
-              onChange={handleBuyerChange}
-              required
-            />
-          </label>
+        <AdminSiteHeader />
 
-          <label className="mp-form-field">
-            <span className="mp-form-label">Phone</span>
-            <input
-              type="tel"
-              name="phone"
-              value={buyer.phone}
-              onChange={handleBuyerChange}
-              required
-            />
-          </label>
-
-          <label className="mp-form-field">
-            <span className="mp-form-label">Group / Team Name (optional)</span>
-            <input
-              type="text"
-              name="group_name"
-              value={buyer.group_name}
-              onChange={handleBuyerChange}
-            />
-          </label>
-        </div>
-      </section>
-
-      <section className="mp-form-step">
-        <p className="mp-form-step-label">Step 2</p>
-        <h2 className="mp-form-step-title">Participants</h2>
-
-        {participants.map((p, i) => (
-          <ParticipantFields
-            key={i}
-            index={i}
-            participant={p}
-            onChange={(field, value) => handleParticipantChange(i, field, value)}
-            onRemove={
-              participants.length > 1 ? () => removeParticipant(i) : undefined
-            }
+        <section className="mp-hero-art-v2">
+          <img
+            src="/images/dashboard-image.png"
+            alt="Mission Possible Admin"
+            className="mp-hero-art-image-v2"
           />
-        ))}
+        </section>
 
-        <button
-          type="button"
-          className="mp-btn mp-btn-secondary"
-          onClick={addParticipant}
-        >
-          + Add Participant
-        </button>
-      </section>
-
-      <section className="mp-form-step">
-        <p className="mp-form-step-label">Step 3</p>
-        <h2 className="mp-form-step-title">Summary</h2>
-
-        <div className="mp-summary-ticket">
-          <div className="mp-ticket-header">
-            <span className="mp-ticket-event">Mission Possible</span>
-            <span className="mp-ticket-phase">{phaseLabel(pricing.phase)}</span>
+        <section className="mp-admin-intro-v5">
+          <div className="mp-container-v2">
+            <p className="mp-admin-intro-eyebrow-v5">
+              <span className="mp-divider-dot" />
+              Mission Possible &middot; Admin
+              <span className="mp-divider-dot" />
+            </p>
+            <p className="mp-admin-intro-subtitle-v5">
+              Buyer info, payment status, and participants.
+            </p>
+            <p className="mp-admin-intro-email-v5">
+              Signed in as <strong>{userEmail}</strong>
+            </p>
           </div>
+        </section>
 
-          <div className="mp-ticket-body">
-            <div className="mp-ticket-row">
-              <span>
-                Adults × {pricing.adultCount}
-                <span className="mp-ticket-rate"> @ ${pricing.adultPrice}</span>
-              </span>
-              <span>${pricing.adultCount * pricing.adultPrice}</span>
-            </div>
+        <div className="mp-admin-body-v3">
+          <div className="mp-container-v2">
+            <Link href="/admin/registrations" className="mp-admin-back-v3">
+              &larr; Back to all registrations
+            </Link>
 
-            <div className="mp-ticket-row">
-              <span>
-                Children × {pricing.childCount}
-                <span className="mp-ticket-rate"> @ ${pricing.childPrice}</span>
-              </span>
-              <span>${pricing.childCount * pricing.childPrice}</span>
-            </div>
-          </div>
+            {error && <p className="mp-form-error mp-admin-error">{error}</p>}
 
-          <div className="mp-ticket-perforation" />
+            {!registration ? (
+              <p className="mp-admin-loading-v3">Loading&hellip;</p>
+            ) : (
+              <>
+                <section className="mp-admin-detail-card-v3">
+                  <div className="mp-admin-detail-header-v3">
+                    <div>
+                      <p className="mp-admin-block-label-v3">Buyer Information</p>
+                      <h2 className="mp-admin-detail-name-v3">
+                        {registration.buyer_name}
+                      </h2>
+                    </div>
+                    <span
+                      className={`mp-admin-badge-v3 mp-admin-badge-${derivedStatus}-v3 mp-admin-detail-badge-v3`}
+                    >
+                      {derivedStatus}
+                    </span>
+                  </div>
 
-          <div className="mp-ticket-total">
-            <span>Total Due</span>
-            <span className="mp-ticket-total-amount">${pricing.total}</span>
+                  <div className="mp-admin-detail-grid-v3">
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Reference</span>
+                      <span className="mp-admin-detail-value-v3 mp-admin-detail-ref-v3">
+                        {registration.reference_code || '—'}
+                      </span>
+                    </div>
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Email</span>
+                      <a
+                        href={`mailto:${registration.buyer_email}`}
+                        className="mp-admin-detail-value-v3 mp-admin-detail-link-v3"
+                      >
+                        {registration.buyer_email}
+                      </a>
+                    </div>
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Phone</span>
+                      <a
+                        href={`tel:${registration.buyer_phone}`}
+                        className="mp-admin-detail-value-v3 mp-admin-detail-link-v3"
+                      >
+                        {registration.buyer_phone}
+                      </a>
+                    </div>
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Group</span>
+                      <span className="mp-admin-detail-value-v3">
+                        {registration.group_name || '–'}
+                      </span>
+                    </div>
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Total Due</span>
+                      <span className="mp-admin-detail-value-v3 mp-admin-detail-amount-v3">
+                        ${registration.total_amount}
+                      </span>
+                    </div>
+                    <div className="mp-admin-detail-row-v3">
+                      <span className="mp-admin-detail-label-v3">Submitted</span>
+                      <span className="mp-admin-detail-value-v3">
+                        {new Date(registration.created_at).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                </section>
+
+                <section className="mp-admin-detail-card-v3">
+                  <p className="mp-admin-block-label-v3">Payment Tracking</p>
+                  <h2 className="mp-admin-detail-name-v3 mp-admin-payment-status-v3">
+                    Currently <em>{derivedStatus}</em>
+                  </h2>
+
+                  <div className="mp-admin-pay-grid-v3">
+                    <div className="mp-admin-pay-stat-v3">
+                      <p className="mp-admin-pay-stat-label-v3">Total Due</p>
+                      <p className="mp-admin-pay-stat-value-v3">
+                        ${registration.total_amount}
+                      </p>
+                    </div>
+                    <div className="mp-admin-pay-stat-v3">
+                      <p className="mp-admin-pay-stat-label-v3">Paid</p>
+                      <p className="mp-admin-pay-stat-value-v3">
+                        ${registration.amount_paid}
+                      </p>
+                    </div>
+                    <div className="mp-admin-pay-stat-v3">
+                      <p className="mp-admin-pay-stat-label-v3">Remaining</p>
+                      <p className="mp-admin-pay-stat-value-v3">${remaining}</p>
+                    </div>
+                  </div>
+
+                  <div className="mp-admin-pay-edit-v3">
+                    <label className="mp-admin-pay-label-v3" htmlFor="amount_paid">
+                      Update amount paid
+                    </label>
+                    <div className="mp-admin-pay-row-v3">
+                      <span className="mp-admin-pay-dollar-v3">$</span>
+                      <input
+                        id="amount_paid"
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        className="mp-admin-pay-input-v3"
+                        value={paidInput}
+                        onChange={(e) => setPaidInput(e.target.value)}
+                      />
+                      <button
+                        type="button"
+                        className="mp-btn mp-btn-primary"
+                        onClick={saveAmountPaid}
+                        disabled={updating}
+                      >
+                        {updating ? 'Saving…' : 'Save'}
+                      </button>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="mp-admin-pay-full-link-v3"
+                      onClick={markAsFullPaid}
+                      disabled={updating}
+                    >
+                      Mark as paid in full (${registration.total_amount})
+                    </button>
+
+                    {saveSuccess && (
+                      <p className="mp-admin-pay-success-v3">
+                        Payment updated.
+                      </p>
+                    )}
+
+                    <p className="mp-admin-pay-help-v3">
+                      Payments within ${PAID_TOLERANCE} of the total are
+                      automatically considered paid.
+                    </p>
+                  </div>
+                </section>
+
+                <section className="mp-admin-detail-card-v3">
+                  <p className="mp-admin-block-label-v3">
+                    Participants ({participants.length})
+                  </p>
+                  <h2 className="mp-admin-detail-name-v3">
+                    Who&apos;s <em>showing up.</em>
+                  </h2>
+
+                  {participants.length === 0 ? (
+                    <p className="mp-admin-empty-v3">No participants found.</p>
+                  ) : (
+                    <div className="mp-admin-table-wrap-v3">
+                      <table className="mp-admin-table-v3">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Type</th>
+                            <th>Shirt Size</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {participants.map((p) => (
+                            <tr key={p.id}>
+                              <td className="mp-admin-td-name-v3">{p.name}</td>
+                              <td>{p.age}</td>
+                              <td>{p.age > 13 ? 'Adult' : 'Child'}</td>
+                              <td className="mp-admin-td-shirt-v3">
+                                {p.shirt_size
+                                  ? SHIRT_LABELS[p.shirt_size] || p.shirt_size
+                                  : '–'}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </section>
+              </>
+            )}
           </div>
         </div>
-
-        {error && <p className="mp-form-error">{error}</p>}
-
-        <button
-          type="submit"
-          className="mp-btn mp-btn-primary mp-btn-submit"
-          disabled={submitting}
-        >
-          {submitting ? 'Submitting…' : 'Complete Registration'}
-        </button>
-      </section>
-    </form>
+      </main>
+    </>
   );
 }
