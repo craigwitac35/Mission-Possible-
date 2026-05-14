@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabaseClient';
 import {
   calculatePrice,
   phaseLabel,
-  ShirtSize,
+  Participant,
 } from '@/lib/pricing';
 import ParticipantFields from './ParticipantFields';
 
@@ -13,12 +13,6 @@ type BuyerInfo = {
   email: string;
   phone: string;
   group_name: string;
-};
-
-type Participant = {
-  name: string;
-  age: string;
-  shirt_size: ShirtSize | '';
 };
 
 const emptyParticipant = (): Participant => ({
@@ -46,19 +40,14 @@ export default function RegistrationForm() {
     phone: '',
     group_name: '',
   });
-  const [participants, setParticipants] = useState([
+  const [participants, setParticipants] = useState<Participant[]>([
     emptyParticipant(),
   ]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const pricing = useMemo(() => {
-    const parsed = participants.map((p) => ({
-      name: p.name,
-      age: parseInt(p.age, 10) || 0,
-      shirt_size: (p.shirt_size || 'M') as ShirtSize,
-    }));
-    return calculatePrice(parsed);
+    return calculatePrice(participants);
   }, [participants]);
 
   const handleBuyerChange = (
@@ -99,7 +88,8 @@ export default function RegistrationForm() {
       if (!p.name.trim()) {
         return `Participant ${i + 1} needs a name.`;
       }
-      const age = parseInt(p.age, 10);
+      const age =
+        typeof p.age === 'number' ? p.age : parseInt(String(p.age), 10);
       if (Number.isNaN(age) || age < 0 || age > 120) {
         return `Participant ${i + 1} needs a valid age (0–120).`;
       }
@@ -124,7 +114,6 @@ export default function RegistrationForm() {
     setSubmitting(true);
 
     try {
-      // Try a few times in case of unique-collision (extremely unlikely)
       let referenceCode = generateReferenceCode();
       let attempts = 0;
       let registrationId: string | null = null;
@@ -147,7 +136,6 @@ export default function RegistrationForm() {
 
         if (regErr) {
           if (regErr.code === '23505') {
-            // Unique violation — retry with new code
             referenceCode = generateReferenceCode();
             attempts++;
             continue;
@@ -158,12 +146,13 @@ export default function RegistrationForm() {
         registrationId = reg?.id;
       }
 
-      if (!registrationId) throw new Error('Failed to generate unique reference code.');
+      if (!registrationId)
+        throw new Error('Failed to generate unique reference code.');
 
       const participantRows = participants.map((p) => ({
         registration_id: registrationId,
         name: p.name.trim(),
-        age: parseInt(p.age, 10),
+        age: typeof p.age === 'number' ? p.age : parseInt(String(p.age), 10),
         shirt_size: p.shirt_size,
       }));
 
