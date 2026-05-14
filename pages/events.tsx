@@ -46,7 +46,7 @@ export default function Events() {
               <div className="mp-event-stamp-v2">
                 <span className="mp-stamp-month-v2">AUG</span>
                 <span className="mp-stamp-day-v2">29</span>
-                <span className="mp-stamp-year-v2">2025</span>
+                <span className="mp-stamp-year-v2">2026</span>
               </div>
 
               <div className="mp-event-body-v2">
