@@ -11,7 +11,7 @@ const GIVEBUTTER_URL = 'https://givebutter.com/z6eQeg';
 // the person owes for registration. They simply suggest a higher amount to
 // type into Givebutter, since it is a type-your-own-amount donation form and
 // everything lands in the same account.
-const DONATION_OPTIONS = [0, 10, 25, 50];
+const DONATION_OPTIONS = [0, 10, 25, 50, 100];
 
 type Registration = {
   reference_code: string;
@@ -26,7 +26,8 @@ export default function ConfirmationPage() {
 
   const [registration, setRegistration] = useState<Registration | null>(null);
   const [copied, setCopied] = useState(false);
-  const [donationAdd, setDonationAdd] = useState(0);
+  const [selectedAdd, setSelectedAdd] = useState<number | 'custom'>(0);
+  const [customAmount, setCustomAmount] = useState('');
 
   useEffect(() => {
     if (!refCode) return;
@@ -51,10 +52,17 @@ export default function ConfirmationPage() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard blocked — fall back silently
+      // Clipboard blocked, fall back silently
     }
   };
 
+  const parsedCustom = parseFloat(customAmount);
+  const donationAdd =
+    selectedAdd === 'custom'
+      ? Number.isNaN(parsedCustom) || parsedCustom < 0
+        ? 0
+        : parsedCustom
+      : selectedAdd;
   const payAmount = registration ? registration.total_amount + donationAdd : 0;
 
   return (
@@ -138,15 +146,52 @@ export default function ConfirmationPage() {
                         <button
                           key={amt}
                           type="button"
-                          onClick={() => setDonationAdd(amt)}
+                          onClick={() => setSelectedAdd(amt)}
                           className={`mp-pay-donate-chip-v2${
-                            donationAdd === amt ? ' is-active' : ''
+                            selectedAdd === amt ? ' is-active' : ''
                           }`}
                         >
                           {amt === 0 ? 'Just my total' : `+ $${amt}`}
                         </button>
                       ))}
+                      <button
+                        type="button"
+                        onClick={() => setSelectedAdd('custom')}
+                        className={`mp-pay-donate-chip-v2${
+                          selectedAdd === 'custom' ? ' is-active' : ''
+                        }`}
+                      >
+                        Custom
+                      </button>
                     </div>
+
+                    {selectedAdd === 'custom' && (
+                      <div className="mp-pay-donate-custom-v2">
+                        <label
+                          className="mp-pay-donate-custom-label-v2"
+                          htmlFor="custom-donation"
+                        >
+                          Enter your donation amount
+                        </label>
+                        <div className="mp-pay-donate-custom-row-v2">
+                          <span className="mp-pay-donate-custom-dollar-v2">
+                            $
+                          </span>
+                          <input
+                            id="custom-donation"
+                            type="number"
+                            min="0"
+                            step="1"
+                            inputMode="decimal"
+                            placeholder="0"
+                            className="mp-pay-donate-custom-input-v2"
+                            value={customAmount}
+                            onChange={(e) => setCustomAmount(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                    )}
+
                     {donationAdd > 0 && (
                       <p className="mp-pay-donate-hint-v2">
                         ${registration.total_amount} registration + $
@@ -186,7 +231,7 @@ export default function ConfirmationPage() {
                   <p className="mp-pay-note-v2">
                     Once we receive your payment, we&apos;ll mark your
                     registration as paid. If you can&apos;t paste the code, no
-                    problem — we&apos;ll match you by name.
+                    problem, we&apos;ll match you by name.
                   </p>
                 </>
               ) : (
