@@ -4501,3 +4501,87 @@ button.mp-staff-login {
     padding: 1.25rem;
   }
 }
+
+/* =========================
+   DONATION ADD-ON (confirmation page)
+========================= */
+
+.mp-pay-donate-v2 {
+  background: #f4ecd8;
+  border: 1px solid rgba(184, 152, 90, 0.3);
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+  margin: 0 0 1.75rem;
+}
+
+.mp-pay-donate-label-v2 {
+  margin: 0 0 0.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8b1e2d;
+  font-weight: 700;
+}
+
+.mp-pay-donate-sub-v2 {
+  margin: 0 0 0.9rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #5c3a2e;
+}
+
+.mp-pay-donate-chips-v2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mp-pay-donate-chip-v2 {
+  flex: 1 1 auto;
+  min-width: 96px;
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.45);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0b1426;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.mp-pay-donate-chip-v2:hover {
+  border-color: #c9a961;
+  background: #fdfaf1;
+}
+
+.mp-pay-donate-chip-v2.is-active {
+  background: #0b1426;
+  border-color: #0b1426;
+  color: #f4ecd8;
+}
+
+.mp-pay-donate-hint-v2 {
+  margin: 0.9rem 0 0;
+  font-size: 0.88rem;
+  color: #5c3a2e;
+  line-height: 1.5;
+}
+
+.mp-pay-donate-hint-v2 strong {
+  color: #0b1426;
+}
+
+/* =========================
+   DONATION NOTE (registration summary)
+========================= */
+
+.mp-form-summary-donate-note-v2 {
+  margin: 1.1rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #5c3a2e;
+  border-top: 1px solid rgba(201, 169, 97, 0.3);
+  padding-top: 0.9rem;
+}
