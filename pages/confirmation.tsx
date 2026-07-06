@@ -7,6 +7,12 @@ import PublicSiteHeader from '@/components/PublicSiteHeader';
 
 const GIVEBUTTER_URL = 'https://givebutter.com/z6eQeg';
 
+// Optional donation add-ons offered at payment time. These do not change what
+// the person owes for registration. They simply suggest a higher amount to
+// type into Givebutter, since it is a type-your-own-amount donation form and
+// everything lands in the same account.
+const DONATION_OPTIONS = [0, 10, 25, 50];
+
 type Registration = {
   reference_code: string;
   total_amount: number;
@@ -20,6 +26,7 @@ export default function ConfirmationPage() {
 
   const [registration, setRegistration] = useState<Registration | null>(null);
   const [copied, setCopied] = useState(false);
+  const [donationAdd, setDonationAdd] = useState(0);
 
   useEffect(() => {
     if (!refCode) return;
@@ -47,6 +54,8 @@ export default function ConfirmationPage() {
       // Clipboard blocked — fall back silently
     }
   };
+
+  const payAmount = registration ? registration.total_amount + donationAdd : 0;
 
   return (
     <>
@@ -95,7 +104,7 @@ export default function ConfirmationPage() {
               {registration ? (
                 <>
                   <p className="mp-pay-total-label-v2">Your total</p>
-                  <p className="mp-pay-total-v2">${registration.total_amount}</p>
+                  <p className="mp-pay-total-v2">${payAmount}</p>
 
                   <div className="mp-pay-code-block-v2">
                     <p className="mp-pay-code-label-v2">Your reference code</p>
@@ -114,14 +123,46 @@ export default function ConfirmationPage() {
                     </div>
                   </div>
 
+                  <div className="mp-pay-donate-v2">
+                    <p className="mp-pay-donate-label-v2">
+                      Add a little extra? (optional)
+                    </p>
+                    <p className="mp-pay-donate-sub-v2">
+                      Guardian 4 Heroes and Heroes K9 Odyssey Academy are
+                      veteran-run nonprofits that keep going on donations. If
+                      you&apos;d like to chip in beyond your registration, add
+                      it here and it goes straight to the cause.
+                    </p>
+                    <div className="mp-pay-donate-chips-v2">
+                      {DONATION_OPTIONS.map((amt) => (
+                        <button
+                          key={amt}
+                          type="button"
+                          onClick={() => setDonationAdd(amt)}
+                          className={`mp-pay-donate-chip-v2${
+                            donationAdd === amt ? ' is-active' : ''
+                          }`}
+                        >
+                          {amt === 0 ? 'Just my total' : `+ $${amt}`}
+                        </button>
+                      ))}
+                    </div>
+                    {donationAdd > 0 && (
+                      <p className="mp-pay-donate-hint-v2">
+                        ${registration.total_amount} registration + $
+                        {donationAdd} donation ={' '}
+                        <strong>${payAmount}</strong>. Thank you.
+                      </p>
+                    )}
+                  </div>
+
                   <ol className="mp-pay-steps-v2">
                     <li>
                       <strong>Click the Givebutter button below</strong> to open
                       the donation page.
                     </li>
                     <li>
-                      <strong>Enter ${registration.total_amount}</strong> as your
-                      donation amount.
+                      <strong>Enter ${payAmount}</strong> as your amount.
                     </li>
                     <li>
                       <strong>Paste your reference code</strong> (
@@ -139,7 +180,7 @@ export default function ConfirmationPage() {
                     rel="noreferrer"
                     className="mp-cinematic-cta mp-pay-cta-v2"
                   >
-                    Pay ${registration.total_amount} via Givebutter
+                    Pay ${payAmount} via Givebutter
                   </a>
 
                   <p className="mp-pay-note-v2">
