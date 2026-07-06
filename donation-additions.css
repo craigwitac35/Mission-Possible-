@@ -81,3 +81,50 @@
   border-top: 1px solid rgba(201, 169, 97, 0.3);
   padding-top: 0.9rem;
 }
+
+/* =========================
+   DONATION CUSTOM AMOUNT (confirmation page)
+========================= */
+
+.mp-pay-donate-custom-v2 {
+  margin-top: 0.9rem;
+}
+
+.mp-pay-donate-custom-label-v2 {
+  display: block;
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5c3a2e;
+  font-weight: 700;
+}
+
+.mp-pay-donate-custom-row-v2 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fff;
+  border: 1px solid rgba(184, 152, 90, 0.45);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+}
+
+.mp-pay-donate-custom-dollar-v2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0b1426;
+}
+
+.mp-pay-donate-custom-input-v2 {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0b1426;
+}
