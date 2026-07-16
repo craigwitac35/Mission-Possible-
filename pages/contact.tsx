@@ -2,6 +2,9 @@ import Link from 'next/link';
 import Head from 'next/head';
 import PublicSiteHeader from '@/components/PublicSiteHeader';
 
+const CAMPUS_MAPS_URL =
+  'https://www.google.com/maps/search/?api=1&query=310+US+Hwy+71+N+Sauk+Centre+MN+56378';
+
 export default function Contact() {
   return (
     <>
@@ -9,7 +12,7 @@ export default function Contact() {
         <title>Contact Us | Mission Possible</title>
         <meta
           name="description"
-          content="Get in touch with Guardian 4 Heroes and Heroes K9 Odyssey Academy. Mailing address, event location, email, and phone for Mission Possible: Hooves and Paws."
+          content="Contact Guardian 4 Heroes and Heroes K9 Odyssey Academy. Both organizations are located at The Eagles Healing Nest, 310 US Hwy 71 N, Sauk Centre, MN."
         />
       </Head>
 
@@ -18,7 +21,7 @@ export default function Contact() {
 
         <section className="mp-section-v2 mp-section-cream-v2">
           <div className="mp-container-v2">
-            <div className="mp-events-intro-v2">
+            <div className="mp-events-intro-v2 mp-contact-intro-v3">
               <Link href="/" className="mp-back-link-v2 mp-back-link-dark-v2">
                 &larr; Mission Possible Home
               </Link>
@@ -33,6 +36,52 @@ export default function Contact() {
                 Questions about the event, sponsorship, volunteering, or the
                 programs behind it? Both organizations are one message away.
               </p>
+            </div>
+
+            <div className="mp-events-intro-v2">
+              <p className="mp-label-v2">Find Us</p>
+
+              <h2 className="mp-title-v2">
+                Two Missions, <em>One Address</em>
+              </h2>
+
+              <address className="mp-campus-address-v3">
+                <span className="mp-campus-street-v3">
+                  310 US Hwy 71 N, Sauk Centre, MN 56378
+                </span>
+                <span className="mp-campus-venue-v3">
+                  The Eagles Healing Nest
+                </span>
+              </address>
+
+              <a
+                href={CAMPUS_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mp-campus-map-link-v3"
+              >
+                Open in Maps &rarr;
+              </a>
+            </div>
+
+            <div className="mp-campus-grid-v3">
+              <article className="mp-campus-card-v3">
+                <p className="mp-campus-card-kicker-v3">Hooves</p>
+                <h3 className="mp-campus-card-name-v3">Guardian 4 Heroes</h3>
+                <p className="mp-campus-card-where-v3">
+                  At the <strong>Barnyard</strong>
+                </p>
+              </article>
+
+              <article className="mp-campus-card-v3">
+                <p className="mp-campus-card-kicker-v3">Paws</p>
+                <h3 className="mp-campus-card-name-v3">
+                  Heroes K9 Odyssey Academy
+                </h3>
+                <p className="mp-campus-card-where-v3">
+                  Behind the <strong>Auditorium</strong>
+                </p>
+              </article>
             </div>
           </div>
         </section>
@@ -71,12 +120,19 @@ export default function Contact() {
                 </li>
 
                 <li className="mp-contact-item-v3">
-                  <span className="mp-contact-item-label-v3">Location</span>
-                  <span className="mp-contact-item-value-plain-v3">
-                    Sauk Centre, MN
+                  <span className="mp-contact-item-label-v3">Phone</span>
+                  <a href="tel:+13208282477" className="mp-contact-item-value-v3">
+                    (320) 828-2477
+                  </a>
+                </li>
+
+                <li className="mp-contact-item-v3">
+                  <span className="mp-contact-item-label-v3">Mailing Address</span>
+                  <address className="mp-contact-address-v3">
+                    310 US Hwy 71 N
                     <br />
-                    <em>Visits by appointment only</em>
-                  </span>
+                    Sauk Centre, MN 56378
+                  </address>
                 </li>
 
                 <li className="mp-contact-item-v3">
@@ -149,30 +205,6 @@ export default function Contact() {
                     <br />
                     Waite Park, MN 56387
                   </address>
-                  <span className="mp-contact-item-note-v3">
-                    Checks, donations, and correspondence.
-                  </span>
-                </li>
-
-                <li className="mp-contact-item-v3">
-                  <span className="mp-contact-item-label-v3">Physical Location</span>
-                  <address className="mp-contact-address-v3">
-                    310 US Hwy 71 N
-                    <br />
-                    Sauk Centre, MN 56378
-                  </address>
-                  <span className="mp-contact-item-note-v3">
-                    On the grounds of The Eagles Healing Nest, behind the
-                    auditorium. Also the site of the Mission Possible Mud Run.
-                  </span>
-                  <a
-                    href="https://www.google.com/maps/search/?api=1&query=310+US+Hwy+71+N+Sauk+Centre+MN+56378"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mp-contact-item-value-v3"
-                  >
-                    Open in Maps &rarr;
-                  </a>
                 </li>
 
                 <li className="mp-contact-item-v3">
