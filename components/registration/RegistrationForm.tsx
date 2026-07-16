@@ -304,6 +304,12 @@ export default function RegistrationForm() {
               ${pricing.total}
             </span>
           </div>
+
+          <p className="mp-form-summary-donate-note-v2">
+            Both organizations are veteran-run nonprofits that keep going on
+            donations. At payment you&apos;ll have the option to add a little
+            extra if you&apos;d like to support the cause.
+          </p>
         </div>
 
         {error && <p className="mp-form-error">{error}</p>}
