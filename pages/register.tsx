@@ -6,7 +6,7 @@ import {
   phaseLabel,
   Participant,
 } from '@/lib/pricing';
-import ParticipantFields from './ParticipantFields';
+import ParticipantFields from '@/components/registration/ParticipantFields';
 
 type BuyerInfo = {
   name: string;
