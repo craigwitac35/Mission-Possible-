@@ -42,6 +42,17 @@ export default function PublicSiteHeader() {
           >
             Register
           </Link>
+
+          <Link
+            href="/contact"
+            className={
+              isActive('/contact')
+                ? 'mp-public-nav-pill-v5 mp-public-nav-pill-active-v5'
+                : 'mp-public-nav-pill-v5'
+            }
+          >
+            Contact
+          </Link>
         </nav>
 
         <Link
