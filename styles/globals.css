@@ -830,15 +830,15 @@ a {
   list-style: none;
   padding: 0;
   margin: 2rem auto 0;
-  max-width: 600px;
+  max-width: 720px;
 }
 
 .mp-schedule-item-v2 {
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: 155px 1fr;
   gap: 1.5rem;
-  align-items: center;
-  padding: 1rem 0;
+  align-items: start;
+  padding: 1.15rem 0;
   border-bottom: 1px solid rgba(201, 169, 97, 0.2);
 }
 
@@ -849,17 +849,30 @@ a {
 .mp-schedule-time-v2 {
   font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #C9A961;
   font-weight: 700;
+  padding-top: 0.3rem;
 }
 
 .mp-schedule-event-v2 {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.15rem;
+  line-height: 1.35;
   color: #F4ECD8;
   font-weight: 500;
+}
+
+.mp-schedule-detail-v2 {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(244, 236, 216, 0.7);
+  margin-top: 0.35rem;
 }
 
 /* ============================================
@@ -2251,8 +2264,13 @@ select.mp-form-input {
   }
 
   .mp-schedule-item-v2 {
-    grid-template-columns: 90px 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .mp-schedule-time-v2 {
+    padding-top: 0;
+    letter-spacing: 0.12em;
   }
 
   .mp-footer-grid-v2 {
@@ -4712,6 +4730,19 @@ button.mp-staff-login {
 .mp-campus-map-link-v3:hover {
   color: #C9A961;
   border-color: #C9A961;
+}
+
+/* --- Home page address block --- */
+
+.mp-home-address-v3 {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(201, 169, 97, 0.35);
+}
+
+.mp-home-address-actions-v3 {
+  text-align: center;
+  margin: 0 0 2.5rem;
 }
 
 .mp-campus-grid-v3 {
