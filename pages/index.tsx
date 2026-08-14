@@ -2,6 +2,9 @@ import Link from 'next/link';
 import Head from 'next/head';
 import PublicSiteHeader from '@/components/PublicSiteHeader';
 
+const CAMPUS_MAPS_URL =
+  'https://www.google.com/maps/search/?api=1&query=310+US+Hwy+71+N+Sauk+Centre+MN+56378';
+
 export default function Home() {
   return (
     <>
@@ -193,6 +196,28 @@ export default function Home() {
             <p className="mp-prose-center-v2">
               Mud, music, food trucks, and the kind of community that only
               shows up when there&rsquo;s something worth showing up for.
+            </p>
+
+            <address className="mp-campus-address-v3 mp-home-address-v3">
+              <span className="mp-campus-street-v3">
+                310 US Hwy 71 N
+                <br />
+                Sauk Centre, MN 56378
+              </span>
+              <span className="mp-campus-venue-v3">
+                The Eagles Healing Nest
+              </span>
+            </address>
+
+            <p className="mp-home-address-actions-v3">
+              <a
+                href={CAMPUS_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mp-campus-map-link-v3"
+              >
+                Open in Maps &rarr;
+              </a>
             </p>
 
             <p className="mp-prose-center-v2 mp-next-event-note-v2">
