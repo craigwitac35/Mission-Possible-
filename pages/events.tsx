@@ -214,47 +214,149 @@ export default function Events() {
             <ul className="mp-schedule-list-v2">
               <li className="mp-schedule-item-v2">
                 <span className="mp-schedule-time-v2">Fri. 4:00 PM</span>
-                <span className="mp-schedule-event-v2">Pre-Registration &amp; Packet Pickup</span>
+                <span className="mp-schedule-event-v2">
+                  Pre-Registration &amp; Packet Pickup
+                </span>
               </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">6:00 &ndash; 10:00 AM</span>
+                <span className="mp-schedule-event-v2">
+                  B3 Pancake Breakfast
+                </span>
+              </li>
+
               <li className="mp-schedule-item-v2">
                 <span className="mp-schedule-time-v2">7:00 AM</span>
-                <span className="mp-schedule-event-v2">Check-In Opens</span>
+                <span className="mp-schedule-event-v2">
+                  Mud Run Check-In
+                  <span className="mp-schedule-detail-v2">
+                    Day-of registration also available
+                  </span>
+                </span>
               </li>
+
               <li className="mp-schedule-item-v2">
                 <span className="mp-schedule-time-v2">8:00 AM</span>
-                <span className="mp-schedule-event-v2">Mud Run Begins</span>
+                <span className="mp-schedule-event-v2">
+                  Mud Run Starts
+                  <span className="mp-schedule-detail-v2">At the Barnyard</span>
+                </span>
               </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">8:00 &ndash; 10:30 AM</span>
+                <span className="mp-schedule-event-v2">
+                  Coffee at the Barn
+                  <span className="mp-schedule-detail-v2">
+                    Special HK9OA blends from Kinder Coffee Lab
+                  </span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">8:00 AM &ndash; 3:00 PM</span>
+                <span className="mp-schedule-event-v2">
+                  Cookies &amp; Refreshments
+                  <span className="mp-schedule-detail-v2">At the Barnyard</span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">8:00 AM &ndash; 3:00 PM</span>
+                <span className="mp-schedule-event-v2">
+                  Coloring Contest
+                  <span className="mp-schedule-detail-v2">
+                    At both The Academy and the Barnyard
+                  </span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">10:00 AM &ndash; 5:00 PM</span>
+                <span className="mp-schedule-event-v2">
+                  Nest Fest
+                  <span className="mp-schedule-detail-v2">
+                    At the Auditorium &middot; Vendors, silent auction, and new
+                    Nest apparel
+                  </span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">10:00 AM &ndash; 5:00 PM</span>
+                <span className="mp-schedule-event-v2">
+                  Rock Climbing
+                  <span className="mp-schedule-detail-v2">During Nest Fest</span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">10:30 AM &ndash; 2:30 PM</span>
+                <span className="mp-schedule-event-v2">
+                  Face Painting
+                  <span className="mp-schedule-detail-v2">At the Barn</span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">11:00 AM &ndash; 1:00 PM</span>
+                <span className="mp-schedule-event-v2">
+                  Bean Bag Tournament
+                  <span className="mp-schedule-detail-v2">
+                    Hosted by HK9OA &middot; Pre-register at The Academy, behind
+                    the auditorium
+                  </span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">11:00 AM &ndash; 1:00 PM</span>
+                <span className="mp-schedule-event-v2">
+                  Roping Contest
+                  <span className="mp-schedule-detail-v2">
+                    Youth and adult brackets &middot; At the Barnyard
+                  </span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">Top &amp; Bottom of the Hour</span>
+                <span className="mp-schedule-event-v2">
+                  Dog Body Language BINGO
+                  <span className="mp-schedule-detail-v2">
+                    Led by Matt Beisner &middot; A kids&rsquo; activity, but
+                    adults are encouraged to join
+                  </span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">Throughout the Day</span>
+                <span className="mp-schedule-event-v2">
+                  Dog Breed Learning Activities
+                  <span className="mp-schedule-detail-v2">
+                    For kids and their adults
+                  </span>
+                </span>
+              </li>
+
+              <li className="mp-schedule-item-v2">
+                <span className="mp-schedule-time-v2">2:00 PM</span>
+                <span className="mp-schedule-event-v2">
+                  Silent Auction &amp; Drawings Close
+                  <span className="mp-schedule-detail-v2">
+                    Silent auction at The Academy &middot; Drawings at the
+                    Barnyard
+                  </span>
+                </span>
+              </li>
+
               <li className="mp-schedule-item-v2">
                 <span className="mp-schedule-time-v2">All Day</span>
-                <span className="mp-schedule-event-v2">Bean Bag Tournament</span>
-              </li>
-              <li className="mp-schedule-item-v2">
-                <span className="mp-schedule-time-v2">All Day</span>
-                <span className="mp-schedule-event-v2">Axe Throwing Contest</span>
-              </li>
-              <li className="mp-schedule-item-v2">
-                <span className="mp-schedule-time-v2">All Day</span>
-                <span className="mp-schedule-event-v2">Roping Contest</span>
-              </li>
-              <li className="mp-schedule-item-v2">
-                <span className="mp-schedule-time-v2">All Day</span>
-                <span className="mp-schedule-event-v2">Dog Talks: Body Language BINGO &amp; Breed Q&amp;A</span>
-              </li>
-              <li className="mp-schedule-item-v2">
-                <span className="mp-schedule-time-v2">All Day</span>
-                <span className="mp-schedule-event-v2">Live Music</span>
-              </li>
-              <li className="mp-schedule-item-v2">
-                <span className="mp-schedule-time-v2">All Day</span>
-                <span className="mp-schedule-event-v2">Food Trucks</span>
-              </li>
-              <li className="mp-schedule-item-v2">
-                <span className="mp-schedule-time-v2">All Day</span>
-                <span className="mp-schedule-event-v2">Silent Auction</span>
-              </li>
-              <li className="mp-schedule-item-v2">
-                <span className="mp-schedule-time-v2">All Day</span>
-                <span className="mp-schedule-event-v2">Face Painting &amp; Coloring Contest</span>
+                <span className="mp-schedule-event-v2">
+                  Live Music, Food Trucks &amp; Axe Throwing
+                </span>
               </li>
             </ul>
           </div>
